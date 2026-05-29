@@ -10,7 +10,7 @@ const tilePalette = [
 const getClubEmail = (club: string) => {
   if (club === "Coding Club") return "codingclub@iitdh.ac.in";
   if (club === "AI Club") return "aiclub@iitdh.ac.in";
-  if (club === "Space Data Science Club") return "space.ds.club@iitdh.ac.in";
+  if (club === "Space Data Science Club" || club === "Space and Data Science Club") return "space.ds.club@iitdh.ac.in";
   if (club === "Robotics Club") return "robotics@iitdh.ac.in";
   if (club === "Motorsports Club" || club === "InGene Motorsport") return "ingene@iitdh.ac.in";
   if (club === "Design Club" || club === "Abhikalpa Design Club") return "abhikalpa.dc@iitdh.ac.in";
@@ -23,7 +23,7 @@ const getClubEmail = (club: string) => {
 const getClubInitials = (club: string) => {
   if (club === "Coding Club") return "CC";
   if (club === "AI Club") return "AI";
-  if (club === "Space Data Science Club") return "SDS";
+  if (club === "Space Data Science Club" || club === "Space and Data Science Club") return "SDS";
   if (club === "Robotics Club") return "RC";
   if (club === "Motorsports Club" || club === "InGene Motorsport" || club.includes("Motorsport")) return "MC";
   if (club === "Design Club" || club === "Abhikalpa Design Club" || club.includes("Design")) return "DC";
@@ -36,7 +36,7 @@ const getClubInitials = (club: string) => {
 const getClubTitle = (club: string) => {
   if (club === "Coding Club") return "Coding Coordinator";
   if (club === "AI Club") return "AI Coordinator";
-  if (club === "Space Data Science Club") return "Space DS Coordinator";
+  if (club === "Space Data Science Club" || club === "Space and Data Science Club") return "Space DS Coordinator";
   if (club === "Robotics Club") return "Robotics Coordinator";
   if (club === "Motorsports Club" || club === "InGene Motorsport" || club.includes("Motorsport")) return "Motorsports Coordinator";
   if (club === "Design Club" || club === "Abhikalpa Design Club" || club.includes("Design")) return "Design Coordinator";

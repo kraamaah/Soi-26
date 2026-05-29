@@ -17,7 +17,7 @@ export function Events() {
     if (club === "Electronics Club") return "Electronics";
     if (club === "Robotics Club") return "Robotics";
     if (club === "AI Club") return "AI";
-    if (club === "Space Data Science Club") return "Space DS";
+    if (club === "Space Data Science Club" || club === "Space and Data Science Club") return "Space DS";
     if (club === "Design Club") return "Design";
     if (club === "Ingene (Motorsports) Club") return "Motorsports";
     if (club === "Astronomy Club") return "Astronomy";

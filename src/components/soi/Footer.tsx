@@ -3,7 +3,7 @@ export function Footer() {
     { name: "GenSec Technical Affairs", email: "gstech@iitdh.ac.in" },
     { name: "Coding Club", email: "codingclub@iitdh.ac.in" },
     { name: "AI Club", email: "aiclub@iitdh.ac.in" },
-    { name: "Space Data Science Club", email: "space.ds.club@iitdh.ac.in" },
+    { name: "Space and Data Science Club", email: "space.ds.club@iitdh.ac.in" },
     { name: "Robotics Club", email: "robotics@iitdh.ac.in" },
     { name: "Electronics Club", email: "electronicsclub@iitdh.ac.in" },
     { name: "InGene Motorsport", email: "ingene@iitdh.ac.in" },
