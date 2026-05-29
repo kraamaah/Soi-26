@@ -105,7 +105,12 @@ export function EasterEggGame({ onClose }: EasterEggGameProps) {
     setScore(0);
     obstacles.current = [];
     obstacleTimer.current = 0;
-    gameSpeed.current = 5.5;
+
+    // Detect device type to set optimal speed & responsive jump parameters
+    const mobileMode = typeof window !== "undefined" && ("ontouchstart" in window || navigator.maxTouchPoints > 0 || window.innerWidth < 768);
+    gameSpeed.current = mobileMode ? 6.5 : 3.8;
+    player.current.jumpStrength = mobileMode ? -12.5 : -11;
+    player.current.gravity = mobileMode ? 0.72 : 0.6;
 
     const canvas = canvasRef.current;
     if (canvas) {
@@ -157,8 +162,11 @@ export function EasterEggGame({ onClose }: EasterEggGameProps) {
         });
       }
 
-      // Speed progression
-      gameSpeed.current = 5.5 + localScore * 0.08;
+      // Speed progression dynamically scaled by device type
+      const mobileMode = typeof window !== "undefined" && ("ontouchstart" in window || navigator.maxTouchPoints > 0 || window.innerWidth < 768);
+      const baseSpeed = mobileMode ? 6.5 : 3.8;
+      const progressionFactor = mobileMode ? 0.08 : 0.045;
+      gameSpeed.current = baseSpeed + localScore * progressionFactor;
 
       // Update and filter obstacles
       obstacles.current.forEach((obs) => {
