@@ -37,58 +37,60 @@ export function Nav() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b-[3px] border-ink bg-background/95 backdrop-blur">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-8">
-        <a href="#home" className="flex items-center gap-2">
-          <span className="grid h-9 w-9 place-items-center border-[3px] border-ink bg-primary text-primary-foreground shadow-[2px_2px_0_0_var(--ink)]">
-            <span className="font-display text-sm">SOI</span>
-          </span>
-          <span className="hidden font-display text-sm uppercase tracking-tight md:inline">
-            Summer of Innovation
-          </span>
-        </a>
+    <>
+      <header className="sticky top-0 z-50 border-b-[3px] border-ink bg-background/95 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-8">
+          <a href="#home" className="flex items-center gap-2">
+            <span className="grid h-9 w-9 place-items-center border-[3px] border-ink bg-primary text-primary-foreground shadow-[2px_2px_0_0_var(--ink)]">
+              <span className="font-display text-sm">SOI</span>
+            </span>
+            <span className="hidden font-display text-sm uppercase tracking-tight md:inline">
+              Summer of Innovation
+            </span>
+          </a>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-1.5 md:gap-3">
-          {links.map((l) => {
-            const isActive = activeSection === l.href.substring(1);
-            return (
-              <a
-                key={l.href}
-                href={l.href}
-                className={`border-[2px] border-ink px-3 py-1.5 font-display text-xs uppercase tracking-wide transition-all shadow-[2px_2px_0_0_var(--ink)] ${
-                  isActive
-                    ? "bg-accent text-accent-foreground -translate-x-[1.5px] -translate-y-[1.5px] shadow-[3.5px_3.5px_0_0_var(--ink)]"
-                    : "bg-card text-ink hover:bg-peach hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[3px_3px_0_0_var(--ink)] active:translate-x-0 active:translate-y-0 active:shadow-[2px_2px_0_0_var(--ink)]"
-                }`}
-              >
-                {l.label}
-              </a>
-            );
-          })}
-        </nav>
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-1.5 md:gap-3">
+            {links.map((l) => {
+              const isActive = activeSection === l.href.substring(1);
+              return (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  className={`border-[2px] border-ink px-3 py-1.5 font-display text-xs uppercase tracking-wide transition-all shadow-[2px_2px_0_0_var(--ink)] ${
+                    isActive
+                      ? "bg-accent text-accent-foreground -translate-x-[1.5px] -translate-y-[1.5px] shadow-[3.5px_3.5px_0_0_var(--ink)]"
+                      : "bg-card text-ink hover:bg-peach hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[3px_3px_0_0_var(--ink)] active:translate-x-0 active:translate-y-0 active:shadow-[2px_2px_0_0_var(--ink)]"
+                  }`}
+                >
+                  {l.label}
+                </a>
+              );
+            })}
+          </nav>
 
-        {/* Mobile Hamburger Button */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="grid h-11 w-11 place-items-center border-[3px] border-ink bg-card text-ink shadow-[2.5px_2.5px_0_0_var(--ink)] md:hidden cursor-pointer hover:bg-peach active:translate-x-0 active:translate-y-0 select-none"
-          aria-label="Toggle navigation menu"
-        >
-          {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
-      </div>
+          {/* Mobile Hamburger Button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="grid h-11 w-11 place-items-center border-[3px] border-ink bg-card text-ink shadow-[2.5px_2.5px_0_0_var(--ink)] md:hidden cursor-pointer hover:bg-peach active:translate-x-0 active:translate-y-0 select-none"
+            aria-label="Toggle navigation menu"
+          >
+            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
+      </header>
 
       {/* Mobile Navigation Drawer Backdrop */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-40 bg-ink/30 backdrop-blur-xs md:hidden"
+          className="fixed inset-0 z-40 bg-ink/40 backdrop-blur-xs md:hidden"
           onClick={() => setIsOpen(false)}
         />
       )}
 
       {/* Mobile Navigation Drawer */}
       <div
-        className={`fixed inset-y-0 right-0 z-50 w-4/5 max-w-sm bg-background border-l-[3px] border-ink shadow-[-6px_0_0_0_var(--ink)] p-6 transition-transform duration-300 ease-in-out md:hidden flex flex-col justify-between ${
+        className={`fixed inset-y-0 right-0 z-50 w-4/5 max-w-sm bg-peach border-l-[3px] border-ink shadow-[-6px_0_0_0_var(--ink)] p-6 transition-transform duration-300 ease-in-out md:hidden flex flex-col justify-between ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -139,6 +141,6 @@ export function Nav() {
           </span>
         </div>
       </div>
-    </header>
+    </>
   );
 }
