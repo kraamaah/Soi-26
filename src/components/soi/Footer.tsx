@@ -48,10 +48,7 @@ export function Footer() {
                 <div className="flex gap-3">
                   {[
                     { s: "WA", href: "https://chat.whatsapp.com/HPh2VvStSX9DfLYvkB9rCH" },
-                    { s: "IG", href: "#" },
-                    { s: "TW", href: "#" },
-                    { s: "GH", href: "#" },
-                    { s: "IN", href: "#" },
+                    { s: "IG", href: "https://www.instagram.com/tech.council.iitdh/" },
                   ].map((item) => (
                     <a
                       key={item.s}
