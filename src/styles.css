@@ -115,3 +115,11 @@
   background-size: 40px 40px;
 }
 
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+

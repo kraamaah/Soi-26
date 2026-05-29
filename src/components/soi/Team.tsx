@@ -46,6 +46,15 @@ const getClubTitle = (club: string) => {
   return "Club Coordinator";
 };
 
+const getInitialsFromName = (name: string) => {
+  return name
+    .split(" ")
+    .map((word) => word[0])
+    .join("")
+    .substring(0, 2)
+    .toUpperCase();
+};
+
 export function Team() {
   return (
     <section id="team" className="border-b-[3px] border-ink py-20 bg-background conic-pattern">
@@ -60,8 +69,8 @@ export function Team() {
         <div className="space-y-14">
           {team.map((group, i) => {
             const email = getClubEmail(group.club);
-            const initials = getClubInitials(group.club);
-            const title = getClubTitle(group.club);
+            const memberCount = group.members.length;
+            const labelText = memberCount === 1 ? "1 Coordinator" : `${memberCount} Members`;
             return (
               <div key={group.club}>
                 <div className="mb-6 flex items-center gap-3">
@@ -70,30 +79,44 @@ export function Team() {
                   </span>
                   <span className="h-[3px] flex-1 bg-ink" />
                   <span className="font-display text-xs uppercase text-foreground/60">
-                    1 Coordinator
+                    {labelText}
                   </span>
                 </div>
-                <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-                  <div
-                    className="border-[3px] border-ink bg-card shadow-brutal-sm transition-transform hover:translate-x-[2px] hover:translate-y-[2px]"
-                  >
-                    <div
-                      className={`grid aspect-square place-items-center border-b-[3px] border-ink ${
-                        tilePalette[i % tilePalette.length]
-                      }`}
-                    >
-                      <span className="font-display text-3xl">{initials}</span>
-                    </div>
-                    <div className="p-3">
-                      <p className="font-display text-sm leading-tight">{title}</p>
-                      <a
-                        href={`mailto:${email}`}
-                        className="mt-1 inline-block text-[11px] uppercase tracking-wide text-foreground/60 hover:text-primary"
+                <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+                  {group.members.map((member, memberIdx) => {
+                    const initials = getInitialsFromName(member);
+                    const isCoord = memberIdx === 0;
+                    return (
+                      <div
+                        key={member}
+                        className="border-[3px] border-ink bg-card shadow-brutal-sm transition-transform hover:translate-x-[2px] hover:translate-y-[2px] flex flex-col h-full"
                       >
-                        ✉ Email Coordinator
-                      </a>
-                    </div>
-                  </div>
+                        <div
+                          className={`grid aspect-square place-items-center border-b-[3px] border-ink shrink-0 ${
+                            tilePalette[(i + memberIdx) % tilePalette.length]
+                          }`}
+                        >
+                          <span className="font-display text-2xl sm:text-3xl select-none">{initials}</span>
+                        </div>
+                        <div className="p-3 flex flex-col flex-1 justify-between gap-1">
+                          <div>
+                            <p className="font-display text-xs sm:text-sm leading-tight text-foreground break-words">
+                              {member}
+                            </p>
+                            <p className="text-[9px] uppercase font-bold tracking-wider text-foreground/50 mt-1">
+                              {isCoord ? "Coordinator" : "Core Member"}
+                            </p>
+                          </div>
+                          <a
+                            href={`mailto:${email}`}
+                            className="text-[10px] sm:text-[11px] uppercase tracking-wide text-foreground/60 hover:text-primary font-bold flex items-center gap-1 mt-2 transition-colors"
+                          >
+                            ✉ {isCoord ? "Email Coord" : "Contact"}
+                          </a>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             );

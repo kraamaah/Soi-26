@@ -8,7 +8,7 @@ export function Overview() {
           <span className="h-[3px] w-12 bg-ink" />
           <h2 className="font-display text-4xl uppercase md:text-5xl">Overview</h2>
         </div>
-        <BrutalCard className="relative p-8 md:p-12">
+        <BrutalCard className="relative p-5 sm:p-8 md:p-12">
           <Sparkle className="absolute -top-4 -left-4 h-8 w-8 text-accent" />
           <Sparkle className="absolute -bottom-4 -right-4 h-8 w-8 text-primary" />
           <h3 className="font-display text-2xl md:text-3xl">

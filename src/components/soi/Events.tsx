@@ -60,20 +60,20 @@ export function Events() {
         </div>
 
         {/* Filter Controls Bar */}
-        <div className="mb-10 border-[3px] border-ink bg-card p-5 shadow-brutal flex flex-col gap-4">
+        <div className="mb-10 border-[3px] border-ink bg-card p-4 sm:p-5 shadow-brutal flex flex-col gap-4">
           {/* Status Filters */}
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="font-display text-xs uppercase tracking-wider text-foreground/70 mr-1 font-bold">
+          <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
+            <span className="font-display text-xs uppercase tracking-wider text-foreground/70 font-bold shrink-0">
               Status:
             </span>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex overflow-x-auto pb-1.5 scrollbar-none snap-x gap-2.5 md:flex-wrap md:pb-0">
               {(["All", "Active", "Upcoming"] as const).map((status) => {
                 const isActive = statusFilter === status;
                 return (
                   <button
                     key={status}
                     onClick={() => setStatusFilter(status)}
-                    className={`border-[2px] border-ink px-3 py-1.5 font-display text-[10px] md:text-xs uppercase tracking-wide transition-all shadow-[2px_2px_0_0_var(--ink)] cursor-pointer ${
+                    className={`border-[2px] border-ink px-4 py-2 font-display text-[11px] md:text-xs uppercase tracking-wide transition-all shadow-[2px_2px_0_0_var(--ink)] cursor-pointer snap-start min-h-[40px] flex items-center justify-center shrink-0 ${
                       isActive
                         ? "bg-primary text-primary-foreground -translate-x-[1px] -translate-y-[1px] shadow-[3.5px_3.5px_0_0_var(--ink)]"
                         : "bg-background hover:bg-peach hover:-translate-x-[1.5px] hover:-translate-y-[1.5px] hover:shadow-[3px_3px_0_0_var(--ink)] active:translate-x-0 active:translate-y-0 active:shadow-[2px_2px_0_0_var(--ink)]"
@@ -87,18 +87,18 @@ export function Events() {
           </div>
 
           {/* Club Filters */}
-          <div className="flex flex-wrap items-start gap-3 border-t-2 border-dashed border-ink/10 pt-4">
-            <span className="font-display text-xs uppercase tracking-wider text-foreground/70 mr-1 font-bold mt-1.5">
+          <div className="flex flex-col gap-2 md:flex-row md:items-start md:gap-3 border-t-2 border-dashed border-ink/10 pt-4">
+            <span className="font-display text-xs uppercase tracking-wider text-foreground/70 font-bold shrink-0 md:mt-2.5">
               Clubs:
             </span>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex overflow-x-auto pb-1.5 scrollbar-none snap-x gap-2.5 md:flex-wrap md:pb-0">
               {clubs.map((club) => {
                 const isActive = clubFilter === club;
                 return (
                   <button
                     key={club}
                     onClick={() => setClubFilter(club)}
-                    className={`border-[2px] border-ink px-3 py-1.5 font-display text-[10px] md:text-xs uppercase tracking-wide transition-all shadow-[2px_2px_0_0_var(--ink)] cursor-pointer ${
+                    className={`border-[2px] border-ink px-4 py-2 font-display text-[11px] md:text-xs uppercase tracking-wide transition-all shadow-[2px_2px_0_0_var(--ink)] cursor-pointer snap-start min-h-[40px] flex items-center justify-center shrink-0 ${
                       isActive
                         ? "bg-accent text-accent-foreground -translate-x-[1px] -translate-y-[1px] shadow-[3.5px_3.5px_0_0_var(--ink)]"
                         : "bg-background hover:bg-peach hover:-translate-x-[1.5px] hover:-translate-y-[1.5px] hover:shadow-[3px_3px_0_0_var(--ink)] active:translate-x-0 active:translate-y-0 active:shadow-[2px_2px_0_0_var(--ink)]"
