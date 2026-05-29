@@ -8,6 +8,9 @@ import priyanshuNimbalkarPhoto from "@/assets/priyanshu-nimbalkar.jpg";
 import emilBenPhoto from "@/assets/emil-ben.jpeg";
 import haridarshanRPhoto from "@/assets/haridarshan-r.jpeg";
 import maanasKNPhoto from "@/assets/maanas-khatokar-n.jpeg";
+import rushilKrishnaPhoto from "@/assets/rushil-krishna.jpg";
+import aadityaKumarPhoto from "@/assets/aaditya-kumar.jpg";
+import gouravSherikarPhoto from "@/assets/gourav-sherikar.jpg";
 
 const memberPhotos: Record<string, string> = {
   "Kratgya Jain": kratgyaJainPhoto,
@@ -19,6 +22,9 @@ const memberPhotos: Record<string, string> = {
   "Emil Ben": emilBenPhoto,
   "Haridarshan R": haridarshanRPhoto,
   "Manas Khatokar N": maanasKNPhoto,
+  "Rushil Krishna Sai Narendula": rushilKrishnaPhoto,
+  "Aaditya Kumar": aadityaKumarPhoto,
+  "Gourav Sherikar": gouravSherikarPhoto,
 };
 
 const tilePalette = [
