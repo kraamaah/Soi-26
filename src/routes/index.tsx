@@ -14,13 +14,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "The seventh edition of Summer of Innovation: two months, eight technical challenges across AI, robotics, design, motorsports, finance and space.",
+          "The seventh edition of Summer of Innovation: two months, eighteen technical challenges across AI, robotics, design, motorsports, finance and space.",
       },
       { property: "og:title", content: "Summer of Innovation'26" },
       {
         property: "og:description",
         content:
-          "Eight challenges, two months, one summer of building. Join the seventh edition.",
+          "Eighteen challenges, two months, one summer of building. Join the seventh edition.",
       },
     ],
   }),
