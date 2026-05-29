@@ -243,29 +243,16 @@ export const events: SoiEvent[] = [
 export type TeamGroup = { club: string; members: string[] };
 
 export const team: TeamGroup[] = [
-  { club: "Coding Club", members: ["Amogh R", "Eshwar R", "Ahamed Noor"] },
-  { club: "AI Club", members: ["Nihar Sagar G"] },
+  { club: "Coding Club", members: ["Nidhish Doshi", "Gourav Sherikar"] },
+  { club: "AI Club", members: ["Nihar Sagar G", "Sreejita Chatterjee"] },
   {
     club: "Space Data Science Club",
-    members: [
-      "Nishant Mehta",
-      "Dev Kaushal",
-      "Richa Rajashekhar",
-      "Surya Prakash S",
-      "Shreya Bhat",
-      "Anushaa B",
-      "Affan Pathan",
-      "Ajitesh Manan Jha",
-      "Balamurali V B",
-      "Manushree I R",
-      "Maitreyee Kumbhojkar",
-      "Aniruddh Pandav",
-    ],
+    members: ["Balamurali V B", "Kaustubh Mishra", "T Dhanunjaya Rao", "Priyanshu Nimbalkar"],
   },
-  { club: "Robotics Club", members: ["Vidit Parikh"] },
-  { club: "Motorsports Club", members: ["Soumya Shaw"] },
-  { club: "Design Club", members: ["Saipushkar Nagaraj"] },
-  { club: "Finance Club", members: ["Yash Sanjeev Halbhavi"] },
-  { club: "Electronics Club", members: ["Raghav S", "Meera K"] },
-  { club: "Astronomy Club", members: ["Aryan P", "Tanvi L"] },
+  { club: "Robotics Club", members: ["Tushar Hegde", "Soumya Basuli", "Shrikant Sonawane"] },
+  { club: "Motorsports Club", members: ["Nageswar Dusi", "Soumya Shaw"] },
+  { club: "Design Club", members: ["Aashish M", "Rajat Gupta"] },
+  { club: "Finance Club", members: ["Samarth M"] },
+  { club: "Electronics Club", members: ["Manas Khatokar N", "Haridarshan R", "Emil Ben", "Harsh"] },
+  { club: "Astronomy Club", members: ["Harsh Chauhan", "Rithika Athawade"] },
 ];
