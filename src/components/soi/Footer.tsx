@@ -62,7 +62,7 @@ export function Footer() {
                   </a>
                   {/* Instagram social icon */}
                   <a
-                    href="https://www.instagram.com/tech.council.iitdh/"
+                    href="https://www.instagram.com/soi_iitdh"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="grid h-10 w-10 place-items-center border-[3px] border-card overflow-hidden shadow-brutal-sm transition-opacity hover:opacity-90"
