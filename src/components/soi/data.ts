@@ -75,7 +75,7 @@ export const events: SoiEvent[] = [
   },
   {
     num: "04",
-    title: "Learning Efficient Prompt Selection for Large Language Models",
+    title: "PromptWise",
     desc: "Design an adaptive prompt selector that dynamically optimizes queries under strict token budgets. Let's maximize LLM response quality while slashing latency!",
     image: promptSelection,
     club: "AI Club",
@@ -86,7 +86,7 @@ export const events: SoiEvent[] = [
   },
   {
     num: "05",
-    title: "Cost-Efficient Retrieval-Augmented Generation using Adaptive Vector Caching",
+    title: "CacheMind",
     desc: "Build a two-tier RAG storage system with adaptive vector caching. Can you slash embedding storage and retrieval costs without compromising output performance?",
     image: vectorCaching,
     club: "AI Club",
@@ -97,7 +97,7 @@ export const events: SoiEvent[] = [
   },
   {
     num: "06",
-    title: "AI-Based Intelligent Doctor Appointment and Triage System",
+    title: "MediGuide",
     desc: "Create a smart symptom-triage conversational agent. Classify patient symptoms and automatically schedule matching doctor slots to revolutionize access to care.",
     image: doctorTriage,
     club: "AI Club",
@@ -108,7 +108,7 @@ export const events: SoiEvent[] = [
   },
   {
     num: "07",
-    title: "Extending a Geometric Learning Framework to Arbitrary Shapes",
+    title: "PolyLearn",
     desc: "Break down the mathematical barriers of geometric deep learning. Extend rigid structures to irregular and arbitrary shapes to power advanced graphics and robotics.",
     image: geometricLearning,
     club: "AI Club",

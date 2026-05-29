@@ -1,8 +1,18 @@
 import { team } from "./data";
 import kratgyaJainPhoto from "@/assets/kratgya-jain.jpg";
+import nidhishDoshiPhoto from "@/assets/nidhish-doshi.jpg";
+import balamuraliVbPhoto from "@/assets/balamurali-vb.jpg";
+import harshPhoto from "@/assets/harsh.jpg";
+import kaustubhMishraPhoto from "@/assets/kaustubh-mishra.jpg";
+import priyanshuNimbalkarPhoto from "@/assets/priyanshu-nimbalkar.jpg";
 
 const memberPhotos: Record<string, string> = {
   "Kratgya Jain": kratgyaJainPhoto,
+  "Nidhish Doshi": nidhishDoshiPhoto,
+  "Balamurali V B": balamuraliVbPhoto,
+  "Harsh": harshPhoto,
+  "Kaustubh Mishra": kaustubhMishraPhoto,
+  "Priyanshu Nimbalkar": priyanshuNimbalkarPhoto,
 };
 
 const tilePalette = [
