@@ -61,14 +61,25 @@ export function Nav() {
     <>
       <header className="sticky top-0 z-50 border-b-[3px] border-ink bg-background/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-8">
-          <a href="#home" className="flex items-center gap-2">
-            <span className="grid h-9 w-9 place-items-center border-[3px] border-ink bg-primary text-primary-foreground shadow-[2px_2px_0_0_var(--ink)]">
-              <span className="font-display text-sm">SOI</span>
-            </span>
-            <span className="hidden font-display text-sm uppercase tracking-tight md:inline">
-              Summer of Innovation
-            </span>
-          </a>
+          <div className="flex items-center gap-2.5">
+            <button
+              onClick={toggleTheme}
+              className="grid h-9 w-9 place-items-center border-[3px] border-ink bg-primary text-primary-foreground shadow-[2px_2px_0_0_var(--ink)] cursor-pointer select-none hover:scale-[1.05] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0_0_var(--ink)] transition-all shrink-0"
+              title={`Switch to ${theme === "light" ? "Dark" : "Light"} Mode`}
+            >
+              <span className="font-display text-sm select-none">SOI</span>
+            </button>
+            <div className="flex items-center gap-2">
+              <a href="#home" className="flex items-center">
+                <span className="hidden font-display text-sm uppercase tracking-tight md:inline">
+                  Summer of Innovation
+                </span>
+              </a>
+              <span className="font-mono text-[9px] font-bold text-accent animate-pulse uppercase tracking-wider select-none shrink-0 border-[1.5px] border-ink bg-card px-1.5 py-0.5 shadow-brutal-sm">
+                ← CLICK HERE!
+              </span>
+            </div>
+          </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-1.5 md:gap-3">
@@ -92,15 +103,6 @@ export function Nav() {
 
           {/* Navigation Actions */}
           <div className="flex items-center gap-2.5">
-            {/* Solar Retro Theme Toggle Button */}
-            <button
-              onClick={toggleTheme}
-              className="grid h-11 w-11 place-items-center border-[3px] border-ink bg-card text-ink shadow-[2.5px_2.5px_0_0_var(--ink)] cursor-pointer hover:bg-peach hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[3.5px_3.5px_0_0_var(--ink)] active:translate-x-0 active:translate-y-0 active:shadow-[2.5px_2.5px_0_0_var(--ink)] transition-all text-lg select-none"
-              title={`Switch to ${theme === "light" ? "Dark" : "Light"} Mode`}
-            >
-              {theme === "light" ? "🌙" : "☀️"}
-            </button>
-
             {/* Mobile Hamburger Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
