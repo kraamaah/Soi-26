@@ -271,7 +271,7 @@ export function Timeline() {
           {/* Quick Stats Badges */}
           <div className="flex flex-wrap gap-3">
             <span className="border-[2px] border-ink bg-accent px-3 py-1 font-display text-xs uppercase shadow-brutal-sm">
-              Active Drops: {filteredEvents.length}
+              Active Drops: 0
             </span>
             <span className="border-[2px] border-ink bg-card px-3 py-1 font-display text-xs uppercase shadow-brutal-sm">
               Total PS: 18
