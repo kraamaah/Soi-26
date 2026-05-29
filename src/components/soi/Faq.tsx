@@ -1,0 +1,92 @@
+import { useState } from "react";
+
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+const faqData: FaqItem[] = [
+  {
+    question: "What is Summer of Innovation?",
+    answer: "Summer of Innovation (SoI) is a premier 2-month summer technical program organized by the Technical Council of IIT Dharwad. It provides students a platform to work on challenging, industry-inspired problem statements spanning artificial intelligence, space technology, software engineering, robotics, mechanical design, motorsports, and quantitative finance.",
+  },
+  {
+    question: "Who is eligible to participate?",
+    answer: "Participation is open to all students of IIT Dharwad across all years, branches, and programs (both UG and PG). Interested external student builders and developers are also welcome to join the community, collaborate, and submit solutions to the challenges.",
+  },
+  {
+    question: "What is the team size allowed for the challenges?",
+    answer: "Team size regulations vary depending on the specific problem statement. Some challenges are designed for individual solvers, while others allow teams of 2 to 4 members. Please refer to the specific description and WhatsApp community groups of your chosen problem statement for detailed rules.",
+  },
+  {
+    question: "Can I participate in multiple problem statements?",
+    answer: "Yes! You are free to register for and submit solutions to multiple problem statements. However, because of the high technical complexity and strict timelines of the challenges, we highly recommend focusing on 1 or 2 projects to deliver high-quality submissions.",
+  },
+  {
+    question: "How do the drops work and how are solutions submitted?",
+    answer: "Problem Statements (PS) are released dynamically in sequential 'drops' as detailed in the timeline. Each project has its own dedicated GitHub repository or submission portal. All code, design models, and documentations must be committed to the official channels before the specified deadline.",
+  },
+  {
+    question: "Are there registration fees or prizes?",
+    answer: "No, participation in all Summer of Innovation '26 events is completely free! The top performing teams in each challenge will receive exciting rewards including official merch, cash prizes, robu.in gift vouchers, and opportunities for continued faculty mentorship and research collaborations.",
+  },
+];
+
+export function Faq() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const toggleFaq = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  return (
+    <section id="faq" className="border-b-[3px] border-ink py-20 bg-background conic-pattern relative overflow-hidden">
+      <div className="mx-auto max-w-4xl px-4 md:px-8">
+        <div className="mb-12 text-center">
+          <span className="font-display text-xs uppercase tracking-widest text-primary">
+            Got Questions?
+          </span>
+          <h2 className="mt-2 font-display text-4xl uppercase md:text-6xl">
+            Frequently Asked Questions
+          </h2>
+        </div>
+
+        <div className="space-y-4">
+          {faqData.map((item, idx) => {
+            const isOpen = openIndex === idx;
+            return (
+              <div
+                key={idx}
+                className="border-[3px] border-ink bg-card shadow-brutal transition-all"
+              >
+                <button
+                  onClick={() => toggleFaq(idx)}
+                  className="w-full flex items-center justify-between p-5 text-left font-display text-base md:text-lg uppercase tracking-wide cursor-pointer transition-colors hover:bg-peach/30 select-none"
+                >
+                  <span className="pr-4">{item.question}</span>
+                  <span
+                    className={`grid h-8 w-8 shrink-0 place-items-center border-[2px] border-ink font-mono text-base font-bold transition-all shadow-brutal-sm ${
+                      isOpen ? "bg-accent text-accent-foreground rotate-180" : "bg-primary text-primary-foreground"
+                    }`}
+                  >
+                    {isOpen ? "−" : "+"}
+                  </span>
+                </button>
+
+                <div
+                  className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                    isOpen ? "max-h-[300px] border-t-[3px] border-ink" : "max-h-0"
+                  }`}
+                >
+                  <div className="p-5 font-body text-sm md:text-base leading-relaxed text-foreground/80 bg-peach/10">
+                    {item.answer}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}

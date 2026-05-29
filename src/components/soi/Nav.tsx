@@ -10,6 +10,7 @@ export function Nav() {
     { href: "#events", label: "Problem Statements" },
     { href: "#timeline", label: "Timeline" },
     { href: "#team", label: "Team" },
+    { href: "#faq", label: "FAQ" },
     { href: "#contact", label: "Contact" },
   ];
 
