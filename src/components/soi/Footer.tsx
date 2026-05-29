@@ -2,7 +2,7 @@ import instagramLogo from "@/assets/instagram-logo.png";
 
 export function Footer() {
   const contacts = [
-    { name: "GenSec Technical Affairs", email: "gstech@iitdh.ac.in" },
+    { name: "General Secretary Technical Affairs", email: "gstech@iitdh.ac.in" },
     { name: "Coding Club", email: "codingclub@iitdh.ac.in" },
     { name: "AI Club", email: "aiclub@iitdh.ac.in" },
     { name: "Space and Data Science Club", email: "space.ds.club@iitdh.ac.in" },
@@ -28,7 +28,7 @@ export function Footer() {
                 Have questions or want to collaborate? Reach out to the respective clubs or the technical secretariat.
               </p>
             </div>
-            
+
             <div className="flex flex-col gap-6 sm:flex-row sm:items-center lg:flex-col lg:items-start">
               <div>
                 <p className="font-display text-xs uppercase tracking-widest text-accent mb-3">WhatsApp Community</p>
@@ -94,7 +94,7 @@ export function Footer() {
           </div>
         </div>
       </div>
-      
+
       <div className="border-t-[3px] border-card/30 px-4 py-5 text-center text-xs uppercase tracking-widest text-card/60 md:px-8">
         © 2026 Summer of Innovation · Built with conviction
       </div>
