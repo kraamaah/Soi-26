@@ -1,0 +1,117 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ink: var(--ink);
+  --color-peach: var(--peach);
+  --color-peach-deep: var(--peach-deep);
+  --font-display: "Archivo Black", system-ui, sans-serif;
+  --font-body: "Space Grotesk", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.25rem;
+  /* Peach & Cobalt neo-brutalist palette */
+  --background: oklch(0.93 0.045 60); /* peach #ffe9d6 */
+  --peach: oklch(0.93 0.045 60);
+  --peach-deep: oklch(0.86 0.07 55);
+  --foreground: oklch(0.18 0.02 270); /* near-black ink */
+  --ink: oklch(0.18 0.02 270);
+  --card: oklch(0.985 0.015 75); /* off-white #fffaf2 */
+  --card-foreground: oklch(0.18 0.02 270);
+  --popover: oklch(0.985 0.015 75);
+  --popover-foreground: oklch(0.18 0.02 270);
+  --primary: oklch(0.48 0.27 265); /* cobalt #2747ff */
+  --primary-foreground: oklch(0.985 0.015 75);
+  --secondary: oklch(0.88 0.06 55);
+  --secondary-foreground: oklch(0.18 0.02 270);
+  --muted: oklch(0.9 0.04 60);
+  --muted-foreground: oklch(0.35 0.02 270);
+  --accent: oklch(0.7 0.2 40); /* orange #ff6a3d */
+  --accent-foreground: oklch(0.18 0.02 270);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.984 0.003 247.858);
+  --border: oklch(0.18 0.02 270);
+  --input: oklch(0.18 0.02 270);
+  --ring: oklch(0.48 0.27 265);
+  --shadow-brutal: 8px 8px 0 0 var(--ink);
+  --shadow-brutal-sm: 4px 4px 0 0 var(--ink);
+  --shadow-brutal-lg: 12px 12px 0 0 var(--ink);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+}
+
+@utility shadow-brutal {
+  box-shadow: var(--shadow-brutal);
+}
+@utility shadow-brutal-sm {
+  box-shadow: var(--shadow-brutal-sm);
+}
+@utility shadow-brutal-lg {
+  box-shadow: var(--shadow-brutal-lg);
+}
+
+/* Peach grid backdrop */
+.peach-grid {
+  background-image:
+    linear-gradient(var(--ink) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ink) 1px, transparent 1px);
+  background-size: 56px 56px;
+  background-position: -1px -1px;
+  opacity: 1;
+}
+
+/* Dotted grid backdrop */
+.dots-grid {
+  background-image: radial-gradient(var(--ink) 1.5px, transparent 1.5px);
+  background-size: 28px 28px;
+}
+
+/* Repeating conic gradient backdrop */
+.conic-pattern {
+  background-image: repeating-conic-gradient(
+    rgba(27, 24, 30, 0.02) 0% 25%,
+    transparent 0% 50%
+  );
+  background-size: 40px 40px;
+}
+
