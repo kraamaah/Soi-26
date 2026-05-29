@@ -28,7 +28,23 @@ const faqData: FaqItem[] = [
   },
   {
     question: "Are there registration fees or prizes?",
-    answer: "No, participation in all Summer of Innovation '26 events is completely free! The top performing teams in each challenge will receive exciting rewards including official merch, cash prizes, robu.in gift vouchers, and opportunities for continued faculty mentorship and research collaborations.",
+    answer: "No, participation in all Summer of Innovation '26 events is completely free! The top performing teams in each challenge will receive exciting rewards including official merch, cash prizes, gift vouchers, and opportunities for continued faculty mentorship and research collaborations.",
+  },
+  {
+    question: "Is there any prerequisite knowledge required to participate?",
+    answer: "No strict prerequisites are required! While some challenges are advanced, many are beginner-friendly and designed to be excellent learning opportunities. Each challenge has dedicated mentors, resources, and discussion channels to support you in learning as you build.",
+  },
+  {
+    question: "Can I change my team members after registering?",
+    answer: "Yes, team changes are permitted during the initial phases of the problem statements. Please coordinate directly with the respective challenge leads or organizers in the dedicated WhatsApp group to update your team's details.",
+  },
+  {
+    question: "Will I receive a certificate of participation?",
+    answer: "Yes! All participants who submit a functional, valid solution that meets the baseline evaluation criteria will receive an official Certificate of Participation from the Technical Council, IIT Dharwad.",
+  },
+  {
+    question: "Where can I ask doubts or get support during the project?",
+    answer: "Each problem statement has a dedicated WhatsApp discussion group. You can join the group via the green WhatsApp buttons on the cards to chat directly with organizers, ask technical doubts, find team members, and get support.",
   },
 ];
 
@@ -65,18 +81,16 @@ export function Faq() {
                 >
                   <span className="pr-4">{item.question}</span>
                   <span
-                    className={`grid h-8 w-8 shrink-0 place-items-center border-[2px] border-ink font-mono text-base font-bold transition-all shadow-brutal-sm ${
-                      isOpen ? "bg-accent text-accent-foreground rotate-180" : "bg-primary text-primary-foreground"
-                    }`}
+                    className={`grid h-8 w-8 shrink-0 place-items-center border-[2px] border-ink font-mono text-base font-bold transition-all shadow-brutal-sm ${isOpen ? "bg-accent text-accent-foreground rotate-180" : "bg-primary text-primary-foreground"
+                      }`}
                   >
                     {isOpen ? "−" : "+"}
                   </span>
                 </button>
 
                 <div
-                  className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                    isOpen ? "max-h-[300px] border-t-[3px] border-ink" : "max-h-0"
-                  }`}
+                  className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-[300px] border-t-[3px] border-ink" : "max-h-0"
+                    }`}
                 >
                   <div className="p-5 font-body text-sm md:text-base leading-relaxed text-foreground/80 bg-peach/10">
                     {item.answer}
