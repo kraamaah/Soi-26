@@ -9,7 +9,7 @@ export function Hero() {
           <span className="inline-block border-[3px] border-ink bg-accent px-3 py-1 font-display text-xs uppercase tracking-widest shadow-brutal-sm">
             Seventh Edition · 2026
           </span>
-          <h1 className="mt-6 font-display text-4xl sm:text-5xl leading-[0.95] md:text-6xl lg:text-7xl xl:text-8xl uppercase tracking-tight break-normal">
+          <h1 className="mt-6 font-display text-4xl sm:text-5xl leading-[0.95] md:text-5xl lg:text-6xl xl:text-7xl uppercase tracking-tight break-normal">
             Summer
             <br />
             of <span className="text-primary">Innovation</span>
