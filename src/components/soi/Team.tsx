@@ -1,4 +1,9 @@
 import { team } from "./data";
+import kratgyaJainPhoto from "@/assets/kratgya-jain.jpg";
+
+const memberPhotos: Record<string, string> = {
+  "Kratgya Jain": kratgyaJainPhoto,
+};
 
 const tilePalette = [
   "bg-primary text-primary-foreground",
@@ -86,6 +91,7 @@ export function Team() {
                   {group.members.map((member, memberIdx) => {
                     const initials = getInitialsFromName(member);
                     const isCoord = memberIdx === 0;
+                    const photo = memberPhotos[member];
                     return (
                       <div
                         key={member}
@@ -93,10 +99,19 @@ export function Team() {
                       >
                         <div
                           className={`grid aspect-square place-items-center border-b-[3px] border-ink shrink-0 ${
-                            tilePalette[(i + memberIdx) % tilePalette.length]
+                            photo ? "bg-card overflow-hidden" : tilePalette[(i + memberIdx) % tilePalette.length]
                           }`}
                         >
-                          <span className="font-display text-2xl sm:text-3xl select-none">{initials}</span>
+                          {photo ? (
+                            <img
+                              src={photo}
+                              alt={member}
+                              className="w-full h-full object-cover select-none"
+                              loading="lazy"
+                            />
+                          ) : (
+                            <span className="font-display text-2xl sm:text-3xl select-none">{initials}</span>
+                          )}
                         </div>
                         <div className="p-3 flex flex-col flex-1 justify-between gap-1">
                           <div>
