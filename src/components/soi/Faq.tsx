@@ -46,6 +46,10 @@ const faqData: FaqItem[] = [
     question: "Where can I ask doubts or get support during the project?",
     answer: "Each problem statement has a dedicated WhatsApp discussion group. You can join the group via the green WhatsApp buttons on the cards to chat directly with organizers, ask technical doubts, find team members, and get support.",
   },
+  {
+    question: "Are the deadlines strict, and where can I check the dates?",
+    answer: "Yes, submission deadlines are strict to maintain a fair evaluation environment. You can check the specific release date and deadline duration for each challenge directly on its respective problem statement card under the 'Timeline' label, as well as the release schedules under the main 'Timeline' section.",
+  },
 ];
 
 export function Faq() {
