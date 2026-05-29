@@ -379,7 +379,15 @@ export function EasterEggGame({ onClose }: EasterEggGameProps) {
         {/* Footer controls hints */}
         <div className="mt-4 text-center">
           <p className="font-body text-[10px] text-foreground/60">
-            A secret Technical Council Easter Egg. Created for builders.
+            A secret Technical Council Easter Egg.{" "}
+            <a
+              href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold underline text-primary hover:text-accent transition-colors"
+            >
+              Click Here
+            </a>
           </p>
         </div>
       </div>
