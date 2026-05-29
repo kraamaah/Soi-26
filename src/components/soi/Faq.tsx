@@ -50,6 +50,18 @@ const faqData: FaqItem[] = [
     question: "Are the deadlines strict, and where can I check the dates?",
     answer: "Yes, submission deadlines are strict to maintain a fair evaluation environment. You can check the specific release date and deadline duration for each challenge directly on its respective problem statement card under the 'Timeline' label, as well as the release schedules under the main 'Timeline' section.",
   },
+  {
+    question: "Do I need to submit a technical report along with my code or designs?",
+    answer: "Yes! High-quality documentation and reports are major evaluation parameters. Besides working codebase repositories or 3D models, we highly value comprehensive write-ups, analysis diagrams, performance tables, and technical reasoning.",
+  },
+  {
+    question: "Can I use open-source templates or third-party packages?",
+    answer: "Absolutely! You are free to leverage open-source libraries, APIs, and frameworks unless explicitly restricted by a specific challenge description. However, you must credit all external materials and clearly detail your original contributions.",
+  },
+  {
+    question: "Is there hardware support provided for robotics or electronics challenges?",
+    answer: "Yes! Solvers showing high progress in the initial virtual simulation phases of hardware-centric challenges can request budget reimbursements, component sourcing, or makerspace lab access. Reach out directly to challenge leads in your WhatsApp group for guidance.",
+  },
 ];
 
 export function Faq() {
