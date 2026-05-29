@@ -60,11 +60,11 @@ export function Domains() {
         </div>
 
         {/* Dynamic Domain Cloud Grid */}
-        <div className="mb-12 border-[3px] border-ink bg-card p-6 shadow-brutal">
-          <p className="font-display text-xs uppercase tracking-wider text-foreground/60 mb-4 font-bold">
+        <div className="mb-12 border-[3px] border-ink bg-card p-4 sm:p-6 shadow-brutal flex flex-col gap-2">
+          <p className="font-display text-xs uppercase tracking-wider text-foreground/60 mb-2 font-bold">
             💡 Select a domain to discover corresponding challenges:
           </p>
-          <div className="flex flex-wrap gap-2.5">
+          <div className="flex overflow-x-auto pb-1.5 scrollbar-none snap-x gap-2.5 md:flex-wrap md:pb-0">
             {allDomains.map((dom) => {
               const isActive = selectedDomain === dom;
               const count = events.filter((e) => e.domains.includes(dom)).length;
@@ -73,7 +73,7 @@ export function Domains() {
                 <button
                   key={dom}
                   onClick={() => setSelectedDomain(dom)}
-                  className={`border-[2px] border-ink px-3 py-1.5 font-display text-xs uppercase tracking-wide transition-all shadow-brutal-sm cursor-pointer flex items-center gap-2 ${
+                  className={`border-[2px] border-ink px-4 py-2 font-display text-[11px] md:text-xs uppercase tracking-wide transition-all shadow-brutal-sm cursor-pointer snap-start min-h-[40px] flex items-center gap-2 shrink-0 ${
                     isActive
                       ? "bg-primary text-primary-foreground -translate-x-[1px] -translate-y-[1px] shadow-brutal"
                       : "bg-background hover:bg-peach hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-brutal active:translate-x-0 active:translate-y-0"
@@ -186,13 +186,13 @@ export function Domains() {
           onClick={() => setModalEvent(null)}
         >
           <div 
-            className="border-[4px] border-ink bg-card p-6 md:p-8 max-w-lg w-full shadow-brutal relative animate-modal-pop"
+            className="border-[4px] border-ink bg-card p-5 sm:p-6 md:p-8 max-w-lg w-full max-h-[85vh] overflow-y-auto shadow-brutal relative animate-modal-pop scrollbar-none"
             onClick={(s) => s.stopPropagation()} // Prevent modal closure when clicking inside the modal
           >
             {/* Brutalist Close button */}
             <button
               onClick={() => setModalEvent(null)}
-              className="absolute -right-3 -top-3 h-9 w-9 border-[3px] border-ink bg-primary text-primary-foreground font-display text-lg shadow-brutal-sm cursor-pointer flex items-center justify-center hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none active:translate-x-0 active:translate-y-0 transition-all"
+              className="absolute -right-2 -top-2 sm:-right-3 sm:-top-3 h-10 w-10 border-[3px] border-ink bg-primary text-primary-foreground font-display text-lg shadow-brutal-sm cursor-pointer flex items-center justify-center hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none active:translate-x-0 active:translate-y-0 transition-all z-10"
             >
               ✕
             </button>
