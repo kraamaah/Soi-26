@@ -243,7 +243,7 @@ export const events: SoiEvent[] = [
 export type TeamGroup = { club: string; members: string[] };
 
 export const team: TeamGroup[] = [
-  { club: "Coding Club", members: ["Nidhish Doshi", "Gourav Sherikar"] },
+  { club: "Coding Club", members: ["Nidhish Doshi", "Gourav Sherikar", "Aaditya Kumar", "Rushil Krishna Sai Narendula", "Kratagya Jain"] },
   { club: "AI Club", members: ["Nihar Sagar G", "Sreejita Chatterjee"] },
   {
     club: "Space and Data Science Club",
