@@ -166,7 +166,9 @@ export function Events() {
                     <div className="flex gap-2.5">
                       {/* WhatsApp Logo Link */}
                       <a
-                        href="#"
+                        href={e.whatsapp || "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="grid h-9 w-9 place-items-center border-[2.5px] border-ink bg-[#25D366] text-white shadow-brutal-sm transition-transform hover:translate-x-[1.5px] hover:translate-y-[1.5px] hover:shadow-none active:translate-x-0 active:translate-y-0"
                         title="Join WhatsApp Group"
                       >

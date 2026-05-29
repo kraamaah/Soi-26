@@ -37,6 +37,7 @@ export type SoiEvent = {
   timeline: string;
   prizes: string;
   domains: string[];
+  whatsapp?: string;
 };
 
 export const events: SoiEvent[] = [
@@ -50,6 +51,7 @@ export const events: SoiEvent[] = [
     timeline: "2nd June - 17th July 2026",
     prizes: "Merch + Prize Money (1800 + 1200 + 600)",
     domains: ["Software Engineering", "Algorithms & Optimization"],
+    whatsapp: "https://chat.whatsapp.com/DDTS4N4AjNWLh0WEQVZT98",
   },
   {
     num: "02",
@@ -61,6 +63,7 @@ export const events: SoiEvent[] = [
     timeline: "2nd June - 12th July 2026",
     prizes: "Merch + Prize Money (2500 + 1500 + 1000)",
     domains: ["VLSI", "Communication System"],
+    whatsapp: "https://chat.whatsapp.com/Fa8iDnnLVZ4KlVdF1Wks7I",
   },
   {
     num: "03",
@@ -72,6 +75,7 @@ export const events: SoiEvent[] = [
     timeline: "2nd June - 14th July 2026",
     prizes: "Merch + 3x Robu/Robocraze Gift Card (1000 INR)",
     domains: ["Robotics & Automation", "Software Engineering"],
+    whatsapp: "https://chat.whatsapp.com/KlvDNJIMBht93eIixIgmZn",
   },
   {
     num: "04",
@@ -83,6 +87,7 @@ export const events: SoiEvent[] = [
     timeline: "2nd June - 31st July 2026",
     prizes: "Certificate + Faculty Guidance / Continued Work Opportunity",
     domains: ["Artificial Intelligence & ML", "Generative AI"],
+    whatsapp: "https://chat.whatsapp.com/EvJOwKhBeiIAXoLEPK9gMI",
   },
   {
     num: "05",
@@ -94,6 +99,7 @@ export const events: SoiEvent[] = [
     timeline: "2nd June - 31st July 2026",
     prizes: "Certificate + Faculty Guidance / Continued Work Opportunity",
     domains: ["Artificial Intelligence & ML", "Data Engineering"],
+    whatsapp: "https://chat.whatsapp.com/GC2B0ZsAkNILO8IwYgikKo",
   },
   {
     num: "06",
@@ -105,6 +111,7 @@ export const events: SoiEvent[] = [
     timeline: "2nd June - 31st July 2026",
     prizes: "Certificate + Faculty Guidance / Continued Work Opportunity",
     domains: ["Artificial Intelligence & ML", "Healthcare Tech"],
+    whatsapp: "https://chat.whatsapp.com/JrbnscP1nRrIv85RI3ggRl",
   },
   {
     num: "07",
@@ -116,6 +123,7 @@ export const events: SoiEvent[] = [
     timeline: "2nd June - 31st July 2026",
     prizes: "Certificate + Faculty Guidance / Continued Work Opportunity",
     domains: ["Artificial Intelligence & ML", "Computer Vision"],
+    whatsapp: "https://chat.whatsapp.com/JSe4AakDRwyA3x7i0lw5xp",
   },
   {
     num: "08",
@@ -127,6 +135,7 @@ export const events: SoiEvent[] = [
     timeline: "9th June - 23rd June 2026",
     prizes: "Merch + Prize Money (2500 + 1500 + 1000)",
     domains: ["Artificial Intelligence & ML", "Aerospace & Space Tech"],
+    whatsapp: "https://chat.whatsapp.com/DGWijtO3F6kC7PBNKye5EP",
   },
   {
     num: "09",
@@ -138,6 +147,7 @@ export const events: SoiEvent[] = [
     timeline: "9th June - 31st July 2026",
     prizes: "Merch + Prize Money (2500 + 1500 + 1000)",
     domains: ["UI/UX & Brand Design"],
+    whatsapp: "https://chat.whatsapp.com/LYK6m8jTvPh9MjDeQ2pfLP",
   },
   {
     num: "10",
@@ -149,6 +159,7 @@ export const events: SoiEvent[] = [
     timeline: "9th June - 31st July 2026",
     prizes: "Merch + Prize Money (2500 + 1500 + 1000)",
     domains: ["Mechanical Engineering", "Product Design & CAD"],
+    whatsapp: "https://chat.whatsapp.com/Ej7FvmSVH3P1eKKhK9Cy5I",
   },
   {
     num: "11",
@@ -160,6 +171,7 @@ export const events: SoiEvent[] = [
     timeline: "9th June - 14th July 2026",
     prizes: "Merch + 3x Robu/Robocraze Gift Card (1000 INR)",
     domains: ["Robotics & Automation", "Product Design & CAD"],
+    whatsapp: "https://chat.whatsapp.com/KdL3HuORynJBUAUuXbg8sj",
   },
   {
     num: "12",
@@ -171,6 +183,7 @@ export const events: SoiEvent[] = [
     timeline: "16th June - 7th July 2026",
     prizes: "Merch + Goodies for Top 3 (Juniors & Seniors)",
     domains: ["Mechanical Engineering", "Materials Science"],
+    whatsapp: "https://chat.whatsapp.com/FuhhCXVVCdVDJbP2rHTAMm",
   },
   {
     num: "13",
@@ -182,6 +195,7 @@ export const events: SoiEvent[] = [
     timeline: "16th June - 16th July 2026",
     prizes: "Merch + Prize Money (2500 + 1500 + 1000)",
     domains: ["Aerospace & Space Tech", "Astrophysics & Simulation"],
+    whatsapp: "https://chat.whatsapp.com/HVPEqAOPWLe7C7BYgjR5Cn",
   },
   {
     num: "14",
@@ -193,6 +207,7 @@ export const events: SoiEvent[] = [
     timeline: "16th June - 21st July 2026",
     prizes: "Merch + 3x Robu/Robocraze Gift Card (1000 INR)",
     domains: ["Robotics & Automation", "Control Systems"],
+    whatsapp: "https://chat.whatsapp.com/LU2uvZb2B3nArc45qtiT6J",
   },
   {
     num: "15",
@@ -204,6 +219,7 @@ export const events: SoiEvent[] = [
     timeline: "23rd June - 17th July 2026",
     prizes: "Merch + Prize Money (1800 + 1200)",
     domains: ["Software Engineering", "Cybersecurity"],
+    whatsapp: "https://chat.whatsapp.com/FpMV8lXKL7K9QnJy10CWZw",
   },
   {
     num: "16",
@@ -215,6 +231,7 @@ export const events: SoiEvent[] = [
     timeline: "30th June - 10th July 2026",
     prizes: "Merch + Prize Money (2000 + 1000 + 500)",
     domains: ["Quantitative Finance"],
+    whatsapp: "https://chat.whatsapp.com/CT5ozR4rSRA2EaVqXODpV7",
   },
   {
     num: "17",
@@ -226,6 +243,7 @@ export const events: SoiEvent[] = [
     timeline: "7th July - 17th July 2026",
     prizes: "Merch + Prize Money (1800 + 1200)",
     domains: ["Software Engineering", "Game Development"],
+    whatsapp: "https://chat.whatsapp.com/E2KFXYMTDDlDi5onvyawmi",
   },
   {
     num: "18",
@@ -237,6 +255,7 @@ export const events: SoiEvent[] = [
     timeline: "7th July - 21st July 2026",
     prizes: "Merch + Prize Money (2500 + 1500 + 1000)",
     domains: ["Aerospace & Space Tech", "Embedded Systems"],
+    whatsapp: "https://chat.whatsapp.com/LaY2b7B3hlh4tiAMY3j8uk",
   },
 ];
 

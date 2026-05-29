@@ -154,7 +154,9 @@ export function Domains() {
                     <div className="flex gap-2">
                       {/* WhatsApp Button */}
                       <a
-                        href="#"
+                        href={e.whatsapp || "#"}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="grid h-8 w-8 place-items-center border-[2px] border-ink bg-[#25D366] text-white shadow-brutal-xs transition-transform hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none active:translate-x-0 active:translate-y-0"
                         title="Join WhatsApp Group"
                       >
