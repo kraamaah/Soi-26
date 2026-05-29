@@ -5,6 +5,9 @@ import balamuraliVbPhoto from "@/assets/balamurali-vb.jpg";
 import harshPhoto from "@/assets/harsh.jpg";
 import kaustubhMishraPhoto from "@/assets/kaustubh-mishra.jpg";
 import priyanshuNimbalkarPhoto from "@/assets/priyanshu-nimbalkar.jpg";
+import emilBenPhoto from "@/assets/emil-ben.jpeg";
+import haridarshanRPhoto from "@/assets/haridarshan-r.jpeg";
+import maanasKNPhoto from "@/assets/maanas-khatokar-n.jpeg";
 
 const memberPhotos: Record<string, string> = {
   "Kratgya Jain": kratgyaJainPhoto,
@@ -13,6 +16,9 @@ const memberPhotos: Record<string, string> = {
   "Harsh": harshPhoto,
   "Kaustubh Mishra": kaustubhMishraPhoto,
   "Priyanshu Nimbalkar": priyanshuNimbalkarPhoto,
+  "Emil Ben": emilBenPhoto,
+  "Haridarshan R": haridarshanRPhoto,
+  "Manas Khatokar N": maanasKNPhoto,
 };
 
 const tilePalette = [
@@ -108,9 +114,8 @@ export function Team() {
                         className="border-[3px] border-ink bg-card shadow-brutal-sm transition-transform hover:translate-x-[2px] hover:translate-y-[2px] flex flex-col h-full"
                       >
                         <div
-                          className={`grid aspect-square place-items-center border-b-[3px] border-ink shrink-0 ${
-                            photo ? "bg-card overflow-hidden" : tilePalette[(i + memberIdx) % tilePalette.length]
-                          }`}
+                          className={`grid aspect-square place-items-center border-b-[3px] border-ink shrink-0 ${photo ? "bg-card overflow-hidden" : tilePalette[(i + memberIdx) % tilePalette.length]
+                            }`}
                         >
                           {photo ? (
                             <img
