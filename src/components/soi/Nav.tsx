@@ -62,6 +62,10 @@ export function Nav() {
       <header className="sticky top-0 z-50 border-b-[3px] border-ink bg-background/95 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-8">
           <div className="flex items-center gap-2.5">
+            {/* Playful 'Click Here' indicator pointing to the right */}
+            <span className="font-mono text-[9px] font-bold text-accent animate-pulse uppercase tracking-wider select-none shrink-0 border-[1.5px] border-ink bg-card px-1.5 py-0.5 shadow-brutal-sm">
+              CLICK HERE ➜
+            </span>
             <button
               onClick={toggleTheme}
               className="grid h-9 w-9 place-items-center border-[3px] border-ink bg-primary text-primary-foreground shadow-[2px_2px_0_0_var(--ink)] cursor-pointer select-none hover:scale-[1.05] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0_0_var(--ink)] transition-all shrink-0"
@@ -69,16 +73,11 @@ export function Nav() {
             >
               <span className="font-display text-sm select-none">SOI</span>
             </button>
-            <div className="flex items-center gap-2">
-              <a href="#home" className="flex items-center">
-                <span className="hidden font-display text-sm uppercase tracking-tight md:inline">
-                  Summer of Innovation
-                </span>
-              </a>
-              <span className="font-mono text-[9px] font-bold text-accent animate-pulse uppercase tracking-wider select-none shrink-0 border-[1.5px] border-ink bg-card px-1.5 py-0.5 shadow-brutal-sm">
-                ← CLICK HERE!
+            <a href="#home" className="flex items-center">
+              <span className="hidden font-display text-sm uppercase tracking-tight md:inline">
+                Summer of Innovation
               </span>
-            </div>
+            </a>
           </div>
 
           {/* Desktop Navigation */}
@@ -101,17 +100,14 @@ export function Nav() {
             })}
           </nav>
 
-          {/* Navigation Actions */}
-          <div className="flex items-center gap-2.5">
-            {/* Mobile Hamburger Button */}
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="grid h-11 w-11 place-items-center border-[3px] border-ink bg-card text-ink shadow-[2.5px_2.5px_0_0_var(--ink)] md:hidden cursor-pointer hover:bg-peach active:translate-x-0 active:translate-y-0 select-none"
-              aria-label="Toggle navigation menu"
-            >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
-          </div>
+          {/* Mobile Hamburger Button (Restored to its original layout position) */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="grid h-11 w-11 place-items-center border-[3px] border-ink bg-card text-ink shadow-[2.5px_2.5px_0_0_var(--ink)] md:hidden cursor-pointer hover:bg-peach active:translate-x-0 active:translate-y-0 select-none"
+            aria-label="Toggle navigation menu"
+          >
+            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
       </header>
 
