@@ -217,40 +217,28 @@ export function SoiLogo({ className = "w-full h-auto" }: { className?: string })
  
       {/* D. RIGHT CHROME-VANADIUM DOUBLE-ENDED WRENCH (Shifted upward and slightly inside) */}
       <g className="soi-tool-right" transform="translate(340, 160) rotate(22 0 40) scale(1.15)">
- 
-        {/* Wrench body rendered with mask */}
+
+        {/* Wrench body fill rendered with mask for inner hole transparency */}
         <g mask="url(#wrench-clip-mask)">
-          {/* Main Handle Shaft */}
-          <rect
-            x="-8"
-            y="-62"
-            width="16"
-            height="86"
-            rx="5.5"
+          <path
+            d="M -10,-76 L -11,-62 L 11,-62 L 10,-76 L 16,-74 A 20,20 0 0,1 8,-43.67 L 8,10 A 16,16 0 1,1 -8,10 L -8,-43.67 A 20,20 0 0,1 -16,-74 Z"
             fill="var(--color-primary)"
-            stroke="var(--color-ink)"
-            strokeWidth="3.5"
           />
-          {/* Inset Core Shaft Accent */}
-          <rect x="-3.5" y="-42" width="7" height="50" rx="2" fill="var(--color-ink)" opacity="0.22" />
- 
-          {/* Upper Open-End Head Ring */}
-          <circle cx="0" cy="-62" r="20" fill="var(--color-primary)" stroke="var(--color-ink)" strokeWidth="3.5" />
-          
-          {/* Lower Closed Ring Head */}
-          <circle cx="0" cy="24" r="16" fill="var(--color-primary)" stroke="var(--color-ink)" strokeWidth="3.5" />
         </g>
- 
-        {/* Draw borders/strokes of cutouts manually */}
-        {/* Open Jaw inner outline */}
+
+        {/* Inset Core Shaft Accent */}
+        <rect x="-3.5" y="-42" width="7" height="50" rx="2" fill="var(--color-ink)" opacity="0.22" />
+
+        {/* Wrench Outer Continuous Outline */}
         <path
-          d="M-10,-86 L10,-86 L12,-66 L-12,-66"
+          d="M -10,-76 L -11,-62 L 11,-62 L 10,-76 L 16,-74 A 20,20 0 0,1 8,-43.67 L 8,10 A 16,16 0 1,1 -8,10 L -8,-43.67 A 20,20 0 0,1 -16,-74 Z"
           fill="none"
           stroke="var(--color-ink)"
           strokeWidth="3.5"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
+
         {/* Closed Ring interior hole outline */}
         <circle cx="0" cy="24" r="7.5" fill="none" stroke="var(--color-ink)" strokeWidth="3.5" />
       </g>
