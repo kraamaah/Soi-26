@@ -65,6 +65,30 @@
   --shadow-brutal-lg: 12px 12px 0 0 var(--ink);
 }
 
+.dark {
+  /* Solar Retro Cyber Dark Mode Brutalist palette */
+  --background: oklch(0.15 0.02 270); /* Deep space midnight slate #15151e */
+  --peach: oklch(0.18 0.025 270); /* Cyber-slate #1c1c28 */
+  --peach-deep: oklch(0.12 0.02 270); /* Deeper midnight slate #101016 */
+  --foreground: oklch(0.95 0.015 75); /* Stellar off-white #f3f3f6 */
+  --ink: oklch(0.95 0.015 75); /* Turn outlines to high-contrast white to pop on dark backdrop */
+  --card: oklch(0.22 0.03 270); /* Lighter structural slate #222230 */
+  --card-foreground: oklch(0.95 0.015 75);
+  --popover: oklch(0.22 0.03 270);
+  --popover-foreground: oklch(0.95 0.015 75);
+  --primary: oklch(0.62 0.23 265); /* Electric neon cobalt blue #3f5dff */
+  --primary-foreground: oklch(0.95 0.015 75);
+  --secondary: oklch(0.26 0.03 270);
+  --secondary-foreground: oklch(0.95 0.015 75);
+  --muted: oklch(0.25 0.02 270);
+  --muted-foreground: oklch(0.65 0.015 270);
+  --accent: oklch(0.7 0.22 335); /* Shocking neon magenta/pink for a gorgeous cyber contrast #ff58b6 */
+  --accent-foreground: oklch(0.12 0.02 270);
+  --border: oklch(0.95 0.015 75); /* Turn borders to silver-white */
+  --input: oklch(0.95 0.015 75);
+  --ring: oklch(0.62 0.23 265);
+}
+
 @layer base {
   * {
     border-color: var(--color-border);

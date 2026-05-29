@@ -4,6 +4,26 @@ import { Menu, X } from "lucide-react";
 export function Nav() {
   const [activeSection, setActiveSection] = useState("home");
   const [isOpen, setIsOpen] = useState(false);
+  const [theme, setTheme] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("soi_theme") || "light";
+    }
+    return "light";
+  });
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+    if (theme === "dark") {
+      root.classList.add("dark");
+    } else {
+      root.classList.remove("dark");
+    }
+    localStorage.setItem("soi_theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
 
   const links = [
     { href: "#home", label: "Home" },
@@ -70,14 +90,26 @@ export function Nav() {
             })}
           </nav>
 
-          {/* Mobile Hamburger Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="grid h-11 w-11 place-items-center border-[3px] border-ink bg-card text-ink shadow-[2.5px_2.5px_0_0_var(--ink)] md:hidden cursor-pointer hover:bg-peach active:translate-x-0 active:translate-y-0 select-none"
-            aria-label="Toggle navigation menu"
-          >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+          {/* Navigation Actions */}
+          <div className="flex items-center gap-2.5">
+            {/* Solar Retro Theme Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              className="grid h-11 w-11 place-items-center border-[3px] border-ink bg-card text-ink shadow-[2.5px_2.5px_0_0_var(--ink)] cursor-pointer hover:bg-peach hover:-translate-x-[1px] hover:-translate-y-[1px] hover:shadow-[3.5px_3.5px_0_0_var(--ink)] active:translate-x-0 active:translate-y-0 active:shadow-[2.5px_2.5px_0_0_var(--ink)] transition-all text-lg select-none"
+              title={`Switch to ${theme === "light" ? "Dark" : "Light"} Mode`}
+            >
+              {theme === "light" ? "🌙" : "☀️"}
+            </button>
+
+            {/* Mobile Hamburger Button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="grid h-11 w-11 place-items-center border-[3px] border-ink bg-card text-ink shadow-[2.5px_2.5px_0_0_var(--ink)] md:hidden cursor-pointer hover:bg-peach active:translate-x-0 active:translate-y-0 select-none"
+              aria-label="Toggle navigation menu"
+            >
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
         </div>
       </header>
 
