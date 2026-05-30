@@ -33,10 +33,10 @@ const achievementsList: Achievement[] = [
   },
   {
     id: "pdf-explorer",
-    title: "PDF Explorer",
-    desc: "Read the guidelines carefully.",
+    title: "PS PDF Explorer",
+    desc: "Study the problem statements carefully.",
     icon: "📄",
-    requirement: "View the Guidelines PDF of 3 or more Problem Statements.",
+    requirement: "View the PS PDF of 3 or more Problem Statements.",
   },
   {
     id: "social-connector",

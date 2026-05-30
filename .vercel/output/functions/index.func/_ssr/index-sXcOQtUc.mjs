@@ -1265,7 +1265,14 @@ function Events() {
     return club;
   };
   const isEventActive = (dateStr) => {
-    return false;
+    try {
+      const cleanDateStr = dateStr.replace(/(st|nd|rd|th)/g, "");
+      const eventTime = new Date(cleanDateStr).getTime();
+      const now = (/* @__PURE__ */ new Date()).getTime();
+      return now >= eventTime;
+    } catch {
+      return false;
+    }
   };
   const filteredEvents = events.filter((e) => {
     const matchesStatus = statusFilter === "All" || statusFilter === "Active" && isEventActive(e.date) || statusFilter === "Upcoming" && !isEventActive(e.date);
@@ -1371,11 +1378,15 @@ function Events() {
                     href: "#",
                     onClick: (evt) => {
                       evt.preventDefault();
-                      handlePdfClick(e.num);
-                      alert(`[GUIDELINES_${e.num}.PDF] Initializing download for problem statement guidelines! 📄`);
+                      if (isEventActive(e.date)) {
+                        handlePdfClick(e.num);
+                        alert(`[PS_${e.num}.PDF] Initializing download for the complete Problem Statement & Guidelines PDF! 📄`);
+                      } else {
+                        alert(`Unavailable!! wait till ${e.date}`);
+                      }
                     },
                     className: "grid h-9 w-9 place-items-center border-[2.5px] border-ink bg-accent text-ink shadow-brutal-sm transition-transform hover:translate-x-[1.5px] hover:translate-y-[1.5px] hover:shadow-none active:translate-x-0 active:translate-y-0",
-                    title: "View Guidelines PDF",
+                    title: "View PS PDF",
                     children: /* @__PURE__ */ jsxRuntimeExports.jsx(FileText, { className: "h-5 w-5" })
                   }
                 )
@@ -2131,10 +2142,10 @@ const achievementsList = [
   },
   {
     id: "pdf-explorer",
-    title: "PDF Explorer",
-    desc: "Read the guidelines carefully.",
+    title: "PS PDF Explorer",
+    desc: "Study the problem statements carefully.",
     icon: "📄",
-    requirement: "View the Guidelines PDF of 3 or more Problem Statements."
+    requirement: "View the PS PDF of 3 or more Problem Statements."
   },
   {
     id: "social-connector",

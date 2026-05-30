@@ -53,9 +53,17 @@ export function Events() {
   };
 
   // Determine if a release date is simulated as "Active" or "Upcoming"
-  // Today's date is 29th May 2026. All drops start from 2nd June 2026 onwards, meaning all drops are upcoming!
+  // Compares system clock dynamically to the drop date to see if the PS PDF is uploaded.
   const isEventActive = (dateStr: string) => {
-    return false;
+    try {
+      // Remove ordinal suffixes (st, nd, rd, th) to parse cleanly (e.g. "2nd June 2026" -> "2 June 2026")
+      const cleanDateStr = dateStr.replace(/(st|nd|rd|th)/g, "");
+      const eventTime = new Date(cleanDateStr).getTime();
+      const now = new Date().getTime();
+      return now >= eventTime;
+    } catch {
+      return false;
+    }
   };
 
   // Perform dynamic filtering based on selections
@@ -208,11 +216,15 @@ export function Events() {
                         href="#"
                         onClick={(evt) => {
                           evt.preventDefault();
-                          handlePdfClick(e.num);
-                          alert(`[GUIDELINES_${e.num}.PDF] Initializing download for problem statement guidelines! 📄`);
+                          if (isEventActive(e.date)) {
+                            handlePdfClick(e.num);
+                            alert(`[PS_${e.num}.PDF] Initializing download for the complete Problem Statement & Guidelines PDF! 📄`);
+                          } else {
+                            alert(`Unavailable!! wait till ${e.date}`);
+                          }
                         }}
                         className="grid h-9 w-9 place-items-center border-[2.5px] border-ink bg-accent text-ink shadow-brutal-sm transition-transform hover:translate-x-[1.5px] hover:translate-y-[1.5px] hover:shadow-none active:translate-x-0 active:translate-y-0"
-                        title="View Guidelines PDF"
+                        title="View PS PDF"
                       >
                         <FileText className="h-5 w-5" />
                       </a>
