@@ -68,8 +68,22 @@ export function SecretSynth() {
       }
     };
 
+    const handleOpenSynth = () => {
+      setShowSynth(true);
+      // Play a friendly introductory chord
+      playFreq(523.25, "sine");
+      setTimeout(() => playFreq(659.25, "sine"), 80);
+      setTimeout(() => playFreq(783.99, "sine"), 160);
+      setTimeout(() => playFreq(1046.50, "sine"), 240);
+    };
+
     window.addEventListener("keydown", handleGlobalKeys);
-    return () => window.removeEventListener("keydown", handleGlobalKeys);
+    window.addEventListener("soi-open-synth", handleOpenSynth);
+
+    return () => {
+      window.removeEventListener("keydown", handleGlobalKeys);
+      window.removeEventListener("soi-open-synth", handleOpenSynth);
+    };
   }, [oscType]);
 
   useEffect(() => {

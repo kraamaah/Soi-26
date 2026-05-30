@@ -212,10 +212,9 @@ export function Events() {
                         </svg>
                       </a>
                       {/* PDF Document Logo Link */}
-                      <a
-                        href="#"
-                        onClick={(evt) => {
-                          evt.preventDefault();
+                      <button
+                        type="button"
+                        onClick={() => {
                           handlePdfClick(e.num);
                           if (isEventActive(e.date)) {
                             alert(`[PS_${e.num}.PDF] Initializing download for the complete Problem Statement & Guidelines PDF! 📄`);
@@ -223,11 +222,11 @@ export function Events() {
                             alert(`Unavailable!! wait till ${e.date}`);
                           }
                         }}
-                        className="grid h-9 w-9 place-items-center border-[2.5px] border-ink bg-accent text-ink shadow-brutal-sm transition-transform hover:translate-x-[1.5px] hover:translate-y-[1.5px] hover:shadow-none active:translate-x-0 active:translate-y-0"
+                        className="grid h-9 w-9 place-items-center border-[2.5px] border-ink bg-accent text-ink shadow-brutal-sm transition-transform hover:translate-x-[1.5px] hover:translate-y-[1.5px] hover:shadow-none active:translate-x-0 active:translate-y-0 cursor-pointer select-none"
                         title="View PS PDF"
                       >
                         <FileText className="h-5 w-5" />
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div>

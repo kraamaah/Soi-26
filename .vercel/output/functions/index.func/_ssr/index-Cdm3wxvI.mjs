@@ -11,6 +11,8 @@ function Nav() {
     }
     return "light";
   });
+  const [logoClicks, setLogoClicks] = reactExports.useState(0);
+  const logoClickTimeout = reactExports.useRef(null);
   reactExports.useEffect(() => {
     const root = window.document.documentElement;
     if (theme === "dark") {
@@ -25,6 +27,19 @@ function Nav() {
       const rect = e.currentTarget.getBoundingClientRect();
       const x = rect.left + rect.width / 2;
       const y = rect.top + rect.height / 2;
+      if (logoClickTimeout.current) clearTimeout(logoClickTimeout.current);
+      setLogoClicks((prev) => {
+        const next = prev + 1;
+        if (next >= 3) {
+          window.dispatchEvent(new CustomEvent("soi-achievement", { detail: "synth-explorer" }));
+          window.dispatchEvent(new CustomEvent("soi-open-synth"));
+          return 0;
+        }
+        return next;
+      });
+      logoClickTimeout.current = setTimeout(() => {
+        setLogoClicks(0);
+      }, 2e3);
       const particleCount = 18;
       const colors = ["var(--primary)", "var(--accent)", "#2747FF", "#FF6A3D", "#ff58b6"];
       for (let i = 0; i < particleCount; i++) {
@@ -1373,11 +1388,10 @@ function Events() {
                   }
                 ),
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "a",
+                  "button",
                   {
-                    href: "#",
-                    onClick: (evt) => {
-                      evt.preventDefault();
+                    type: "button",
+                    onClick: () => {
                       handlePdfClick(e.num);
                       if (isEventActive(e.date)) {
                         alert(`[PS_${e.num}.PDF] Initializing download for the complete Problem Statement & Guidelines PDF! 📄`);
@@ -1385,7 +1399,7 @@ function Events() {
                         alert(`Unavailable!! wait till ${e.date}`);
                       }
                     },
-                    className: "grid h-9 w-9 place-items-center border-[2.5px] border-ink bg-accent text-ink shadow-brutal-sm transition-transform hover:translate-x-[1.5px] hover:translate-y-[1.5px] hover:shadow-none active:translate-x-0 active:translate-y-0",
+                    className: "grid h-9 w-9 place-items-center border-[2.5px] border-ink bg-accent text-ink shadow-brutal-sm transition-transform hover:translate-x-[1.5px] hover:translate-y-[1.5px] hover:shadow-none active:translate-x-0 active:translate-y-0 cursor-pointer select-none",
                     title: "View PS PDF",
                     children: /* @__PURE__ */ jsxRuntimeExports.jsx(FileText, { className: "h-5 w-5" })
                   }
@@ -2294,7 +2308,7 @@ function Achievements() {
     /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "div",
       {
-        className: `fixed bottom-20 right-4 z-[45] w-[90%] max-w-sm border-[3px] border-ink bg-card p-5 shadow-brutal transition-all duration-300 transform ${isOpen ? "translate-y-0 opacity-100 scale-100 pointer-events-auto" : "translate-y-4 opacity-0 scale-95 pointer-events-none"}`,
+        className: `fixed bottom-18 right-4 left-4 sm:left-auto sm:w-[384px] z-[45] border-[3px] border-ink bg-card p-4 sm:p-5 shadow-brutal transition-all duration-300 transform ${isOpen ? "translate-y-0 opacity-100 scale-100 pointer-events-auto" : "translate-y-4 opacity-0 scale-95 pointer-events-none"}`,
         children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-repeat bg-center opacity-[0.02] pointer-events-none dots-grid", "aria-hidden": true }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative flex items-center justify-between border-b-[2px] border-ink pb-3 mb-4", children: [
@@ -2317,7 +2331,7 @@ function Achievements() {
             " / ",
             achievementsList.length
           ] }) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative space-y-3 max-h-[300px] overflow-y-auto pr-1 scrollbar-none", children: achievementsList.map((a) => {
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative space-y-3 max-h-[220px] sm:max-h-[300px] overflow-y-auto pr-1 scrollbar-none", children: achievementsList.map((a) => {
             const isUnlocked = unlockedIds.includes(a.id);
             return /* @__PURE__ */ jsxRuntimeExports.jsxs(
               "div",
@@ -2502,8 +2516,19 @@ function SecretSynth() {
         }
       }
     };
+    const handleOpenSynth = () => {
+      setShowSynth(true);
+      playFreq(523.25, "sine");
+      setTimeout(() => playFreq(659.25, "sine"), 80);
+      setTimeout(() => playFreq(783.99, "sine"), 160);
+      setTimeout(() => playFreq(1046.5, "sine"), 240);
+    };
     window.addEventListener("keydown", handleGlobalKeys);
-    return () => window.removeEventListener("keydown", handleGlobalKeys);
+    window.addEventListener("soi-open-synth", handleOpenSynth);
+    return () => {
+      window.removeEventListener("keydown", handleGlobalKeys);
+      window.removeEventListener("soi-open-synth", handleOpenSynth);
+    };
   }, [oscType]);
   reactExports.useEffect(() => {
     if (!showSynth) return;

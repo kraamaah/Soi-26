@@ -217,7 +217,7 @@ export function Achievements() {
 
       {/* Slide-out Drawer */}
       <div
-        className={`fixed bottom-20 right-4 z-[45] w-[90%] max-w-sm border-[3px] border-ink bg-card p-5 shadow-brutal transition-all duration-300 transform ${
+        className={`fixed bottom-18 right-4 left-4 sm:left-auto sm:w-[384px] z-[45] border-[3px] border-ink bg-card p-4 sm:p-5 shadow-brutal transition-all duration-300 transform ${
           isOpen
             ? "translate-y-0 opacity-100 scale-100 pointer-events-auto"
             : "translate-y-4 opacity-0 scale-95 pointer-events-none"
@@ -247,7 +247,7 @@ export function Achievements() {
         </div>
 
         {/* Achievement Grid */}
-        <div className="relative space-y-3 max-h-[300px] overflow-y-auto pr-1 scrollbar-none">
+        <div className="relative space-y-3 max-h-[220px] sm:max-h-[300px] overflow-y-auto pr-1 scrollbar-none">
           {achievementsList.map((a) => {
             const isUnlocked = unlockedIds.includes(a.id);
             return (

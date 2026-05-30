@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
 
 export function Nav() {
@@ -10,6 +10,8 @@ export function Nav() {
     }
     return "light";
   });
+  const [logoClicks, setLogoClicks] = useState(0);
+  const logoClickTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const root = window.document.documentElement;
@@ -26,6 +28,21 @@ export function Nav() {
       const rect = e.currentTarget.getBoundingClientRect();
       const x = rect.left + rect.width / 2;
       const y = rect.top + rect.height / 2;
+
+      // Track clicks for Sound Wizard synthesizer unlock on mobile/desktop
+      if (logoClickTimeout.current) clearTimeout(logoClickTimeout.current);
+      setLogoClicks((prev) => {
+        const next = prev + 1;
+        if (next >= 3) {
+          window.dispatchEvent(new CustomEvent("soi-achievement", { detail: "synth-explorer" }));
+          window.dispatchEvent(new CustomEvent("soi-open-synth"));
+          return 0;
+        }
+        return next;
+      });
+      logoClickTimeout.current = setTimeout(() => {
+        setLogoClicks(0);
+      }, 2000);
 
       // Spawn retro cosmic wave particles radiating from button center
       const particleCount = 18;
