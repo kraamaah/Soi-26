@@ -50,7 +50,7 @@ const achievementsList: Achievement[] = [
     title: "Sound Wizard",
     desc: "Unleash analog frequency waves.",
     icon: "🎹",
-    requirement: "Discover and trigger the secret chiptune synthesizer (type 'soi').",
+    requirement: "Discover and trigger the secret chiptune synthesizer (type 'soi' or tap thrice on SOI button).",
   },
   {
     id: "pi-pioneer",
