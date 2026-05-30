@@ -2186,6 +2186,7 @@ function Achievements() {
   const [isOpen, setIsOpen] = reactExports.useState(false);
   const [toast, setToast] = reactExports.useState(null);
   const [clickedSocials, setClickedSocials] = reactExports.useState([]);
+  const [hasOpenedOnce, setHasOpenedOnce] = reactExports.useState(false);
   reactExports.useEffect(() => {
     if (typeof window !== "undefined") {
       const stored = localStorage.getItem("soi_achievements");
@@ -2202,6 +2203,8 @@ function Achievements() {
         } catch {
         }
       }
+      const opened = localStorage.getItem("soi_achievements_opened") === "true";
+      setHasOpenedOnce(opened);
     }
   }, []);
   reactExports.useEffect(() => {
@@ -2243,14 +2246,22 @@ function Achievements() {
       window.removeEventListener("soi-social-click", handleSocialClick);
     };
   }, []);
+  const handleOpenToggle = () => {
+    const nextOpen = !isOpen;
+    setIsOpen(nextOpen);
+    if (nextOpen && !hasOpenedOnce) {
+      setHasOpenedOnce(true);
+      localStorage.setItem("soi_achievements_opened", "true");
+    }
+  };
   const unlockedCount = unlockedIds.length;
   const isAllUnlocked = unlockedCount === achievementsList.length;
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "button",
       {
-        onClick: () => setIsOpen(!isOpen),
-        className: "fixed bottom-4 right-4 z-[45] flex h-13 w-13 items-center justify-center border-[3px] border-ink bg-[#FFD700] text-ink shadow-[3px_3px_0_0_var(--ink)] cursor-pointer select-none hover:scale-105 active:translate-x-[1px] active:translate-y-[1px] active:shadow-[2px_2px_0_0_var(--ink)] transition-all animate-bounce",
+        onClick: handleOpenToggle,
+        className: `fixed bottom-4 right-4 z-[45] flex h-13 w-13 items-center justify-center border-[3px] border-ink bg-[#FFD700] text-ink shadow-[3px_3px_0_0_var(--ink)] cursor-pointer select-none hover:scale-105 active:translate-x-[1px] active:translate-y-[1px] active:shadow-[2px_2px_0_0_var(--ink)] transition-all ${hasOpenedOnce ? "" : "animate-bounce"}`,
         title: "Summer Achievements & Rewards",
         children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(Trophy, { className: "h-6 w-6" }),
@@ -2315,7 +2326,7 @@ function Achievements() {
             );
           }) }),
           isAllUnlocked && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative border-[2px] border-ink bg-[#FFD700] text-ink p-3 mt-4 text-center shadow-brutal-sm animate-pulse border-double", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-display text-xs uppercase tracking-wider", children: "🏆 ULTIMATE SOLVER UNLOCKED!" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-display text-xs uppercase tracking-wider", children: "ULTIMATE SOLVER UNLOCKED!" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-body text-[10px] mt-0.5 text-ink/80", children: "You are ready for the Summer of Innovation 2026!" })
           ] })
         ]

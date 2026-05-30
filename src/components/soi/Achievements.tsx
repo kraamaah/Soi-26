@@ -86,6 +86,7 @@ export function Achievements() {
   const [isOpen, setIsOpen] = useState(false);
   const [toast, setToast] = useState<{ title: string; icon: string } | null>(null);
   const [clickedSocials, setClickedSocials] = useState<string[]>([]);
+  const [hasOpenedOnce, setHasOpenedOnce] = useState(false);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -106,6 +107,9 @@ export function Achievements() {
           // ignore
         }
       }
+
+      const opened = localStorage.getItem("soi_achievements_opened") === "true";
+      setHasOpenedOnce(opened);
     }
   }, []);
 
@@ -158,6 +162,15 @@ export function Achievements() {
     };
   }, []);
 
+  const handleOpenToggle = () => {
+    const nextOpen = !isOpen;
+    setIsOpen(nextOpen);
+    if (nextOpen && !hasOpenedOnce) {
+      setHasOpenedOnce(true);
+      localStorage.setItem("soi_achievements_opened", "true");
+    }
+  };
+
   const unlockedCount = unlockedIds.length;
   const isAllUnlocked = unlockedCount === achievementsList.length;
 
@@ -165,8 +178,10 @@ export function Achievements() {
     <>
       {/* Floating Action Button */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-4 right-4 z-[45] flex h-13 w-13 items-center justify-center border-[3px] border-ink bg-[#FFD700] text-ink shadow-[3px_3px_0_0_var(--ink)] cursor-pointer select-none hover:scale-105 active:translate-x-[1px] active:translate-y-[1px] active:shadow-[2px_2px_0_0_var(--ink)] transition-all animate-bounce"
+        onClick={handleOpenToggle}
+        className={`fixed bottom-4 right-4 z-[45] flex h-13 w-13 items-center justify-center border-[3px] border-ink bg-[#FFD700] text-ink shadow-[3px_3px_0_0_var(--ink)] cursor-pointer select-none hover:scale-105 active:translate-x-[1px] active:translate-y-[1px] active:shadow-[2px_2px_0_0_var(--ink)] transition-all ${
+          hasOpenedOnce ? "" : "animate-bounce"
+        }`}
         title="Summer Achievements & Rewards"
       >
         <Trophy className="h-6 w-6" />
@@ -253,7 +268,7 @@ export function Achievements() {
         {isAllUnlocked && (
           <div className="relative border-[2px] border-ink bg-[#FFD700] text-ink p-3 mt-4 text-center shadow-brutal-sm animate-pulse border-double">
             <span className="font-display text-xs uppercase tracking-wider">
-              🏆 ULTIMATE SOLVER UNLOCKED!
+              ULTIMATE SOLVER UNLOCKED!
             </span>
             <p className="font-body text-[10px] mt-0.5 text-ink/80">
               You are ready for the Summer of Innovation 2026!
