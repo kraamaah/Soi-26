@@ -276,7 +276,7 @@ export const team: TeamGroup[] = [
       "Kratgya Jain",
     ],
   },
-  { club: "AI Club", members: ["Sreejita Chatterjee", "Nihar Sagar G"] },
+  { club: "AI Club", members: ["Sreejita Chatterjee"] },
   {
     club: "Space and Data Science Club",
     coordinatorCount: 2,

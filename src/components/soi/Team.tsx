@@ -13,6 +13,11 @@ import aadityaKumarPhoto from "@/assets/aaditya-kumar.jpg";
 import gouravSherikarPhoto from "@/assets/gourav-sherikar.jpg";
 import viditParikhPhoto from "@/assets/vidit-parikh.jpg";
 import anantTripathiPhoto from "@/assets/anant-tripathi.jpg";
+import sreejitaChatterjeePhoto from "@/assets/sreejita-chatterjee.jpg";
+import tusharHegdePhoto from "@/assets/tushar-hegde.jpg";
+import soumyaBasuliPhoto from "@/assets/soumya-basuli.jpg";
+import shrikantSonawanePhoto from "@/assets/shrikant-sonawane.jpg";
+import aashishMPhoto from "@/assets/aashish-m.jpg";
 
 const memberPhotos: Record<string, string> = {
   "Kratgya Jain": kratgyaJainPhoto,
@@ -29,6 +34,11 @@ const memberPhotos: Record<string, string> = {
   "Gourav Sherikar": gouravSherikarPhoto,
   "Vidit Parikh": viditParikhPhoto,
   "Anant Tripathi": anantTripathiPhoto,
+  "Sreejita Chatterjee": sreejitaChatterjeePhoto,
+  "Tushar Hegde": tusharHegdePhoto,
+  "Soumya Basuli": soumyaBasuliPhoto,
+  "Shrikant Sonawane": shrikantSonawanePhoto,
+  "Aashish M": aashishMPhoto,
 };
 
 const tilePalette = [
