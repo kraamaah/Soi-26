@@ -165,7 +165,7 @@ export function Events() {
         </div>
 
         {/* Events Grid */}
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {filteredEvents.map((e, i) => (
             <div
               id={`ps-${e.num}`}

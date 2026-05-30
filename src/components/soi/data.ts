@@ -259,7 +259,11 @@ export const events: SoiEvent[] = [
   },
 ];
 
-export type TeamGroup = { club: string; members: string[]; coordinatorCount?: number };
+export type TeamGroup = {
+  club: string;
+  members: string[];
+  coordinatorCount?: number;
+};
 
 export const team: TeamGroup[] = [
   {
