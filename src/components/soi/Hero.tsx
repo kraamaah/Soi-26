@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Sparkle } from "./BrutalCard";
 import { SoiLogo } from "./SoiLogo";
 import { EasterEggGame } from "./EasterEggGame";
@@ -7,6 +7,38 @@ export function Hero() {
   const [clicks, setClicks] = useState(0);
   const [showGame, setShowGame] = useState(false);
   const clickTimeout = useRef<NodeJS.Timeout | null>(null);
+
+  const TARGET_DATE = new Date("2026-06-02T00:00:00").getTime();
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+    isExpired: false,
+  });
+
+  useEffect(() => {
+    const calculateTime = () => {
+      const now = new Date().getTime();
+      const difference = TARGET_DATE - now;
+
+      if (difference <= 0) {
+        setTimeLeft((prev) => ({ ...prev, isExpired: true }));
+        return;
+      }
+
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+      setTimeLeft({ days, hours, minutes, seconds, isExpired: false });
+    };
+
+    calculateTime();
+    const interval = setInterval(calculateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleLogoClick = () => {
     if (clickTimeout.current) clearTimeout(clickTimeout.current);
@@ -42,6 +74,69 @@ export function Hero() {
           <p className="mt-6 max-w-md border-l-[4px] border-primary pl-4 text-lg text-foreground/80">
             This Summer, build skills that outlast the season.
           </p>
+
+          {/* Retro Countdown Timer */}
+          <div className="mt-8 border-[3px] border-ink bg-card p-4 shadow-brutal-sm max-w-md relative overflow-hidden conic-pattern">
+            {/* Retro scanline grid overlay */}
+            <div className="absolute inset-0 bg-repeat bg-center opacity-[0.03] pointer-events-none dots-grid" aria-hidden />
+            <div className="relative flex items-center justify-between border-b-[2px] border-ink pb-2 mb-3">
+              <span className="font-mono text-xs font-bold text-accent uppercase tracking-wider animate-pulse flex items-center gap-1.5">
+                <span className="h-2.5 w-2.5 rounded-full bg-accent animate-ping inline-block" />
+                BUILD SEASON LAUNCHING IN
+              </span>
+              <span className="font-mono text-[10px] font-bold text-foreground/50">
+                EDITION_07.SYS
+              </span>
+            </div>
+            
+            {timeLeft.isExpired ? (
+              <div className="relative flex items-center justify-center py-2 bg-primary text-primary-foreground border-[2px] border-ink font-display text-sm uppercase tracking-wider shadow-brutal-sm">
+                🚀 SOI 2026 IS NOW LIVE!
+              </div>
+            ) : (
+              <div className="relative grid grid-cols-4 gap-2 text-center">
+                {/* Days */}
+                <div className="border-[2px] border-ink bg-background p-2.5 shadow-brutal-sm flex flex-col items-center">
+                  <span className="font-display text-2xl md:text-3xl text-primary leading-none">
+                    {String(timeLeft.days).padStart(2, "0")}
+                  </span>
+                  <span className="font-mono text-[9px] font-bold text-foreground/60 uppercase tracking-widest mt-1">
+                    Days
+                  </span>
+                </div>
+                
+                {/* Hours */}
+                <div className="border-[2px] border-ink bg-background p-2.5 shadow-brutal-sm flex flex-col items-center">
+                  <span className="font-display text-2xl md:text-3xl text-accent leading-none">
+                    {String(timeLeft.hours).padStart(2, "0")}
+                  </span>
+                  <span className="font-mono text-[9px] font-bold text-foreground/60 uppercase tracking-widest mt-1">
+                    Hours
+                  </span>
+                </div>
+
+                {/* Minutes */}
+                <div className="border-[2px] border-ink bg-background p-2.5 shadow-brutal-sm flex flex-col items-center">
+                  <span className="font-display text-2xl md:text-3xl text-primary leading-none">
+                    {String(timeLeft.minutes).padStart(2, "0")}
+                  </span>
+                  <span className="font-mono text-[9px] font-bold text-foreground/60 uppercase tracking-widest mt-1">
+                    Mins
+                  </span>
+                </div>
+
+                {/* Seconds */}
+                <div className="border-[2px] border-ink bg-accent/5 p-2.5 shadow-brutal-sm flex flex-col items-center border-dashed border-accent">
+                  <span className="font-display text-2xl md:text-3xl text-accent leading-none animate-pulse">
+                    {String(timeLeft.seconds).padStart(2, "0")}
+                  </span>
+                  <span className="font-mono text-[9px] font-bold text-accent uppercase tracking-widest mt-1">
+                    Secs
+                  </span>
+                </div>
+              </div>
+            )}
+          </div>
           <div className="mt-8 flex flex-wrap gap-4">
             <a
               href="#events"
