@@ -216,8 +216,8 @@ export function Events() {
                         href="#"
                         onClick={(evt) => {
                           evt.preventDefault();
+                          handlePdfClick(e.num);
                           if (isEventActive(e.date)) {
-                            handlePdfClick(e.num);
                             alert(`[PS_${e.num}.PDF] Initializing download for the complete Problem Statement & Guidelines PDF! 📄`);
                           } else {
                             alert(`Unavailable!! wait till ${e.date}`);
