@@ -28,7 +28,9 @@ export function Hero() {
       }
 
       const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const hours = Math.floor(
+        (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+      );
       const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
@@ -47,7 +49,9 @@ export function Hero() {
       const next = prev + 1;
       if (next >= 5) {
         setShowGame(true);
-        window.dispatchEvent(new CustomEvent("soi-achievement", { detail: "arcade-master" }));
+        window.dispatchEvent(
+          new CustomEvent("soi-achievement", { detail: "arcade-master" }),
+        );
         return 0;
       }
       return next;
@@ -59,7 +63,10 @@ export function Hero() {
   };
 
   return (
-    <section id="home" className="relative overflow-hidden border-b-[3px] border-ink conic-pattern">
+    <section
+      id="home"
+      className="relative overflow-hidden border-b-[3px] border-ink conic-pattern"
+    >
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 py-16 md:grid-cols-2 md:px-8 md:py-28">
         <div className="relative">
           <span className="inline-block border-[3px] border-ink bg-accent px-3 py-1 font-display text-xs uppercase tracking-widest shadow-brutal-sm">
@@ -79,7 +86,10 @@ export function Hero() {
           {/* Retro Countdown Timer */}
           <div className="mt-8 border-[3px] border-ink bg-card p-4 shadow-brutal-sm max-w-md relative overflow-hidden conic-pattern">
             {/* Retro scanline grid overlay */}
-            <div className="absolute inset-0 bg-repeat bg-center opacity-[0.03] pointer-events-none dots-grid" aria-hidden />
+            <div
+              className="absolute inset-0 bg-repeat bg-center opacity-[0.03] pointer-events-none dots-grid"
+              aria-hidden
+            />
             <div className="relative flex items-center justify-between border-b-[2px] border-ink pb-2 mb-3">
               <span className="font-mono text-xs font-bold text-accent uppercase tracking-wider animate-pulse flex items-center gap-1.5">
                 <span className="h-2.5 w-2.5 rounded-full bg-accent animate-ping inline-block" />
@@ -89,7 +99,7 @@ export function Hero() {
                 EDITION_07.SYS
               </span>
             </div>
-            
+
             {timeLeft.isExpired ? (
               <div className="relative flex items-center justify-center py-2 bg-primary text-primary-foreground border-[2px] border-ink font-display text-sm uppercase tracking-wider shadow-brutal-sm">
                 🚀 SOI 2026 IS NOW LIVE!
@@ -105,7 +115,7 @@ export function Hero() {
                     Days
                   </span>
                 </div>
-                
+
                 {/* Hours */}
                 <div className="border-[2px] border-ink bg-background p-2.5 shadow-brutal-sm flex flex-col items-center">
                   <span className="font-display text-2xl md:text-3xl text-accent leading-none">
@@ -157,8 +167,11 @@ export function Hero() {
         </div>
 
         <div className="relative p-2 md:p-6">
-          <div className="absolute -inset-1 -rotate-1 border-[3px] border-ink bg-accent/10 rounded-lg conic-pattern" aria-hidden />
-          <div 
+          <div
+            className="absolute -inset-1 -rotate-1 border-[3px] border-ink bg-accent/10 rounded-lg conic-pattern"
+            aria-hidden
+          />
+          <div
             onClick={handleLogoClick}
             className="relative w-full border-[3px] border-ink bg-card p-6 shadow-brutal-lg flex items-center justify-center cursor-pointer select-none hover:scale-[1.01] active:scale-[0.99] transition-transform duration-200"
             title="Click me 5 times for a surprise!"

@@ -21,7 +21,8 @@ export function EasterEggGame({ onClose }: EasterEggGameProps) {
   // Audio synthesizer for retro sounds
   const playSound = (type: "jump" | "score" | "crash") => {
     try {
-      const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
+      const AudioCtx =
+        window.AudioContext || (window as any).webkitAudioContext;
       if (!AudioCtx) return;
       const ctx = new AudioCtx();
       const osc = ctx.createOscillator();
@@ -72,7 +73,16 @@ export function EasterEggGame({ onClose }: EasterEggGameProps) {
     isGrounded: false,
   });
 
-  const obstacles = useRef<Array<{ x: number; y: number; width: number; height: number; speed: number; passed: boolean }>>([]);
+  const obstacles = useRef<
+    Array<{
+      x: number;
+      y: number;
+      width: number;
+      height: number;
+      speed: number;
+      passed: boolean;
+    }>
+  >([]);
   const obstacleTimer = useRef(0);
   const gameSpeed = useRef(5);
 
@@ -107,7 +117,11 @@ export function EasterEggGame({ onClose }: EasterEggGameProps) {
     obstacleTimer.current = 0;
 
     // Detect device type to set optimal speed & responsive jump parameters
-    const mobileMode = typeof window !== "undefined" && ("ontouchstart" in window || navigator.maxTouchPoints > 0 || window.innerWidth < 768);
+    const mobileMode =
+      typeof window !== "undefined" &&
+      ("ontouchstart" in window ||
+        navigator.maxTouchPoints > 0 ||
+        window.innerWidth < 768);
     gameSpeed.current = mobileMode ? 6.5 : 3.8;
     player.current.jumpStrength = mobileMode ? -12.5 : -11;
     player.current.gravity = mobileMode ? 0.72 : 0.6;
@@ -163,7 +177,11 @@ export function EasterEggGame({ onClose }: EasterEggGameProps) {
       }
 
       // Speed progression dynamically scaled by device type
-      const mobileMode = typeof window !== "undefined" && ("ontouchstart" in window || navigator.maxTouchPoints > 0 || window.innerWidth < 768);
+      const mobileMode =
+        typeof window !== "undefined" &&
+        ("ontouchstart" in window ||
+          navigator.maxTouchPoints > 0 ||
+          window.innerWidth < 768);
       const baseSpeed = mobileMode ? 6.5 : 3.8;
       const progressionFactor = mobileMode ? 0.08 : 0.045;
       gameSpeed.current = baseSpeed + localScore * progressionFactor;
@@ -250,7 +268,12 @@ export function EasterEggGame({ onClose }: EasterEggGameProps) {
 
         // Gear/cross inner core details
         ctx.fillStyle = "#1C1C24";
-        ctx.fillRect(obs.x + obs.width / 2 - 3, obs.y + obs.height / 2 - 3, 6, 6);
+        ctx.fillRect(
+          obs.x + obs.width / 2 - 3,
+          obs.y + obs.height / 2 - 3,
+          6,
+          6,
+        );
         ctx.fillStyle = "#FF6A3D";
       });
     };
@@ -273,7 +296,6 @@ export function EasterEggGame({ onClose }: EasterEggGameProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-ink/65 p-4 backdrop-blur-sm animate-fade-in">
       <div className="relative w-full max-w-lg border-[4px] border-ink bg-card p-6 shadow-brutal-lg select-none">
-        
         {/* Header Bar */}
         <div className="mb-6 flex items-center justify-between border-b-[3px] border-ink pb-4">
           <div className="flex items-center gap-3">
@@ -294,7 +316,7 @@ export function EasterEggGame({ onClose }: EasterEggGameProps) {
         </div>
 
         {/* Arcade Console Screen wrapper */}
-        <div 
+        <div
           onClick={handleJump}
           className="relative overflow-hidden border-[3.5px] border-ink cursor-pointer select-none bg-peach-deep/10 shadow-inner"
           style={{ height: "240px" }}
@@ -333,7 +355,7 @@ export function EasterEggGame({ onClose }: EasterEggGameProps) {
               <p className="font-body text-xs text-primary-foreground/95 mb-4">
                 You crashed into a technical gear!
               </p>
-              
+
               <div className="flex gap-3">
                 <button
                   onClick={(e) => {
@@ -359,9 +381,10 @@ export function EasterEggGame({ onClose }: EasterEggGameProps) {
                 GEAR RUNNER
               </h4>
               <p className="font-body text-[11px] text-primary-foreground/80 mb-5 max-w-xs">
-                Jump over the incoming technical gears and wrenches. Build a high score!
+                Jump over the incoming technical gears and wrenches. Build a
+                high score!
               </p>
-              
+
               <button
                 onClick={(e) => {
                   e.stopPropagation();

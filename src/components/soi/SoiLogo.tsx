@@ -1,6 +1,10 @@
 import React from "react";
- 
-export function SoiLogo({ className = "w-full h-auto" }: { className?: string }) {
+
+export function SoiLogo({
+  className = "w-full h-auto",
+}: {
+  className?: string;
+}) {
   return (
     <svg
       viewBox="0 0 500 350"
@@ -56,7 +60,7 @@ export function SoiLogo({ className = "w-full h-auto" }: { className?: string })
           animation: wave-glide 3.5s linear infinite reverse;
         }
       `}</style>
- 
+
       <defs>
         {/* Clean Neo-Brutalist Diagonal Shading Hatch Pattern */}
         <pattern
@@ -76,7 +80,7 @@ export function SoiLogo({ className = "w-full h-auto" }: { className?: string })
             opacity="0.3"
           />
         </pattern>
- 
+
         {/* Dynamic Mask for Wrench Head Cutouts to Support True Background Transparency */}
         <mask id="wrench-clip-mask">
           {/* White covers kept areas */}
@@ -86,36 +90,142 @@ export function SoiLogo({ className = "w-full h-auto" }: { className?: string })
           <circle cx="0" cy="24" r="7.5" fill="black" />
         </mask>
       </defs>
- 
+
       {/* ======================================================== */}
       {/* 1. BACKGROUND GRAPHICS: GEAR, MOUNTAINS, TOOLS */}
       {/* ======================================================== */}
- 
+
       {/* A. CENTRAL SUN GEAR (Lowered to center 250, 125) */}
       <g className="soi-gear">
         {/* 12 Custom Gear Teeth rotated around (250, 125) */}
-        <polygon points="241,69 244,53 256,53 259,69" fill="var(--color-accent)" stroke="var(--color-ink)" strokeWidth="3.5" strokeLinejoin="round" transform="rotate(0 250 125)" />
-        <polygon points="241,69 244,53 256,53 259,69" fill="var(--color-accent)" stroke="var(--color-ink)" strokeWidth="3.5" strokeLinejoin="round" transform="rotate(30 250 125)" />
-        <polygon points="241,69 244,53 256,53 259,69" fill="var(--color-accent)" stroke="var(--color-ink)" strokeWidth="3.5" strokeLinejoin="round" transform="rotate(60 250 125)" />
-        <polygon points="241,69 244,53 256,53 259,69" fill="var(--color-accent)" stroke="var(--color-ink)" strokeWidth="3.5" strokeLinejoin="round" transform="rotate(90 250 125)" />
-        <polygon points="241,69 244,53 256,53 259,69" fill="var(--color-accent)" stroke="var(--color-ink)" strokeWidth="3.5" strokeLinejoin="round" transform="rotate(120 250 125)" />
-        <polygon points="241,69 244,53 256,53 259,69" fill="var(--color-accent)" stroke="var(--color-ink)" strokeWidth="3.5" strokeLinejoin="round" transform="rotate(150 250 125)" />
-        <polygon points="241,69 244,53 256,53 259,69" fill="var(--color-accent)" stroke="var(--color-ink)" strokeWidth="3.5" strokeLinejoin="round" transform="rotate(180 250 125)" />
-        <polygon points="241,69 244,53 256,53 259,69" fill="var(--color-accent)" stroke="var(--color-ink)" strokeWidth="3.5" strokeLinejoin="round" transform="rotate(210 250 125)" />
-        <polygon points="241,69 244,53 256,53 259,69" fill="var(--color-accent)" stroke="var(--color-ink)" strokeWidth="3.5" strokeLinejoin="round" transform="rotate(240 250 125)" />
-        <polygon points="241,69 244,53 256,53 259,69" fill="var(--color-accent)" stroke="var(--color-ink)" strokeWidth="3.5" strokeLinejoin="round" transform="rotate(270 250 125)" />
-        <polygon points="241,69 244,53 256,53 259,69" fill="var(--color-accent)" stroke="var(--color-ink)" strokeWidth="3.5" strokeLinejoin="round" transform="rotate(300 250 125)" />
-        <polygon points="241,69 244,53 256,53 259,69" fill="var(--color-accent)" stroke="var(--color-ink)" strokeWidth="3.5" strokeLinejoin="round" transform="rotate(330 250 125)" />
- 
+        <polygon
+          points="241,69 244,53 256,53 259,69"
+          fill="var(--color-accent)"
+          stroke="var(--color-ink)"
+          strokeWidth="3.5"
+          strokeLinejoin="round"
+          transform="rotate(0 250 125)"
+        />
+        <polygon
+          points="241,69 244,53 256,53 259,69"
+          fill="var(--color-accent)"
+          stroke="var(--color-ink)"
+          strokeWidth="3.5"
+          strokeLinejoin="round"
+          transform="rotate(30 250 125)"
+        />
+        <polygon
+          points="241,69 244,53 256,53 259,69"
+          fill="var(--color-accent)"
+          stroke="var(--color-ink)"
+          strokeWidth="3.5"
+          strokeLinejoin="round"
+          transform="rotate(60 250 125)"
+        />
+        <polygon
+          points="241,69 244,53 256,53 259,69"
+          fill="var(--color-accent)"
+          stroke="var(--color-ink)"
+          strokeWidth="3.5"
+          strokeLinejoin="round"
+          transform="rotate(90 250 125)"
+        />
+        <polygon
+          points="241,69 244,53 256,53 259,69"
+          fill="var(--color-accent)"
+          stroke="var(--color-ink)"
+          strokeWidth="3.5"
+          strokeLinejoin="round"
+          transform="rotate(120 250 125)"
+        />
+        <polygon
+          points="241,69 244,53 256,53 259,69"
+          fill="var(--color-accent)"
+          stroke="var(--color-ink)"
+          strokeWidth="3.5"
+          strokeLinejoin="round"
+          transform="rotate(150 250 125)"
+        />
+        <polygon
+          points="241,69 244,53 256,53 259,69"
+          fill="var(--color-accent)"
+          stroke="var(--color-ink)"
+          strokeWidth="3.5"
+          strokeLinejoin="round"
+          transform="rotate(180 250 125)"
+        />
+        <polygon
+          points="241,69 244,53 256,53 259,69"
+          fill="var(--color-accent)"
+          stroke="var(--color-ink)"
+          strokeWidth="3.5"
+          strokeLinejoin="round"
+          transform="rotate(210 250 125)"
+        />
+        <polygon
+          points="241,69 244,53 256,53 259,69"
+          fill="var(--color-accent)"
+          stroke="var(--color-ink)"
+          strokeWidth="3.5"
+          strokeLinejoin="round"
+          transform="rotate(240 250 125)"
+        />
+        <polygon
+          points="241,69 244,53 256,53 259,69"
+          fill="var(--color-accent)"
+          stroke="var(--color-ink)"
+          strokeWidth="3.5"
+          strokeLinejoin="round"
+          transform="rotate(270 250 125)"
+        />
+        <polygon
+          points="241,69 244,53 256,53 259,69"
+          fill="var(--color-accent)"
+          stroke="var(--color-ink)"
+          strokeWidth="3.5"
+          strokeLinejoin="round"
+          transform="rotate(300 250 125)"
+        />
+        <polygon
+          points="241,69 244,53 256,53 259,69"
+          fill="var(--color-accent)"
+          stroke="var(--color-ink)"
+          strokeWidth="3.5"
+          strokeLinejoin="round"
+          transform="rotate(330 250 125)"
+        />
+
         {/* Core Circular Disk */}
-        <circle cx="250" cy="125" r="56" fill="var(--color-accent)" stroke="var(--color-ink)" strokeWidth="4" />
-        
+        <circle
+          cx="250"
+          cy="125"
+          r="56"
+          fill="var(--color-accent)"
+          stroke="var(--color-ink)"
+          strokeWidth="4"
+        />
+
         {/* Concentric blueprint ring gauges */}
-        <circle cx="250" cy="125" r="40" fill="none" stroke="var(--color-ink)" strokeWidth="3.5" strokeDasharray="6 5" />
-        <circle cx="250" cy="125" r="24" fill="var(--color-card)" stroke="var(--color-ink)" strokeWidth="3.5" />
+        <circle
+          cx="250"
+          cy="125"
+          r="40"
+          fill="none"
+          stroke="var(--color-ink)"
+          strokeWidth="3.5"
+          strokeDasharray="6 5"
+        />
+        <circle
+          cx="250"
+          cy="125"
+          r="24"
+          fill="var(--color-card)"
+          stroke="var(--color-ink)"
+          strokeWidth="3.5"
+        />
         <circle cx="250" cy="125" r="10" fill="var(--color-ink)" />
       </g>
- 
+
       {/* B. OVERLAPPING SCI-FI CONTRAST MOUNTAINS */}
       {/* Left Mountain */}
       <g className="soi-mountain soi-mountain-left">
@@ -132,7 +242,7 @@ export function SoiLogo({ className = "w-full h-auto" }: { className?: string })
           stroke="none"
         />
       </g>
- 
+
       {/* Right Mountain */}
       <g className="soi-mountain soi-mountain-right">
         <polygon
@@ -148,7 +258,7 @@ export function SoiLogo({ className = "w-full h-auto" }: { className?: string })
           stroke="none"
         />
       </g>
- 
+
       {/* Center Mountain */}
       <g className="soi-mountain soi-mountain-center">
         {/* Left Side: Solid Light */}
@@ -173,11 +283,21 @@ export function SoiLogo({ className = "w-full h-auto" }: { className?: string })
           stroke="none"
         />
         {/* Central Ridge Line */}
-        <line x1="250" y1="80" x2="250" y2="210" stroke="var(--color-ink)" strokeWidth="3.5" />
+        <line
+          x1="250"
+          y1="80"
+          x2="250"
+          y2="210"
+          stroke="var(--color-ink)"
+          strokeWidth="3.5"
+        />
       </g>
- 
+
       {/* C. LEFT TECTONIC CLAW HAMMER (Shifted upward and slightly inside) */}
-      <g className="soi-tool-left" transform="translate(152, 160) rotate(-22 0 40) scale(1.15)">
+      <g
+        className="soi-tool-left"
+        transform="translate(152, 160) rotate(-22 0 40) scale(1.15)"
+      >
         {/* Handle Shaft */}
         <rect
           x="-8"
@@ -190,11 +310,39 @@ export function SoiLogo({ className = "w-full h-auto" }: { className?: string })
           strokeWidth="3.5"
         />
         {/* Heavy Ink Grip Cover */}
-        <rect x="-8" y="0" width="16" height="40" rx="3.5" fill="var(--color-ink)" />
-        <line x1="-8" y1="10" x2="8" y2="10" stroke="var(--color-card)" strokeWidth="2" />
-        <line x1="-8" y1="20" x2="8" y2="20" stroke="var(--color-card)" strokeWidth="2" />
-        <line x1="-8" y1="30" x2="8" y2="30" stroke="var(--color-card)" strokeWidth="2" />
- 
+        <rect
+          x="-8"
+          y="0"
+          width="16"
+          height="40"
+          rx="3.5"
+          fill="var(--color-ink)"
+        />
+        <line
+          x1="-8"
+          y1="10"
+          x2="8"
+          y2="10"
+          stroke="var(--color-card)"
+          strokeWidth="2"
+        />
+        <line
+          x1="-8"
+          y1="20"
+          x2="8"
+          y2="20"
+          stroke="var(--color-card)"
+          strokeWidth="2"
+        />
+        <line
+          x1="-8"
+          y1="30"
+          x2="8"
+          y2="30"
+          stroke="var(--color-card)"
+          strokeWidth="2"
+        />
+
         {/* Hammer Head Main Body */}
         <path
           d="M-28,-82 L20,-82 C24,-82 26,-79 26,-75 L26,-63 C26,-59 24,-56 20,-56 L-28,-56 Z"
@@ -212,12 +360,23 @@ export function SoiLogo({ className = "w-full h-auto" }: { className?: string })
           strokeLinejoin="round"
         />
         {/* Striking Face Cylinder (Right Side) */}
-        <rect x="26" y="-76" width="8" height="14" rx="2" fill="var(--color-accent)" stroke="var(--color-ink)" strokeWidth="3" />
+        <rect
+          x="26"
+          y="-76"
+          width="8"
+          height="14"
+          rx="2"
+          fill="var(--color-accent)"
+          stroke="var(--color-ink)"
+          strokeWidth="3"
+        />
       </g>
- 
-      {/* D. RIGHT CHROME-VANADIUM DOUBLE-ENDED WRENCH (Shifted upward and slightly inside) */}
-      <g className="soi-tool-right" transform="translate(340, 160) rotate(22 0 40) scale(1.15)">
 
+      {/* D. RIGHT CHROME-VANADIUM DOUBLE-ENDED WRENCH (Shifted upward and slightly inside) */}
+      <g
+        className="soi-tool-right"
+        transform="translate(340, 160) rotate(22 0 40) scale(1.15)"
+      >
         {/* Wrench body fill rendered with mask for inner hole transparency */}
         <g mask="url(#wrench-clip-mask)">
           <path
@@ -227,7 +386,15 @@ export function SoiLogo({ className = "w-full h-auto" }: { className?: string })
         </g>
 
         {/* Inset Core Shaft Accent */}
-        <rect x="-3.5" y="-42" width="7" height="50" rx="2" fill="var(--color-ink)" opacity="0.22" />
+        <rect
+          x="-3.5"
+          y="-42"
+          width="7"
+          height="50"
+          rx="2"
+          fill="var(--color-ink)"
+          opacity="0.22"
+        />
 
         {/* Wrench Outer Continuous Outline */}
         <path
@@ -240,14 +407,29 @@ export function SoiLogo({ className = "w-full h-auto" }: { className?: string })
         />
 
         {/* Closed Ring interior hole outline */}
-        <circle cx="0" cy="24" r="7.5" fill="none" stroke="var(--color-ink)" strokeWidth="3.5" />
+        <circle
+          cx="0"
+          cy="24"
+          r="7.5"
+          fill="none"
+          stroke="var(--color-ink)"
+          strokeWidth="3.5"
+        />
       </g>
- 
+
       {/* E. GROUND HATCHING */}
       <g>
         {/* Bold ground anchor line */}
-        <line x1="28" y1="190" x2="472" y2="190" stroke="var(--color-ink)" strokeWidth="4.5" strokeLinecap="round" />
-        
+        <line
+          x1="28"
+          y1="190"
+          x2="472"
+          y2="190"
+          stroke="var(--color-ink)"
+          strokeWidth="4.5"
+          strokeLinecap="round"
+        />
+
         {/* Stylized ground slashes */}
         <path
           d="
@@ -261,14 +443,21 @@ export function SoiLogo({ className = "w-full h-auto" }: { className?: string })
           strokeLinecap="round"
         />
       </g>
- 
+
       {/* ======================================================== */}
       {/* 2. FOREGROUND PANEL LAYERS: RETRO SIGNBOARD & WAVE OVERLAYS */}
       {/* ======================================================== */}
       <g>
         {/* Bold drop shadow block */}
-        <rect x="26" y="196" width="460" height="150" fill="var(--color-ink)" rx="6" />
-        
+        <rect
+          x="26"
+          y="196"
+          width="460"
+          height="150"
+          fill="var(--color-ink)"
+          rx="6"
+        />
+
         {/* Main Signboard Card Frame */}
         <rect
           x="20"
@@ -280,7 +469,7 @@ export function SoiLogo({ className = "w-full h-auto" }: { className?: string })
           strokeWidth="4.5"
           rx="6"
         />
-        
+
         {/* Internal high-contrast blueprint window */}
         <rect
           x="28"
@@ -295,21 +484,117 @@ export function SoiLogo({ className = "w-full h-auto" }: { className?: string })
         />
 
         {/* Subtle grid ticks inside the blueprint window */}
-        <line x1="117" y1="198" x2="117" y2="332" stroke="var(--color-ink)" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.12" />
-        <line x1="206" y1="198" x2="206" y2="332" stroke="var(--color-ink)" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.12" />
-        <line x1="295" y1="198" x2="295" y2="332" stroke="var(--color-ink)" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.12" />
-        <line x1="384" y1="198" x2="384" y2="332" stroke="var(--color-ink)" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.12" />
-        
-        <line x1="28" y1="265" x2="472" y2="265" stroke="var(--color-ink)" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.12" />
+        <line
+          x1="117"
+          y1="198"
+          x2="117"
+          y2="332"
+          stroke="var(--color-ink)"
+          strokeWidth="1.5"
+          strokeDasharray="3 3"
+          opacity="0.12"
+        />
+        <line
+          x1="206"
+          y1="198"
+          x2="206"
+          y2="332"
+          stroke="var(--color-ink)"
+          strokeWidth="1.5"
+          strokeDasharray="3 3"
+          opacity="0.12"
+        />
+        <line
+          x1="295"
+          y1="198"
+          x2="295"
+          y2="332"
+          stroke="var(--color-ink)"
+          strokeWidth="1.5"
+          strokeDasharray="3 3"
+          opacity="0.12"
+        />
+        <line
+          x1="384"
+          y1="198"
+          x2="384"
+          y2="332"
+          stroke="var(--color-ink)"
+          strokeWidth="1.5"
+          strokeDasharray="3 3"
+          opacity="0.12"
+        />
+
+        <line
+          x1="28"
+          y1="265"
+          x2="472"
+          y2="265"
+          stroke="var(--color-ink)"
+          strokeWidth="1.5"
+          strokeDasharray="3 3"
+          opacity="0.12"
+        />
 
         {/* Orange Accent Header Strip representing live feed */}
-        <line x1="28" y1="199.5" x2="472" y2="199.5" stroke="var(--color-accent)" strokeWidth="4.5" />
+        <line
+          x1="28"
+          y1="199.5"
+          x2="472"
+          y2="199.5"
+          stroke="var(--color-accent)"
+          strokeWidth="4.5"
+        />
 
         {/* Monospace System Specifications & Data feeds */}
-        <text x="36" y="217" fontFamily="Space Grotesk, system-ui, sans-serif" fontSize="7.5" fontWeight="900" fill="var(--color-ink)" letterSpacing="0.05em" opacity="0.85">SYS_STATUS // ACTIVE</text>
-        <text x="376" y="217" fontFamily="Space Grotesk, system-ui, sans-serif" fontSize="7.5" fontWeight="900" fill="var(--color-ink)" letterSpacing="0.05em" opacity="0.85">EDITION_07 // 2026</text>
-        <text x="36" y="313" fontFamily="Space Grotesk, system-ui, sans-serif" fontSize="7.5" fontWeight="900" fill="var(--color-ink)" letterSpacing="0.05em" opacity="0.85">LATENCY // 6.7ms</text>
-        <text x="386" y="313" fontFamily="Space Grotesk, system-ui, sans-serif" fontSize="7.5" fontWeight="900" fill="var(--color-ink)" letterSpacing="0.05em" opacity="0.85">FRQ // 4.20Ghz</text>
+        <text
+          x="36"
+          y="217"
+          fontFamily="Space Grotesk, system-ui, sans-serif"
+          fontSize="7.5"
+          fontWeight="900"
+          fill="var(--color-ink)"
+          letterSpacing="0.05em"
+          opacity="0.85"
+        >
+          SYS_STATUS // ACTIVE
+        </text>
+        <text
+          x="376"
+          y="217"
+          fontFamily="Space Grotesk, system-ui, sans-serif"
+          fontSize="7.5"
+          fontWeight="900"
+          fill="var(--color-ink)"
+          letterSpacing="0.05em"
+          opacity="0.85"
+        >
+          EDITION_07 // 2026
+        </text>
+        <text
+          x="36"
+          y="313"
+          fontFamily="Space Grotesk, system-ui, sans-serif"
+          fontSize="7.5"
+          fontWeight="900"
+          fill="var(--color-ink)"
+          letterSpacing="0.05em"
+          opacity="0.85"
+        >
+          LATENCY // 6.7ms
+        </text>
+        <text
+          x="386"
+          y="313"
+          fontFamily="Space Grotesk, system-ui, sans-serif"
+          fontSize="7.5"
+          fontWeight="900"
+          fill="var(--color-ink)"
+          letterSpacing="0.05em"
+          opacity="0.85"
+        >
+          FRQ // 4.20Ghz
+        </text>
 
         {/* Sub-viewport clipping for animating wave feeds at bottom-center of card */}
         <svg x="28" y="212" width="444" height="106" viewBox="0 0 444 106">
@@ -339,10 +624,42 @@ export function SoiLogo({ className = "w-full h-auto" }: { className?: string })
         </svg>
 
         {/* Concentric targets crosshairs at center-bottom */}
-        <circle cx="250" cy="265" r="14" fill="none" stroke="var(--color-accent)" strokeWidth="1.5" strokeDasharray="3 3" opacity="0.7" />
-        <circle cx="250" cy="265" r="6" fill="none" stroke="var(--color-accent)" strokeWidth="2.2" />
-        <line x1="250" y1="250" x2="250" y2="280" stroke="var(--color-accent)" strokeWidth="1.5" opacity="0.8" />
-        <line x1="235" y1="265" x2="265" y2="265" stroke="var(--color-accent)" strokeWidth="1.5" opacity="0.8" />
+        <circle
+          cx="250"
+          cy="265"
+          r="14"
+          fill="none"
+          stroke="var(--color-accent)"
+          strokeWidth="1.5"
+          strokeDasharray="3 3"
+          opacity="0.7"
+        />
+        <circle
+          cx="250"
+          cy="265"
+          r="6"
+          fill="none"
+          stroke="var(--color-accent)"
+          strokeWidth="2.2"
+        />
+        <line
+          x1="250"
+          y1="250"
+          x2="250"
+          y2="280"
+          stroke="var(--color-accent)"
+          strokeWidth="1.5"
+          opacity="0.8"
+        />
+        <line
+          x1="235"
+          y1="265"
+          x2="265"
+          y2="265"
+          stroke="var(--color-accent)"
+          strokeWidth="1.5"
+          opacity="0.8"
+        />
 
         {/* Tech panel rivet circles in four corners */}
         <circle cx="33" cy="203" r="1.8" fill="var(--color-ink)" />
@@ -351,8 +668,16 @@ export function SoiLogo({ className = "w-full h-auto" }: { className?: string })
         <circle cx="467" cy="337" r="1.8" fill="var(--color-ink)" />
 
         {/* Premium diagonal glossy screen reflections */}
-        <polygon points="360,190 395,190 295,340 260,340" fill="white" fillOpacity="0.22" />
-        <polygon points="400,190 415,190 315,340 300,340" fill="white" fillOpacity="0.22" />
+        <polygon
+          points="360,190 395,190 295,340 260,340"
+          fill="white"
+          fillOpacity="0.22"
+        />
+        <polygon
+          points="400,190 415,190 315,340 300,340"
+          fill="white"
+          fillOpacity="0.22"
+        />
       </g>
     </svg>
   );

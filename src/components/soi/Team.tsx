@@ -16,7 +16,7 @@ const memberPhotos: Record<string, string> = {
   "Kratgya Jain": kratgyaJainPhoto,
   "Nidhish Doshi": nidhishDoshiPhoto,
   "Balamurali V B": balamuraliVbPhoto,
-  "Harsh": harshPhoto,
+  Harsh: harshPhoto,
   "Kaustubh Mishra": kaustubhMishraPhoto,
   "Priyanshu Nimbalkar": priyanshuNimbalkarPhoto,
   "Emil Ben": emilBenPhoto,
@@ -37,10 +37,16 @@ const tilePalette = [
 const getClubEmail = (club: string) => {
   if (club === "Coding Club") return "codingclub@iitdh.ac.in";
   if (club === "AI Club") return "aiclub@iitdh.ac.in";
-  if (club === "Space Data Science Club" || club === "Space and Data Science Club") return "space.ds.club@iitdh.ac.in";
+  if (
+    club === "Space Data Science Club" ||
+    club === "Space and Data Science Club"
+  )
+    return "space.ds.club@iitdh.ac.in";
   if (club === "Robotics Club") return "robotics@iitdh.ac.in";
-  if (club === "Motorsports Club" || club === "InGene Motorsport") return "ingene@iitdh.ac.in";
-  if (club === "Design Club" || club === "Abhikalpa Design Club") return "abhikalpa.dc@iitdh.ac.in";
+  if (club === "Motorsports Club" || club === "InGene Motorsport")
+    return "ingene@iitdh.ac.in";
+  if (club === "Design Club" || club === "Abhikalpa Design Club")
+    return "abhikalpa.dc@iitdh.ac.in";
   if (club === "Finance Club") return "finance.club@iitdh.ac.in";
   if (club === "Electronics Club") return "electronicsclub@iitdh.ac.in";
   if (club === "Astronomy Club") return "astronomyclub@iitdh.ac.in";
@@ -50,10 +56,24 @@ const getClubEmail = (club: string) => {
 const getClubInitials = (club: string) => {
   if (club === "Coding Club") return "CC";
   if (club === "AI Club") return "AI";
-  if (club === "Space Data Science Club" || club === "Space and Data Science Club") return "SDS";
+  if (
+    club === "Space Data Science Club" ||
+    club === "Space and Data Science Club"
+  )
+    return "SDS";
   if (club === "Robotics Club") return "RC";
-  if (club === "Motorsports Club" || club === "InGene Motorsport" || club.includes("Motorsport")) return "MC";
-  if (club === "Design Club" || club === "Abhikalpa Design Club" || club.includes("Design")) return "DC";
+  if (
+    club === "Motorsports Club" ||
+    club === "InGene Motorsport" ||
+    club.includes("Motorsport")
+  )
+    return "MC";
+  if (
+    club === "Design Club" ||
+    club === "Abhikalpa Design Club" ||
+    club.includes("Design")
+  )
+    return "DC";
   if (club === "Finance Club") return "FC";
   if (club === "Electronics Club") return "EC";
   if (club === "Astronomy Club") return "AC";
@@ -63,10 +83,24 @@ const getClubInitials = (club: string) => {
 const getClubTitle = (club: string) => {
   if (club === "Coding Club") return "Coding Coordinator";
   if (club === "AI Club") return "AI Coordinator";
-  if (club === "Space Data Science Club" || club === "Space and Data Science Club") return "Space DS Coordinator";
+  if (
+    club === "Space Data Science Club" ||
+    club === "Space and Data Science Club"
+  )
+    return "Space DS Coordinator";
   if (club === "Robotics Club") return "Robotics Coordinator";
-  if (club === "Motorsports Club" || club === "InGene Motorsport" || club.includes("Motorsport")) return "Motorsports Coordinator";
-  if (club === "Design Club" || club === "Abhikalpa Design Club" || club.includes("Design")) return "Design Coordinator";
+  if (
+    club === "Motorsports Club" ||
+    club === "InGene Motorsport" ||
+    club.includes("Motorsport")
+  )
+    return "Motorsports Coordinator";
+  if (
+    club === "Design Club" ||
+    club === "Abhikalpa Design Club" ||
+    club.includes("Design")
+  )
+    return "Design Coordinator";
   if (club === "Finance Club") return "Finance Coordinator";
   if (club === "Electronics Club") return "Electronics Coordinator";
   if (club === "Astronomy Club") return "Astronomy Coordinator";
@@ -84,20 +118,26 @@ const getInitialsFromName = (name: string) => {
 
 export function Team() {
   return (
-    <section id="team" className="border-b-[3px] border-ink py-20 bg-background conic-pattern">
+    <section
+      id="team"
+      className="border-b-[3px] border-ink py-20 bg-background conic-pattern"
+    >
       <div className="mx-auto max-w-7xl px-4 md:px-8">
         <div className="mb-12">
           <span className="font-display text-xs uppercase tracking-widest text-primary">
             The Crew
           </span>
-          <h2 className="mt-2 font-display text-4xl uppercase md:text-6xl">Meet the Team</h2>
+          <h2 className="mt-2 font-display text-4xl uppercase md:text-6xl">
+            Meet the Team
+          </h2>
         </div>
 
         <div className="space-y-14">
           {team.map((group, i) => {
             const email = getClubEmail(group.club);
             const memberCount = group.members.length;
-            const labelText = memberCount === 1 ? "1 Coordinator" : `${memberCount} Members`;
+            const labelText =
+              memberCount === 1 ? "1 Coordinator" : `${memberCount} Members`;
             return (
               <div key={group.club}>
                 <div className="mb-6 flex items-center gap-3">
@@ -120,8 +160,13 @@ export function Team() {
                         className="border-[3px] border-ink bg-card shadow-brutal-sm transition-transform hover:translate-x-[2px] hover:translate-y-[2px] flex flex-col h-full"
                       >
                         <div
-                          className={`grid aspect-square place-items-center border-b-[3px] border-ink shrink-0 ${photo ? "bg-card overflow-hidden" : tilePalette[(i + memberIdx) % tilePalette.length]
-                            }`}
+                          className={`grid aspect-square place-items-center border-b-[3px] border-ink shrink-0 ${
+                            photo
+                              ? "bg-card overflow-hidden"
+                              : tilePalette[
+                                  (i + memberIdx) % tilePalette.length
+                                ]
+                          }`}
                         >
                           {photo ? (
                             <img
@@ -131,7 +176,9 @@ export function Team() {
                               loading="lazy"
                             />
                           ) : (
-                            <span className="font-display text-2xl sm:text-3xl select-none">{initials}</span>
+                            <span className="font-display text-2xl sm:text-3xl select-none">
+                              {initials}
+                            </span>
                           )}
                         </div>
                         <div className="p-3 flex flex-col flex-1 justify-between gap-1">

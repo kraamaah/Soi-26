@@ -50,14 +50,16 @@ const achievementsList: Achievement[] = [
     title: "Sound Wizard",
     desc: "Unleash analog frequency waves.",
     icon: "🎹",
-    requirement: "Discover and trigger the secret chiptune synthesizer (type 'soi' or tap thrice on SOI button).",
+    requirement:
+      "Discover and trigger the secret chiptune synthesizer (type 'soi' or tap thrice on SOI button).",
   },
   {
     id: "pi-pioneer",
     title: "Pi Pioneer",
     desc: "Unlock the mathematical infinite.",
     icon: "🥧",
-    requirement: "Correctly enter the value of Pi (π) up to 7 decimal places (3.1415926).",
+    requirement:
+      "Correctly enter the value of Pi (π) up to 7 decimal places (3.1415926).",
   },
 ];
 
@@ -89,7 +91,7 @@ const playRetroChime = () => {
     playNote(523.25, now, 0.12);
     playNote(659.25, now + 0.08, 0.12);
     playNote(783.99, now + 0.16, 0.12);
-    playNote(1046.50, now + 0.24, 0.25);
+    playNote(1046.5, now + 0.24, 0.25);
   } catch (err) {
     console.warn("Audio Context not allowed or supported on this system:", err);
   }
@@ -98,7 +100,9 @@ const playRetroChime = () => {
 export function Achievements() {
   const [unlockedIds, setUnlockedIds] = useState<string[]>([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [toast, setToast] = useState<{ title: string; icon: string } | null>(null);
+  const [toast, setToast] = useState<{ title: string; icon: string } | null>(
+    null,
+  );
   const [clickedSocials, setClickedSocials] = useState<string[]>([]);
   const [hasOpenedOnce, setHasOpenedOnce] = useState(false);
   const [piInput, setPiInput] = useState("");
@@ -142,7 +146,7 @@ export function Achievements() {
         if (achievement) {
           setToast({ title: achievement.title, icon: achievement.icon });
           playRetroChime();
-          
+
           setTimeout(() => {
             setToast(null);
           }, 4500);
@@ -162,7 +166,9 @@ export function Achievements() {
 
         // Unlock Social Connector if both clicked
         if (next.includes("whatsapp") && next.includes("instagram")) {
-          window.dispatchEvent(new CustomEvent("soi-achievement", { detail: "social-connector" }));
+          window.dispatchEvent(
+            new CustomEvent("soi-achievement", { detail: "social-connector" }),
+          );
         }
         return next;
       });
@@ -189,7 +195,9 @@ export function Achievements() {
   const handlePiChange = (val: string) => {
     setPiInput(val);
     if (val.trim() === "3.1415926") {
-      window.dispatchEvent(new CustomEvent("soi-achievement", { detail: "pi-pioneer" }));
+      window.dispatchEvent(
+        new CustomEvent("soi-achievement", { detail: "pi-pioneer" }),
+      );
       setPiInput("");
     }
   };
@@ -224,8 +232,11 @@ export function Achievements() {
         }`}
       >
         {/* Scans lines retro background overlay */}
-        <div className="absolute inset-0 bg-repeat bg-center opacity-[0.02] pointer-events-none dots-grid" aria-hidden />
-        
+        <div
+          className="absolute inset-0 bg-repeat bg-center opacity-[0.02] pointer-events-none dots-grid"
+          aria-hidden
+        />
+
         <div className="relative flex items-center justify-between border-b-[2px] border-ink pb-3 mb-4">
           <span className="font-display text-xs uppercase tracking-wider text-accent flex items-center gap-1">
             <Sparkles className="h-4 w-4 text-[#FFD700]" />
@@ -242,7 +253,11 @@ export function Achievements() {
         {/* Locked count indicator */}
         <div className="relative border-[2px] border-ink bg-background p-2 text-center mb-4 shadow-brutal-sm">
           <span className="font-mono text-xs font-bold uppercase tracking-wider">
-            REWARDS UNLOCKED: <span className="text-primary font-display text-sm">{unlockedCount}</span> / {achievementsList.length}
+            REWARDS UNLOCKED:{" "}
+            <span className="text-primary font-display text-sm">
+              {unlockedCount}
+            </span>{" "}
+            / {achievementsList.length}
           </span>
         </div>
 
@@ -254,12 +269,16 @@ export function Achievements() {
               <div
                 key={a.id}
                 className={`border-[2px] border-ink p-3 shadow-brutal-sm flex gap-3 items-center transition-all ${
-                  isUnlocked ? "bg-accent/10 border-ink" : "bg-background/40 opacity-70 border-dashed"
+                  isUnlocked
+                    ? "bg-accent/10 border-ink"
+                    : "bg-background/40 opacity-70 border-dashed"
                 }`}
               >
                 <div
                   className={`grid h-10 w-10 shrink-0 place-items-center border-[2px] border-ink font-display text-2xl shadow-brutal-sm select-none ${
-                    isUnlocked ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground grayscale"
+                    isUnlocked
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-muted text-muted-foreground grayscale"
                   }`}
                 >
                   {isUnlocked ? a.icon : "🔒"}
@@ -294,7 +313,8 @@ export function Achievements() {
               ★ SECRET CALCULATION CHALLENGE
             </span>
             <p className="font-body text-[10px] text-foreground/75 mb-2 leading-tight">
-              Prove your mathematical conviction! Enter the value of Pi (π) up to 7 decimal places:
+              Prove your mathematical conviction! Enter the value of Pi (π) up
+              to 7 decimal places:
             </p>
             <div className="flex gap-2">
               <input

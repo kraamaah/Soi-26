@@ -17,7 +17,14 @@ export function ParticleTrail() {
     handleResize();
     window.addEventListener("resize", handleResize);
 
-    const colors = ["var(--primary)", "var(--accent)", "#2747FF", "#FF6A3D", "#ff58b6", "#FFD700"];
+    const colors = [
+      "var(--primary)",
+      "var(--accent)",
+      "#2747FF",
+      "#FF6A3D",
+      "#ff58b6",
+      "#FFD700",
+    ];
 
     const handleMouseMove = (e: MouseEvent) => {
       // Spawn 1 particle per mousemove for an elegant and performant trail

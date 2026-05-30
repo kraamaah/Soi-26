@@ -11,14 +11,78 @@ interface Note {
 }
 
 const notesList: Note[] = [
-  { key: "a", char: "A", note: "C4", freq: 261.63, color: "bg-background text-foreground", activeColor: "bg-primary text-primary-foreground -translate-y-1 shadow-[4px_4px_0_0_var(--ink)]" },
-  { key: "s", char: "S", note: "D4", freq: 293.66, color: "bg-background text-foreground", activeColor: "bg-accent text-accent-foreground -translate-y-1 shadow-[4px_4px_0_0_var(--ink)]" },
-  { key: "d", char: "D", note: "E4", freq: 329.63, color: "bg-background text-foreground", activeColor: "bg-[#FFD700] text-ink -translate-y-1 shadow-[4px_4px_0_0_var(--ink)]" },
-  { key: "f", char: "F", note: "F4", freq: 349.23, color: "bg-background text-foreground", activeColor: "bg-[#25D366] text-white -translate-y-1 shadow-[4px_4px_0_0_var(--ink)]" },
-  { key: "g", char: "G", note: "G4", freq: 392.00, color: "bg-background text-foreground", activeColor: "bg-[#ff58b6] text-white -translate-y-1 shadow-[4px_4px_0_0_var(--ink)]" },
-  { key: "h", char: "H", note: "A4", freq: 440.00, color: "bg-background text-foreground", activeColor: "bg-primary text-primary-foreground -translate-y-1 shadow-[4px_4px_0_0_var(--ink)]" },
-  { key: "j", char: "J", note: "B4", freq: 493.88, color: "bg-background text-foreground", activeColor: "bg-accent text-accent-foreground -translate-y-1 shadow-[4px_4px_0_0_var(--ink)]" },
-  { key: "k", char: "K", note: "C5", freq: 523.25, color: "bg-background text-foreground", activeColor: "bg-[#FFD700] text-ink -translate-y-1 shadow-[4px_4px_0_0_var(--ink)]" },
+  {
+    key: "a",
+    char: "A",
+    note: "C4",
+    freq: 261.63,
+    color: "bg-background text-foreground",
+    activeColor:
+      "bg-primary text-primary-foreground -translate-y-1 shadow-[4px_4px_0_0_var(--ink)]",
+  },
+  {
+    key: "s",
+    char: "S",
+    note: "D4",
+    freq: 293.66,
+    color: "bg-background text-foreground",
+    activeColor:
+      "bg-accent text-accent-foreground -translate-y-1 shadow-[4px_4px_0_0_var(--ink)]",
+  },
+  {
+    key: "d",
+    char: "D",
+    note: "E4",
+    freq: 329.63,
+    color: "bg-background text-foreground",
+    activeColor:
+      "bg-[#FFD700] text-ink -translate-y-1 shadow-[4px_4px_0_0_var(--ink)]",
+  },
+  {
+    key: "f",
+    char: "F",
+    note: "F4",
+    freq: 349.23,
+    color: "bg-background text-foreground",
+    activeColor:
+      "bg-[#25D366] text-white -translate-y-1 shadow-[4px_4px_0_0_var(--ink)]",
+  },
+  {
+    key: "g",
+    char: "G",
+    note: "G4",
+    freq: 392.0,
+    color: "bg-background text-foreground",
+    activeColor:
+      "bg-[#ff58b6] text-white -translate-y-1 shadow-[4px_4px_0_0_var(--ink)]",
+  },
+  {
+    key: "h",
+    char: "H",
+    note: "A4",
+    freq: 440.0,
+    color: "bg-background text-foreground",
+    activeColor:
+      "bg-primary text-primary-foreground -translate-y-1 shadow-[4px_4px_0_0_var(--ink)]",
+  },
+  {
+    key: "j",
+    char: "J",
+    note: "B4",
+    freq: 493.88,
+    color: "bg-background text-foreground",
+    activeColor:
+      "bg-accent text-accent-foreground -translate-y-1 shadow-[4px_4px_0_0_var(--ink)]",
+  },
+  {
+    key: "k",
+    char: "K",
+    note: "C5",
+    freq: 523.25,
+    color: "bg-background text-foreground",
+    activeColor:
+      "bg-[#FFD700] text-ink -translate-y-1 shadow-[4px_4px_0_0_var(--ink)]",
+  },
 ];
 
 export function SecretSynth() {
@@ -28,7 +92,8 @@ export function SecretSynth() {
 
   const playFreq = (freq: number, type: OscillatorType = oscType) => {
     try {
-      const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
+      const AudioCtx =
+        window.AudioContext || (window as any).webkitAudioContext;
       if (!AudioCtx) return;
       const ctx = new AudioCtx();
       const osc = ctx.createOscillator();
@@ -58,12 +123,14 @@ export function SecretSynth() {
         keyBuffer = (keyBuffer + char).slice(-3);
         if (keyBuffer === "soi") {
           setShowSynth(true);
-          window.dispatchEvent(new CustomEvent("soi-achievement", { detail: "synth-explorer" }));
+          window.dispatchEvent(
+            new CustomEvent("soi-achievement", { detail: "synth-explorer" }),
+          );
           // Play a friendly introductory chord
           playFreq(523.25, "sine");
           setTimeout(() => playFreq(659.25, "sine"), 80);
           setTimeout(() => playFreq(783.99, "sine"), 160);
-          setTimeout(() => playFreq(1046.50, "sine"), 240);
+          setTimeout(() => playFreq(1046.5, "sine"), 240);
         }
       }
     };
@@ -74,7 +141,7 @@ export function SecretSynth() {
       playFreq(523.25, "sine");
       setTimeout(() => playFreq(659.25, "sine"), 80);
       setTimeout(() => playFreq(783.99, "sine"), 160);
-      setTimeout(() => playFreq(1046.50, "sine"), 240);
+      setTimeout(() => playFreq(1046.5, "sine"), 240);
     };
 
     window.addEventListener("keydown", handleGlobalKeys);
@@ -120,7 +187,10 @@ export function SecretSynth() {
         }`}
       >
         {/* Retro dots overlay */}
-        <div className="absolute inset-0 bg-repeat bg-center opacity-[0.02] pointer-events-none dots-grid" aria-hidden />
+        <div
+          className="absolute inset-0 bg-repeat bg-center opacity-[0.02] pointer-events-none dots-grid"
+          aria-hidden
+        />
 
         <div className="relative flex items-center justify-between border-b-[2px] border-ink pb-3 mb-4">
           <span className="font-display text-xs uppercase tracking-wider text-primary flex items-center gap-1.5 animate-pulse">
@@ -135,7 +205,12 @@ export function SecretSynth() {
         </div>
 
         <p className="relative font-body text-[11px] text-foreground/70 mb-4 leading-relaxed">
-          Unlock complete! You found the secret soundboard. Trigger notes by clicking or pressing keys <span className="font-mono font-bold text-accent">A, S, D, F, G, H, J, K</span> on your keyboard!
+          Unlock complete! You found the secret soundboard. Trigger notes by
+          clicking or pressing keys{" "}
+          <span className="font-mono font-bold text-accent">
+            A, S, D, F, G, H, J, K
+          </span>{" "}
+          on your keyboard!
         </p>
 
         {/* Waveform Selector */}
@@ -145,19 +220,21 @@ export function SecretSynth() {
             WAVEFORM TYPE:
           </span>
           <div className="flex gap-1.5 overflow-x-auto scrollbar-none">
-            {(["square", "sine", "triangle", "sawtooth"] as const).map((type) => (
-              <button
-                key={type}
-                onClick={() => setOscType(type)}
-                className={`border-[1.5px] border-ink px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wider transition-all cursor-pointer ${
-                  oscType === type
-                    ? "bg-accent text-accent-foreground shadow-brutal-xs"
-                    : "bg-card hover:bg-peach/30"
-                }`}
-              >
-                {type}
-              </button>
-            ))}
+            {(["square", "sine", "triangle", "sawtooth"] as const).map(
+              (type) => (
+                <button
+                  key={type}
+                  onClick={() => setOscType(type)}
+                  className={`border-[1.5px] border-ink px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                    oscType === type
+                      ? "bg-accent text-accent-foreground shadow-brutal-xs"
+                      : "bg-card hover:bg-peach/30"
+                  }`}
+                >
+                  {type}
+                </button>
+              ),
+            )}
           </div>
         </div>
 
@@ -170,10 +247,15 @@ export function SecretSynth() {
                 key={n.key}
                 onClick={() => handleKeyClick(n)}
                 className={`border-[2px] border-ink py-4 font-display text-xs transition-all cursor-pointer flex flex-col items-center justify-between min-h-[90px] shadow-[2px_2px_0_0_var(--ink)] select-none ${
-                  isActive ? n.activeColor : n.color + " hover:bg-peach/30 active:translate-y-0 active:shadow-[1px_1px_0_0_var(--ink)]"
+                  isActive
+                    ? n.activeColor
+                    : n.color +
+                      " hover:bg-peach/30 active:translate-y-0 active:shadow-[1px_1px_0_0_var(--ink)]"
                 }`}
               >
-                <span className="font-mono text-[9px] font-bold opacity-45">{n.note}</span>
+                <span className="font-mono text-[9px] font-bold opacity-45">
+                  {n.note}
+                </span>
                 <span className="font-display text-xs">{n.char}</span>
               </button>
             );

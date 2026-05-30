@@ -34,7 +34,9 @@ export function Nav() {
       setLogoClicks((prev) => {
         const next = prev + 1;
         if (next >= 3) {
-          window.dispatchEvent(new CustomEvent("soi-achievement", { detail: "synth-explorer" }));
+          window.dispatchEvent(
+            new CustomEvent("soi-achievement", { detail: "synth-explorer" }),
+          );
           window.dispatchEvent(new CustomEvent("soi-open-synth"));
           return 0;
         }
@@ -46,12 +48,19 @@ export function Nav() {
 
       // Spawn retro cosmic wave particles radiating from button center
       const particleCount = 18;
-      const colors = ["var(--primary)", "var(--accent)", "#2747FF", "#FF6A3D", "#ff58b6"];
+      const colors = [
+        "var(--primary)",
+        "var(--accent)",
+        "#2747FF",
+        "#FF6A3D",
+        "#ff58b6",
+      ];
       for (let i = 0; i < particleCount; i++) {
         const el = document.createElement("div");
         el.className = "cosmic-particle";
 
-        const angle = (i * 2 * Math.PI) / particleCount + (Math.random() - 0.5) * 0.35;
+        const angle =
+          (i * 2 * Math.PI) / particleCount + (Math.random() - 0.5) * 0.35;
         const distance = 90 + Math.random() * 110;
         const tx = `${Math.cos(angle) * distance}px`;
         const ty = `${Math.sin(angle) * distance}px`;
@@ -63,7 +72,8 @@ export function Nav() {
 
         el.style.left = `${x}px`;
         el.style.top = `${y}px`;
-        el.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        el.style.backgroundColor =
+          colors[Math.floor(Math.random() * colors.length)];
         el.style.borderRadius = Math.random() > 0.5 ? "50%" : "0px";
 
         document.body.appendChild(el);
@@ -81,7 +91,9 @@ export function Nav() {
     setTheme(nextTheme);
 
     if (nextTheme === "dark") {
-      window.dispatchEvent(new CustomEvent("soi-achievement", { detail: "night-owl" }));
+      window.dispatchEvent(
+        new CustomEvent("soi-achievement", { detail: "night-owl" }),
+      );
     }
   };
 

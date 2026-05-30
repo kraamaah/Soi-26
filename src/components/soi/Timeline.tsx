@@ -5,18 +5,18 @@ const staticStars = [
   { size: 1.5, x: 25, y: 35 },
   { size: 2.5, x: 75, y: 20 },
   { size: 2.0, x: 45, y: 75 },
-  { size: 1.5, x: 85, y: 65 }
+  { size: 1.5, x: 85, y: 65 },
 ];
 
 const getStarsForCard = (cardIndex: number) => {
   return Array.from({ length: 15 }).map((_, i) => {
     const seed = cardIndex * 15 + i;
     const angle = (seed * 73) % 360;
-    const duration = 6 + (seed * 11) % 15;
-    const delay = 1 + (seed * 3) % 10;
-    const alpha = (25 + (seed * 7) % 35) / 100;
-    const size = 1.2 + (seed * 2) % 2.5;
-    const distance = 25 + (seed * 13) % 95;
+    const duration = 6 + ((seed * 11) % 15);
+    const delay = 1 + ((seed * 3) % 10);
+    const alpha = (25 + ((seed * 7) % 35)) / 100;
+    const size = 1.2 + ((seed * 2) % 2.5);
+    const distance = 25 + ((seed * 13) % 95);
     return { angle, duration, delay, alpha, size, distance };
   });
 };
@@ -31,12 +31,24 @@ export function Timeline() {
     const element = document.getElementById(targetId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "center" });
-      
+
       // Temporary high-velocity brutalist ring and scale pulse
-      element.classList.add("ring-[6px]", "ring-primary", "scale-[1.03]", "z-30", "relative");
-      
+      element.classList.add(
+        "ring-[6px]",
+        "ring-primary",
+        "scale-[1.03]",
+        "z-30",
+        "relative",
+      );
+
       setTimeout(() => {
-        element.classList.remove("ring-[6px]", "ring-primary", "scale-[1.03]", "z-30", "relative");
+        element.classList.remove(
+          "ring-[6px]",
+          "ring-primary",
+          "scale-[1.03]",
+          "z-30",
+          "relative",
+        );
       }, 2000);
     }
   };
@@ -72,7 +84,7 @@ export function Timeline() {
       {
         threshold: 0.05, // Trigger as soon as 5% of the card is visible
         rootMargin: "0px 0px -40px 0px", // Trigger slightly before it enters the viewport fully
-      }
+      },
     );
 
     if (containerRef.current) {
@@ -84,7 +96,10 @@ export function Timeline() {
   }, [filteredEvents]); // Re-run when filters change to observe new list items
 
   return (
-    <section id="timeline" className="border-b-[3px] border-ink bg-peach-deep/20 py-20 relative overflow-hidden conic-pattern">
+    <section
+      id="timeline"
+      className="border-b-[3px] border-ink bg-peach-deep/20 py-20 relative overflow-hidden conic-pattern"
+    >
       <style>{`
         .timeline-item {
           opacity: 0;
@@ -259,15 +274,20 @@ export function Timeline() {
           opacity: 0.22;
         }
       `}</style>
-      <div ref={containerRef} className="mx-auto max-w-7xl px-4 md:px-8 relative">
+      <div
+        ref={containerRef}
+        className="mx-auto max-w-7xl px-4 md:px-8 relative"
+      >
         <div className="mb-12 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div>
             <span className="font-display text-xs uppercase tracking-widest text-primary">
               Two Months · Eighteen Challenges
             </span>
-            <h2 className="mt-2 font-display text-4xl uppercase md:text-6xl">Timeline</h2>
+            <h2 className="mt-2 font-display text-4xl uppercase md:text-6xl">
+              Timeline
+            </h2>
           </div>
-          
+
           {/* Quick Stats Badges */}
           <div className="flex flex-wrap gap-3">
             <span className="border-[2px] border-ink bg-accent px-3 py-1 font-display text-xs uppercase shadow-brutal-sm">
@@ -310,16 +330,16 @@ export function Timeline() {
         <div className="relative ml-4 md:ml-8">
           {/* Animated Central vertical path line */}
           <div className="absolute left-0 top-3 bottom-3 w-[4px] bg-ink/10" />
-          <div 
+          <div
             key={selectedDate} // Re-triggers drawing animation on filter change
-            className="absolute left-0 top-3 bottom-3 w-[4px] bg-primary timeline-line-draw origin-top" 
+            className="absolute left-0 top-3 bottom-3 w-[4px] bg-primary timeline-line-draw origin-top"
           />
 
           <ol className="space-y-6">
             {filteredEvents.map((e, index) => {
               return (
-                <li 
-                  key={e.num} 
+                <li
+                  key={e.num}
                   className="relative pl-8 md:pl-12 timeline-item"
                   style={{ transitionDelay: `${index * 40}ms` }}
                 >
@@ -344,19 +364,21 @@ export function Timeline() {
                     {/* Galaxy background components */}
                     <div className="card-spark" aria-hidden="true" />
                     <div className="card-backdrop" aria-hidden="true" />
-                    
+
                     {/* Static stars background */}
                     <div className="card-galaxy__static" aria-hidden="true">
                       {staticStars.map((s, idx) => (
-                        <div 
+                        <div
                           key={idx}
                           className="card-star card-star--static"
-                          style={{
-                            "--size": s.size,
-                            "--x": `${s.x}%`,
-                            "--y": `${s.y}%`,
-                            "--alpha": 0.22
-                          } as React.CSSProperties}
+                          style={
+                            {
+                              "--size": s.size,
+                              "--x": `${s.x}%`,
+                              "--y": `${s.y}%`,
+                              "--alpha": 0.22,
+                            } as React.CSSProperties
+                          }
                         />
                       ))}
                     </div>
@@ -365,17 +387,19 @@ export function Timeline() {
                     <div className="card-galaxy" aria-hidden="true">
                       <div className="card-galaxy__ring">
                         {getStarsForCard(index).map((s, idx) => (
-                          <div 
+                          <div
                             key={idx}
                             className="card-star"
-                            style={{
-                              "--angle": `${s.angle}deg`,
-                              "--duration": s.duration,
-                              "--delay": s.delay,
-                              "--alpha": s.alpha,
-                              "--size": s.size,
-                              "--distance": s.distance
-                            } as React.CSSProperties}
+                            style={
+                              {
+                                "--angle": `${s.angle}deg`,
+                                "--duration": s.duration,
+                                "--delay": s.delay,
+                                "--alpha": s.alpha,
+                                "--size": s.size,
+                                "--distance": s.distance,
+                              } as React.CSSProperties
+                            }
                           />
                         ))}
                       </div>
@@ -415,11 +439,11 @@ export function Timeline() {
 
       {/* Pop-up Dialog Modal Overlay */}
       {modalEvent && (
-        <div 
+        <div
           className="fixed inset-0 bg-ink/35 backdrop-blur-xs z-50 flex items-center justify-center p-4 transition-all duration-300"
           onClick={() => setModalEvent(null)}
         >
-          <div 
+          <div
             className="border-[4px] border-ink bg-card p-5 sm:p-6 md:p-8 max-w-lg w-full max-h-[85vh] overflow-y-auto shadow-brutal relative animate-modal-pop scrollbar-none"
             onClick={(s) => s.stopPropagation()} // Prevent modal closure when clicking inside the modal
           >
@@ -441,7 +465,7 @@ export function Timeline() {
               <p className="mt-1.5 text-xs font-bold uppercase tracking-wide text-primary">
                 {modalEvent.club}
               </p>
-              
+
               <div className="mt-5 border-t-2 border-dashed border-ink/20 pt-4">
                 <p className="text-sm leading-relaxed text-foreground/90 font-medium">
                   {modalEvent.desc}
@@ -453,13 +477,17 @@ export function Timeline() {
                   <span className="font-display uppercase border-2 border-ink bg-background px-2 py-0.5 font-bold shadow-brutal-sm">
                     Timeline
                   </span>
-                  <span className="font-mono text-[11px] font-bold text-foreground/90">{modalEvent.timeline}</span>
+                  <span className="font-mono text-[11px] font-bold text-foreground/90">
+                    {modalEvent.timeline}
+                  </span>
                 </div>
                 <div className="flex flex-wrap items-center gap-2.5 text-xs">
                   <span className="font-display uppercase border-2 border-ink bg-accent px-2 py-0.5 font-bold shadow-brutal-sm">
                     Rewards
                   </span>
-                  <span className="font-mono text-[11px] font-bold text-primary">{modalEvent.prizes}</span>
+                  <span className="font-mono text-[11px] font-bold text-primary">
+                    {modalEvent.prizes}
+                  </span>
                 </div>
                 <div className="flex flex-wrap items-start gap-2.5 text-xs">
                   <span className="font-display uppercase border-2 border-ink bg-card px-2 py-0.5 font-bold shadow-brutal-sm">
@@ -467,7 +495,10 @@ export function Timeline() {
                   </span>
                   <div className="flex flex-wrap gap-1.5">
                     {modalEvent.domains.map((dom) => (
-                      <span key={dom} className="font-mono text-[10px] font-bold text-foreground/80 bg-accent/20 border border-ink/20 px-2 py-0.5">
+                      <span
+                        key={dom}
+                        className="font-mono text-[10px] font-bold text-foreground/80 bg-accent/20 border border-ink/20 px-2 py-0.5"
+                      >
                         {dom}
                       </span>
                     ))}

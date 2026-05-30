@@ -2,11 +2,16 @@ import instagramLogo from "@/assets/instagram-logo.png";
 
 export function Footer() {
   const handleSocialClick = (platform: "whatsapp" | "instagram") => {
-    window.dispatchEvent(new CustomEvent("soi-social-click", { detail: platform }));
+    window.dispatchEvent(
+      new CustomEvent("soi-social-click", { detail: platform }),
+    );
   };
 
   const contacts = [
-    { name: "General Secretary Technical Affairs", email: "gstech@iitdh.ac.in" },
+    {
+      name: "General Secretary Technical Affairs",
+      email: "gstech@iitdh.ac.in",
+    },
     { name: "Coding Club", email: "codingclub@iitdh.ac.in" },
     { name: "AI Club", email: "aiclub@iitdh.ac.in" },
     { name: "Space and Data Science Club", email: "space.ds.club@iitdh.ac.in" },
@@ -29,13 +34,16 @@ export function Footer() {
                 Let's Build <span className="text-accent">Summer.</span>
               </h2>
               <p className="mt-3 text-sm text-card/70 max-w-sm leading-relaxed">
-                Have questions or want to collaborate? Reach out to the respective clubs or the technical secretariat.
+                Have questions or want to collaborate? Reach out to the
+                respective clubs or the technical secretariat.
               </p>
             </div>
 
             <div className="flex flex-col gap-6 sm:flex-row sm:items-center lg:flex-col lg:items-start">
               <div>
-                <p className="font-display text-xs uppercase tracking-widest text-accent mb-3">WhatsApp Community</p>
+                <p className="font-display text-xs uppercase tracking-widest text-accent mb-3">
+                  WhatsApp Community
+                </p>
                 <a
                   href="https://chat.whatsapp.com/HPh2VvStSX9DfLYvkB9rCH"
                   target="_blank"
@@ -51,7 +59,9 @@ export function Footer() {
               </div>
 
               <div>
-                <p className="font-display text-xs uppercase tracking-widest text-accent mb-3">Follow SoI</p>
+                <p className="font-display text-xs uppercase tracking-widest text-accent mb-3">
+                  Follow SoI
+                </p>
                 <div className="flex gap-3">
                   {/* WhatsApp social icon */}
                   <a
@@ -75,7 +85,11 @@ export function Footer() {
                     className="grid h-10 w-10 place-items-center border-[3px] border-card overflow-hidden shadow-brutal-sm transition-opacity hover:opacity-90"
                     title="Instagram"
                   >
-                    <img src={instagramLogo} alt="Instagram" className="h-full w-full object-cover" />
+                    <img
+                      src={instagramLogo}
+                      alt="Instagram"
+                      className="h-full w-full object-cover"
+                    />
                   </a>
                 </div>
               </div>
@@ -84,11 +98,18 @@ export function Footer() {
 
           {/* Columns 2 & 3: Rich Contacts Grid */}
           <div className="lg:col-span-2">
-            <p className="font-display text-xs uppercase tracking-widest text-accent mb-6">Technical Council</p>
+            <p className="font-display text-xs uppercase tracking-widest text-accent mb-6">
+              Technical Council
+            </p>
             <div className="grid gap-x-8 gap-y-6 sm:grid-cols-2">
               {contacts.map((c) => (
-                <div key={c.email} className="border-l-[3px] border-accent pl-4 py-1">
-                  <p className="font-display text-sm tracking-wide text-card">{c.name}</p>
+                <div
+                  key={c.email}
+                  className="border-l-[3px] border-accent pl-4 py-1"
+                >
+                  <p className="font-display text-sm tracking-wide text-card">
+                    {c.name}
+                  </p>
                   <a
                     href={`mailto:${c.email}`}
                     className="text-xs text-card/60 hover:text-accent font-mono block mt-1 transition-colors"

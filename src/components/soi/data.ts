@@ -262,16 +262,36 @@ export const events: SoiEvent[] = [
 export type TeamGroup = { club: string; members: string[] };
 
 export const team: TeamGroup[] = [
-  { club: "Coding Club", members: ["Nidhish Doshi", "Gourav Sherikar", "Aaditya Kumar", "Rushil Krishna Sai Narendula", "Kratgya Jain"] },
+  {
+    club: "Coding Club",
+    members: [
+      "Nidhish Doshi",
+      "Gourav Sherikar",
+      "Aaditya Kumar",
+      "Rushil Krishna Sai Narendula",
+      "Kratgya Jain",
+    ],
+  },
   { club: "AI Club", members: ["Nihar Sagar G", "Sreejita Chatterjee"] },
   {
     club: "Space and Data Science Club",
-    members: ["Balamurali V B", "Kaustubh Mishra", "T Dhanunjaya Rao", "Priyanshu Nimbalkar"],
+    members: [
+      "Balamurali V B",
+      "Kaustubh Mishra",
+      "T Dhanunjaya Rao",
+      "Priyanshu Nimbalkar",
+    ],
   },
-  { club: "Robotics Club", members: ["Tushar Hegde", "Soumya Basuli", "Shrikant Sonawane"] },
+  {
+    club: "Robotics Club",
+    members: ["Tushar Hegde", "Soumya Basuli", "Shrikant Sonawane"],
+  },
   { club: "Motorsports Club", members: ["Nageswar Dusi", "Soumya Shaw"] },
   { club: "Design Club", members: ["Aashish M", "Rajat Gupta"] },
   { club: "Finance Club", members: ["Samarth M"] },
-  { club: "Electronics Club", members: ["Manas Khatokar N", "Haridarshan R", "Emil Ben", "Harsh"] },
+  {
+    club: "Electronics Club",
+    members: ["Manas Khatokar N", "Haridarshan R", "Emil Ben", "Harsh"],
+  },
   { club: "Astronomy Club", members: ["Harsh Chauhan", "Rithika Athawade"] },
 ];
