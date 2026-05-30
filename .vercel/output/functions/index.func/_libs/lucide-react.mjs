@@ -75,7 +75,7 @@ const createLucideIcon = (iconName, iconNode) => {
   Component.displayName = toPascalCase(iconName);
   return Component;
 };
-const __iconNode$8 = [
+const __iconNode$7 = [
   [
     "path",
     {
@@ -88,19 +88,13 @@ const __iconNode$8 = [
   ["path", { d: "M16 13H8", key: "t4e002" }],
   ["path", { d: "M16 17H8", key: "z1uh3a" }]
 ];
-const FileText = createLucideIcon("file-text", __iconNode$8);
-const __iconNode$7 = [
+const FileText = createLucideIcon("file-text", __iconNode$7);
+const __iconNode$6 = [
   ["path", { d: "M4 5h16", key: "1tepv9" }],
   ["path", { d: "M4 12h16", key: "1lakjw" }],
   ["path", { d: "M4 19h16", key: "1djgab" }]
 ];
-const Menu = createLucideIcon("menu", __iconNode$7);
-const __iconNode$6 = [
-  ["path", { d: "M9 18V5l12-2v13", key: "1jmyc2" }],
-  ["circle", { cx: "6", cy: "18", r: "3", key: "fqmcym" }],
-  ["circle", { cx: "18", cy: "16", r: "3", key: "1hluhg" }]
-];
-const Music = createLucideIcon("music", __iconNode$6);
+const Menu = createLucideIcon("menu", __iconNode$6);
 const __iconNode$5 = [
   [
     "path",
@@ -165,6 +159,5 @@ export {
   Sparkles as S,
   Trophy as T,
   Volume2 as V,
-  X,
-  Music as a
+  X
 };

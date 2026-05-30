@@ -58,6 +58,7 @@ export function SecretSynth() {
         keyBuffer = (keyBuffer + char).slice(-3);
         if (keyBuffer === "soi") {
           setShowSynth(true);
+          window.dispatchEvent(new CustomEvent("soi-achievement", { detail: "synth-explorer" }));
           // Play a friendly introductory chord
           playFreq(523.25, "sine");
           setTimeout(() => playFreq(659.25, "sine"), 80);
@@ -109,7 +110,6 @@ export function SecretSynth() {
 
         <div className="relative flex items-center justify-between border-b-[2px] border-ink pb-3 mb-4">
           <span className="font-display text-xs uppercase tracking-wider text-primary flex items-center gap-1.5 animate-pulse">
-            <Music className="h-4 w-4 text-accent" />
             SECRET CHIPTUNE SYNTH
           </span>
           <button

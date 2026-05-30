@@ -45,6 +45,20 @@ const achievementsList: Achievement[] = [
     icon: "🌐",
     requirement: "Click both WhatsApp and Instagram links in the footer.",
   },
+  {
+    id: "synth-explorer",
+    title: "Sound Wizard",
+    desc: "Unleash analog frequency waves.",
+    icon: "🎹",
+    requirement: "Discover and trigger the secret chiptune synthesizer (type 'soi').",
+  },
+  {
+    id: "pi-pioneer",
+    title: "Pi Pioneer",
+    desc: "Unlock the mathematical infinite.",
+    icon: "🥧",
+    requirement: "Correctly enter the value of Pi (π) up to 7 decimal places (3.1415926).",
+  },
 ];
 
 const playRetroChime = () => {
@@ -87,6 +101,7 @@ export function Achievements() {
   const [toast, setToast] = useState<{ title: string; icon: string } | null>(null);
   const [clickedSocials, setClickedSocials] = useState<string[]>([]);
   const [hasOpenedOnce, setHasOpenedOnce] = useState(false);
+  const [piInput, setPiInput] = useState("");
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -171,6 +186,14 @@ export function Achievements() {
     }
   };
 
+  const handlePiChange = (val: string) => {
+    setPiInput(val);
+    if (val.trim() === "3.1415926") {
+      window.dispatchEvent(new CustomEvent("soi-achievement", { detail: "pi-pioneer" }));
+      setPiInput("");
+    }
+  };
+
   const unlockedCount = unlockedIds.length;
   const isAllUnlocked = unlockedCount === achievementsList.length;
 
@@ -224,7 +247,7 @@ export function Achievements() {
         </div>
 
         {/* Achievement Grid */}
-        <div className="relative space-y-3 max-h-[350px] overflow-y-auto pr-1 scrollbar-none">
+        <div className="relative space-y-3 max-h-[300px] overflow-y-auto pr-1 scrollbar-none">
           {achievementsList.map((a) => {
             const isUnlocked = unlockedIds.includes(a.id);
             return (
@@ -263,6 +286,30 @@ export function Achievements() {
             );
           })}
         </div>
+
+        {/* Secret Pi Math Challenger Input */}
+        {!unlockedIds.includes("pi-pioneer") && (
+          <div className="relative border-[2px] border-ink bg-background p-3 mt-4 shadow-brutal-sm">
+            <span className="font-mono text-[9px] font-bold text-accent uppercase tracking-wider block mb-1">
+              ★ SECRET CALCULATION CHALLENGE
+            </span>
+            <p className="font-body text-[10px] text-foreground/75 mb-2 leading-tight">
+              Prove your mathematical conviction! Enter the value of Pi (π) up to 7 decimal places:
+            </p>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={piInput}
+                onChange={(e) => handlePiChange(e.target.value)}
+                placeholder="3.14..."
+                className="flex-1 border-2 border-ink bg-card px-2.5 py-1 font-mono text-xs text-ink shadow-[1.5px_1.5px_0_0_var(--ink)] focus:outline-none"
+              />
+              <span className="font-mono text-[9px] font-bold text-primary flex items-center justify-center border border-ink/10 px-1.5 py-0.2 select-none uppercase tracking-widest bg-card shadow-brutal-xs shrink-0">
+                INPUT.SYS
+              </span>
+            </div>
+          </div>
+        )}
 
         {/* Ultimate Easter Egg Completion State */}
         {isAllUnlocked && (

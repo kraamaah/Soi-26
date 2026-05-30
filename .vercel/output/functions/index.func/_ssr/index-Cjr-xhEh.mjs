@@ -1,7 +1,7 @@
 import { j as jsxRuntimeExports, r as reactExports } from "../_libs/react.mjs";
 import { c as clsx } from "../_libs/clsx.mjs";
 import { t as twMerge } from "../_libs/tailwind-merge.mjs";
-import { X, M as Menu, F as FileText, T as Trophy, S as Sparkles, a as Music, V as Volume2, R as RefreshCw, P as Play } from "../_libs/lucide-react.mjs";
+import { X, M as Menu, F as FileText, T as Trophy, S as Sparkles, V as Volume2, R as RefreshCw, P as Play } from "../_libs/lucide-react.mjs";
 function Nav() {
   const [activeSection, setActiveSection] = reactExports.useState("home");
   const [isOpen, setIsOpen] = reactExports.useState(false);
@@ -2153,6 +2153,20 @@ const achievementsList = [
     desc: "Connect with the SOI community.",
     icon: "🌐",
     requirement: "Click both WhatsApp and Instagram links in the footer."
+  },
+  {
+    id: "synth-explorer",
+    title: "Sound Wizard",
+    desc: "Unleash analog frequency waves.",
+    icon: "🎹",
+    requirement: "Discover and trigger the secret chiptune synthesizer (type 'soi')."
+  },
+  {
+    id: "pi-pioneer",
+    title: "Pi Pioneer",
+    desc: "Unlock the mathematical infinite.",
+    icon: "🥧",
+    requirement: "Correctly enter the value of Pi (π) up to 7 decimal places (3.1415926)."
   }
 ];
 const playRetroChime = () => {
@@ -2187,6 +2201,7 @@ function Achievements() {
   const [toast, setToast] = reactExports.useState(null);
   const [clickedSocials, setClickedSocials] = reactExports.useState([]);
   const [hasOpenedOnce, setHasOpenedOnce] = reactExports.useState(false);
+  const [piInput, setPiInput] = reactExports.useState("");
   reactExports.useEffect(() => {
     if (typeof window !== "undefined") {
       const stored = localStorage.getItem("soi_achievements");
@@ -2254,6 +2269,13 @@ function Achievements() {
       localStorage.setItem("soi_achievements_opened", "true");
     }
   };
+  const handlePiChange = (val) => {
+    setPiInput(val);
+    if (val.trim() === "3.1415926") {
+      window.dispatchEvent(new CustomEvent("soi-achievement", { detail: "pi-pioneer" }));
+      setPiInput("");
+    }
+  };
   const unlockedCount = unlockedIds.length;
   const isAllUnlocked = unlockedCount === achievementsList.length;
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
@@ -2295,7 +2317,7 @@ function Achievements() {
             " / ",
             achievementsList.length
           ] }) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative space-y-3 max-h-[350px] overflow-y-auto pr-1 scrollbar-none", children: achievementsList.map((a) => {
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative space-y-3 max-h-[300px] overflow-y-auto pr-1 scrollbar-none", children: achievementsList.map((a) => {
             const isUnlocked = unlockedIds.includes(a.id);
             return /* @__PURE__ */ jsxRuntimeExports.jsxs(
               "div",
@@ -2325,6 +2347,23 @@ function Achievements() {
               a.id
             );
           }) }),
+          !unlockedIds.includes("pi-pioneer") && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative border-[2px] border-ink bg-background p-3 mt-4 shadow-brutal-sm", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-mono text-[9px] font-bold text-accent uppercase tracking-wider block mb-1", children: "★ SECRET CALCULATION CHALLENGE" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-body text-[10px] text-foreground/75 mb-2 leading-tight", children: "Prove your mathematical conviction! Enter the value of Pi (π) up to 7 decimal places:" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "input",
+                {
+                  type: "text",
+                  value: piInput,
+                  onChange: (e) => handlePiChange(e.target.value),
+                  placeholder: "3.14...",
+                  className: "flex-1 border-2 border-ink bg-card px-2.5 py-1 font-mono text-xs text-ink shadow-[1.5px_1.5px_0_0_var(--ink)] focus:outline-none"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-mono text-[9px] font-bold text-primary flex items-center justify-center border border-ink/10 px-1.5 py-0.2 select-none uppercase tracking-widest bg-card shadow-brutal-xs shrink-0", children: "INPUT.SYS" })
+            ] })
+          ] }),
           isAllUnlocked && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative border-[2px] border-ink bg-[#FFD700] text-ink p-3 mt-4 text-center shadow-brutal-sm animate-pulse border-double", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-display text-xs uppercase tracking-wider", children: "ULTIMATE SOLVER UNLOCKED!" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-body text-[10px] mt-0.5 text-ink/80", children: "You are ready for the Summer of Innovation 2026!" })
@@ -2455,6 +2494,7 @@ function SecretSynth() {
         keyBuffer = (keyBuffer + char).slice(-3);
         if (keyBuffer === "soi") {
           setShowSynth(true);
+          window.dispatchEvent(new CustomEvent("soi-achievement", { detail: "synth-explorer" }));
           playFreq(523.25, "sine");
           setTimeout(() => playFreq(659.25, "sine"), 80);
           setTimeout(() => playFreq(783.99, "sine"), 160);
@@ -2491,10 +2531,7 @@ function SecretSynth() {
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-repeat bg-center opacity-[0.02] pointer-events-none dots-grid", "aria-hidden": true }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative flex items-center justify-between border-b-[2px] border-ink pb-3 mb-4", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-display text-xs uppercase tracking-wider text-primary flex items-center gap-1.5 animate-pulse", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Music, { className: "h-4 w-4 text-accent" }),
-            "SECRET CHIPTUNE SYNTH"
-          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-display text-xs uppercase tracking-wider text-primary flex items-center gap-1.5 animate-pulse", children: "SECRET CHIPTUNE SYNTH" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             "button",
             {
