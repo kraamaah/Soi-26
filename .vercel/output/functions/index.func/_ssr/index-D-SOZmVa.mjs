@@ -1227,6 +1227,29 @@ const team = [
 function Events() {
   const [statusFilter, setStatusFilter] = reactExports.useState("All");
   const [clubFilter, setClubFilter] = reactExports.useState("All");
+  const [viewedPdfs, setViewedPdfs] = reactExports.useState([]);
+  reactExports.useEffect(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("soi_viewed_pdfs");
+      if (stored) {
+        try {
+          setViewedPdfs(JSON.parse(stored));
+        } catch {
+        }
+      }
+    }
+  }, []);
+  const handlePdfClick = (psNum) => {
+    setViewedPdfs((prev) => {
+      if (prev.includes(psNum)) return prev;
+      const next = [...prev, psNum];
+      localStorage.setItem("soi_viewed_pdfs", JSON.stringify(next));
+      if (next.length >= 3) {
+        window.dispatchEvent(new CustomEvent("soi-achievement", { detail: "pdf-explorer" }));
+      }
+      return next;
+    });
+  };
   const clubs = ["All", ...Array.from(new Set(events.map((e) => e.club)))];
   const getShortClubName = (club) => {
     if (club === "All") return "All Clubs";
@@ -1346,6 +1369,11 @@ function Events() {
                   "a",
                   {
                     href: "#",
+                    onClick: (evt) => {
+                      evt.preventDefault();
+                      handlePdfClick(e.num);
+                      alert(`[GUIDELINES_${e.num}.PDF] Initializing download for problem statement guidelines! 📄`);
+                    },
                     className: "grid h-9 w-9 place-items-center border-[2.5px] border-ink bg-accent text-ink shadow-brutal-sm transition-transform hover:translate-x-[1.5px] hover:translate-y-[1.5px] hover:shadow-none active:translate-x-0 active:translate-y-0",
                     title: "View Guidelines PDF",
                     children: /* @__PURE__ */ jsxRuntimeExports.jsx(FileText, { className: "h-5 w-5" })
@@ -1987,6 +2015,9 @@ function Faq() {
 }
 const instagramLogo = "/assets/instagram-logo-fnnznYNF.png";
 function Footer() {
+  const handleSocialClick = (platform) => {
+    window.dispatchEvent(new CustomEvent("soi-social-click", { detail: platform }));
+  };
   const contacts = [
     { name: "General Secretary Technical Affairs", email: "gstech@iitdh.ac.in" },
     { name: "Coding Club", email: "codingclub@iitdh.ac.in" },
@@ -2018,6 +2049,7 @@ function Footer() {
                 href: "https://chat.whatsapp.com/HPh2VvStSX9DfLYvkB9rCH",
                 target: "_blank",
                 rel: "noopener noreferrer",
+                onClick: () => handleSocialClick("whatsapp"),
                 className: "inline-flex items-center gap-2 border-[3px] border-card bg-[#25D366] px-4 py-2.5 font-display text-xs uppercase text-white shadow-brutal-sm transition-all hover:bg-accent hover:text-ink hover:-translate-x-[1.5px] hover:-translate-y-[1.5px] hover:shadow-brutal-md active:translate-x-0 active:translate-y-0",
                 children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx("svg", { viewBox: "0 0 24 24", className: "h-4.5 w-4.5 fill-current", children: /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.005 5.277 5.282.003 11.758.003c3.132 0 6.077 1.218 8.291 3.432 2.215 2.214 3.431 5.159 3.43 8.292-.005 6.481-5.28 11.754-11.758 11.754-2.001-.002-3.968-.51-5.717-1.479L0 24zm6.59-4.846c1.6.95 3.498 1.45 5.433 1.451 5.56 0 10.083-4.52 10.087-10.081.002-2.693-1.04-5.226-2.932-7.118C17.275 1.514 14.748.473 12.056.473c-5.563 0-10.085 4.52-10.09 10.081-.002 1.896.486 3.748 1.417 5.378l-1.015 3.703 3.793-.995zm11.206-7.81c-.287-.144-1.7-.84-1.962-.935-.263-.096-.454-.144-.645.144-.19.288-.737.936-.904 1.127-.167.19-.335.216-.622.072-.287-.144-1.21-.447-2.308-1.427-.855-.762-1.433-1.705-1.6-1.993-.167-.288-.018-.444.125-.586.13-.128.287-.335.43-.502.144-.167.19-.287.287-.48.096-.19.048-.36-.024-.503-.072-.143-.645-1.548-.884-2.124-.233-.56-.47-.482-.645-.49-.167-.008-.358-.01-.55-.01s-.502.072-.765.36c-.263.288-1.005.983-1.005 2.399 0 1.416 1.03 2.784 1.173 2.976.143.19 2.026 3.1 4.908 4.34.686.295 1.22.47 1.637.602.689.218 1.316.187 1.811.114.553-.083 1.7-.696 1.94-1.368.24-.672.24-1.248.167-1.368-.072-.12-.263-.192-.55-.336z" }) }),
@@ -2035,6 +2067,7 @@ function Footer() {
                   href: "https://chat.whatsapp.com/HPh2VvStSX9DfLYvkB9rCH",
                   target: "_blank",
                   rel: "noopener noreferrer",
+                  onClick: () => handleSocialClick("whatsapp"),
                   className: "grid h-10 w-10 place-items-center border-[3px] border-card bg-[#25D366] text-white shadow-brutal-sm transition-colors hover:opacity-90",
                   title: "WhatsApp Community",
                   children: /* @__PURE__ */ jsxRuntimeExports.jsx("svg", { viewBox: "0 0 24 24", className: "h-5 w-5 fill-current", children: /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.005 5.277 5.282.003 11.758.003c3.132 0 6.077 1.218 8.291 3.432 2.215 2.214 3.431 5.159 3.43 8.292-.005 6.481-5.28 11.754-11.758 11.754-2.001-.002-3.968-.51-5.717-1.479L0 24zm6.59-4.846c1.6.95 3.498 1.45 5.433 1.451 5.56 0 10.083-4.52 10.087-10.081.002-2.693-1.04-5.226-2.932-7.118C17.275 1.514 14.748.473 12.056.473c-5.563 0-10.085 4.52-10.09 10.081-.002 1.896.486 3.748 1.417 5.378l-1.015 3.703 3.793-.995zm11.206-7.81c-.287-.144-1.7-.84-1.962-.935-.263-.096-.454-.144-.645.144-.19.288-.737.936-.904 1.127-.167.19-.335.216-.622.072-.287-.144-1.21-.447-2.308-1.427-.855-.762-1.433-1.705-1.6-1.993-.167-.288-.018-.444.125-.586.13-.128.287-.335.43-.502.144-.167.19-.287.287-.48.096-.19.048-.36-.024-.503-.072-.143-.645-1.548-.884-2.124-.233-.56-.47-.482-.645-.49-.167-.008-.358-.01-.55-.01s-.502.072-.765.36c-.263.288-1.005.983-1.005 2.399 0 1.416 1.03 2.784 1.173 2.976.143.19 2.026 3.1 4.908 4.34.686.295 1.22.47 1.637.602.689.218 1.316.187 1.811.114.553-.083 1.7-.696 1.94-1.368.24-.672.24-1.248.167-1.368-.072-.12-.263-.192-.55-.336z" }) })
@@ -2046,6 +2079,7 @@ function Footer() {
                   href: "https://www.instagram.com/soi_iitdh",
                   target: "_blank",
                   rel: "noopener noreferrer",
+                  onClick: () => handleSocialClick("instagram"),
                   className: "grid h-10 w-10 place-items-center border-[3px] border-card overflow-hidden shadow-brutal-sm transition-opacity hover:opacity-90",
                   title: "Instagram",
                   children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: instagramLogo, alt: "Instagram", className: "h-full w-full object-cover" })
@@ -2094,6 +2128,20 @@ const achievementsList = [
     desc: "Discover the hidden sanctuary.",
     icon: "🕹️",
     requirement: "Discover and trigger the secret web arcade game."
+  },
+  {
+    id: "pdf-explorer",
+    title: "PDF Explorer",
+    desc: "Read the guidelines carefully.",
+    icon: "📄",
+    requirement: "View the Guidelines PDF of 3 or more Problem Statements."
+  },
+  {
+    id: "social-connector",
+    title: "Social Connector",
+    desc: "Connect with the SOI community.",
+    icon: "🌐",
+    requirement: "Click both WhatsApp and Instagram links in the footer."
   }
 ];
 const playRetroChime = () => {
@@ -2126,12 +2174,20 @@ function Achievements() {
   const [unlockedIds, setUnlockedIds] = reactExports.useState([]);
   const [isOpen, setIsOpen] = reactExports.useState(false);
   const [toast, setToast] = reactExports.useState(null);
+  const [clickedSocials, setClickedSocials] = reactExports.useState([]);
   reactExports.useEffect(() => {
     if (typeof window !== "undefined") {
       const stored = localStorage.getItem("soi_achievements");
       if (stored) {
         try {
           setUnlockedIds(JSON.parse(stored));
+        } catch {
+        }
+      }
+      const storedSocials = localStorage.getItem("soi_clicked_socials");
+      if (storedSocials) {
+        try {
+          setClickedSocials(JSON.parse(storedSocials));
         } catch {
         }
       }
@@ -2156,9 +2212,24 @@ function Achievements() {
         return next;
       });
     };
+    const handleSocialClick = (e) => {
+      const customEvent = e;
+      const platform = customEvent.detail;
+      setClickedSocials((prev) => {
+        if (prev.includes(platform)) return prev;
+        const next = [...prev, platform];
+        localStorage.setItem("soi_clicked_socials", JSON.stringify(next));
+        if (next.includes("whatsapp") && next.includes("instagram")) {
+          window.dispatchEvent(new CustomEvent("soi-achievement", { detail: "social-connector" }));
+        }
+        return next;
+      });
+    };
     window.addEventListener("soi-achievement", handleAchievementUnlock);
+    window.addEventListener("soi-social-click", handleSocialClick);
     return () => {
       window.removeEventListener("soi-achievement", handleAchievementUnlock);
+      window.removeEventListener("soi-social-click", handleSocialClick);
     };
   }, []);
   const unlockedCount = unlockedIds.length;
@@ -2202,7 +2273,7 @@ function Achievements() {
             " / ",
             achievementsList.length
           ] }) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative space-y-3", children: achievementsList.map((a) => {
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative space-y-3 max-h-[350px] overflow-y-auto pr-1 scrollbar-none", children: achievementsList.map((a) => {
             const isUnlocked = unlockedIds.includes(a.id);
             return /* @__PURE__ */ jsxRuntimeExports.jsxs(
               "div",

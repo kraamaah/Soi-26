@@ -31,6 +31,20 @@ const achievementsList: Achievement[] = [
     icon: "🕹️",
     requirement: "Discover and trigger the secret web arcade game.",
   },
+  {
+    id: "pdf-explorer",
+    title: "PDF Explorer",
+    desc: "Read the guidelines carefully.",
+    icon: "📄",
+    requirement: "View the Guidelines PDF of 3 or more Problem Statements.",
+  },
+  {
+    id: "social-connector",
+    title: "Social Connector",
+    desc: "Connect with the SOI community.",
+    icon: "🌐",
+    requirement: "Click both WhatsApp and Instagram links in the footer.",
+  },
 ];
 
 const playRetroChime = () => {
@@ -71,6 +85,7 @@ export function Achievements() {
   const [unlockedIds, setUnlockedIds] = useState<string[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [toast, setToast] = useState<{ title: string; icon: string } | null>(null);
+  const [clickedSocials, setClickedSocials] = useState<string[]>([]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -80,6 +95,15 @@ export function Achievements() {
           setUnlockedIds(JSON.parse(stored));
         } catch {
           // ignore parsing error
+        }
+      }
+
+      const storedSocials = localStorage.getItem("soi_clicked_socials");
+      if (storedSocials) {
+        try {
+          setClickedSocials(JSON.parse(storedSocials));
+        } catch {
+          // ignore
         }
       }
     }
@@ -108,9 +132,29 @@ export function Achievements() {
       });
     };
 
+    const handleSocialClick = (e: Event) => {
+      const customEvent = e as CustomEvent<string>;
+      const platform = customEvent.detail;
+
+      setClickedSocials((prev) => {
+        if (prev.includes(platform)) return prev;
+        const next = [...prev, platform];
+        localStorage.setItem("soi_clicked_socials", JSON.stringify(next));
+
+        // Unlock Social Connector if both clicked
+        if (next.includes("whatsapp") && next.includes("instagram")) {
+          window.dispatchEvent(new CustomEvent("soi-achievement", { detail: "social-connector" }));
+        }
+        return next;
+      });
+    };
+
     window.addEventListener("soi-achievement", handleAchievementUnlock);
+    window.addEventListener("soi-social-click", handleSocialClick);
+
     return () => {
       window.removeEventListener("soi-achievement", handleAchievementUnlock);
+      window.removeEventListener("soi-social-click", handleSocialClick);
     };
   }, []);
 
@@ -165,7 +209,7 @@ export function Achievements() {
         </div>
 
         {/* Achievement Grid */}
-        <div className="relative space-y-3">
+        <div className="relative space-y-3 max-h-[350px] overflow-y-auto pr-1 scrollbar-none">
           {achievementsList.map((a) => {
             const isUnlocked = unlockedIds.includes(a.id);
             return (

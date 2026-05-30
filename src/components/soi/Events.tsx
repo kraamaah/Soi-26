@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { events } from "./data";
 import { BrutalCard } from "./BrutalCard";
 import { FileText } from "lucide-react";
@@ -6,6 +6,33 @@ import { FileText } from "lucide-react";
 export function Events() {
   const [statusFilter, setStatusFilter] = useState<"All" | "Active" | "Upcoming">("All");
   const [clubFilter, setClubFilter] = useState<string>("All");
+  const [viewedPdfs, setViewedPdfs] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("soi_viewed_pdfs");
+      if (stored) {
+        try {
+          setViewedPdfs(JSON.parse(stored));
+        } catch {
+          // ignore
+        }
+      }
+    }
+  }, []);
+
+  const handlePdfClick = (psNum: string) => {
+    setViewedPdfs((prev) => {
+      if (prev.includes(psNum)) return prev;
+      const next = [...prev, psNum];
+      localStorage.setItem("soi_viewed_pdfs", JSON.stringify(next));
+
+      if (next.length >= 3) {
+        window.dispatchEvent(new CustomEvent("soi-achievement", { detail: "pdf-explorer" }));
+      }
+      return next;
+    });
+  };
 
   // Dynamic list of unique clubs based on events data
   const clubs = ["All", ...Array.from(new Set(events.map((e) => e.club)))];
@@ -179,6 +206,11 @@ export function Events() {
                       {/* PDF Document Logo Link */}
                       <a
                         href="#"
+                        onClick={(evt) => {
+                          evt.preventDefault();
+                          handlePdfClick(e.num);
+                          alert(`[GUIDELINES_${e.num}.PDF] Initializing download for problem statement guidelines! 📄`);
+                        }}
                         className="grid h-9 w-9 place-items-center border-[2.5px] border-ink bg-accent text-ink shadow-brutal-sm transition-transform hover:translate-x-[1.5px] hover:translate-y-[1.5px] hover:shadow-none active:translate-x-0 active:translate-y-0"
                         title="View Guidelines PDF"
                       >

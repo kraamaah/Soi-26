@@ -1,6 +1,10 @@
 import instagramLogo from "@/assets/instagram-logo.png";
 
 export function Footer() {
+  const handleSocialClick = (platform: "whatsapp" | "instagram") => {
+    window.dispatchEvent(new CustomEvent("soi-social-click", { detail: platform }));
+  };
+
   const contacts = [
     { name: "General Secretary Technical Affairs", email: "gstech@iitdh.ac.in" },
     { name: "Coding Club", email: "codingclub@iitdh.ac.in" },
@@ -36,6 +40,7 @@ export function Footer() {
                   href="https://chat.whatsapp.com/HPh2VvStSX9DfLYvkB9rCH"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => handleSocialClick("whatsapp")}
                   className="inline-flex items-center gap-2 border-[3px] border-card bg-[#25D366] px-4 py-2.5 font-display text-xs uppercase text-white shadow-brutal-sm transition-all hover:bg-accent hover:text-ink hover:-translate-x-[1.5px] hover:-translate-y-[1.5px] hover:shadow-brutal-md active:translate-x-0 active:translate-y-0"
                 >
                   <svg viewBox="0 0 24 24" className="h-4.5 w-4.5 fill-current">
@@ -53,6 +58,7 @@ export function Footer() {
                     href="https://chat.whatsapp.com/HPh2VvStSX9DfLYvkB9rCH"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => handleSocialClick("whatsapp")}
                     className="grid h-10 w-10 place-items-center border-[3px] border-card bg-[#25D366] text-white shadow-brutal-sm transition-colors hover:opacity-90"
                     title="WhatsApp Community"
                   >
@@ -65,6 +71,7 @@ export function Footer() {
                     href="https://www.instagram.com/soi_iitdh"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => handleSocialClick("instagram")}
                     className="grid h-10 w-10 place-items-center border-[3px] border-card overflow-hidden shadow-brutal-sm transition-opacity hover:opacity-90"
                     title="Instagram"
                   >
