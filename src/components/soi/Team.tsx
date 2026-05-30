@@ -1,4 +1,4 @@
-import { team } from "./data";
+import { team, techTeam } from "./data";
 import kratgyaJainPhoto from "@/assets/kratgya-jain.jpg";
 import nidhishDoshiPhoto from "@/assets/nidhish-doshi.jpg";
 import balamuraliVbPhoto from "@/assets/balamurali-vb.jpg";
@@ -11,6 +11,8 @@ import maanasKNPhoto from "@/assets/maanas-khatokar-n.jpeg";
 import rushilKrishnaPhoto from "@/assets/rushil-krishna.jpg";
 import aadityaKumarPhoto from "@/assets/aaditya-kumar.jpg";
 import gouravSherikarPhoto from "@/assets/gourav-sherikar.jpg";
+import viditParikhPhoto from "@/assets/vidit-parikh.jpg";
+import anantTripathiPhoto from "@/assets/anant-tripathi.jpg";
 
 const memberPhotos: Record<string, string> = {
   "Kratgya Jain": kratgyaJainPhoto,
@@ -25,6 +27,8 @@ const memberPhotos: Record<string, string> = {
   "Rushil Krishna Sai Narendula": rushilKrishnaPhoto,
   "Aaditya Kumar": aadityaKumarPhoto,
   "Gourav Sherikar": gouravSherikarPhoto,
+  "Vidit Parikh": viditParikhPhoto,
+  "Anant Tripathi": anantTripathiPhoto,
 };
 
 const tilePalette = [
@@ -152,7 +156,7 @@ export function Team() {
                 <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
                   {group.members.map((member, memberIdx) => {
                     const initials = getInitialsFromName(member);
-                    const isCoord = memberIdx === 0;
+                    const isCoord = memberIdx < (group.coordinatorCount ?? 1);
                     const photo = memberPhotos[member];
                     return (
                       <div
@@ -204,6 +208,73 @@ export function Team() {
               </div>
             );
           })}
+        </div>
+
+        {/* Tech Team Section */}
+        <div className="mt-16">
+          <div className="mb-6 flex items-center gap-3">
+            <span className="border-[3px] border-ink bg-accent px-3 py-1 font-display text-xs uppercase text-accent-foreground shadow-brutal-sm">
+              Tech Team
+            </span>
+            <span className="h-[3px] flex-1 bg-ink" />
+            <span className="font-display text-xs uppercase text-foreground/60">
+              {techTeam.length} Members
+            </span>
+          </div>
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+            {techTeam.map((member) => {
+              const initials = member.name
+                .split(" ")
+                .map((w) => w[0])
+                .join("")
+                .substring(0, 2)
+                .toUpperCase();
+              const photo = memberPhotos[member.name];
+              return (
+                <div
+                  key={member.name}
+                  className="border-[3px] border-ink bg-card shadow-brutal-sm transition-transform hover:translate-x-[2px] hover:translate-y-[2px] flex flex-col h-full"
+                >
+                  <div
+                    className={`grid aspect-square place-items-center border-b-[3px] border-ink shrink-0 ${
+                      photo
+                        ? "bg-card overflow-hidden"
+                        : "bg-accent text-accent-foreground"
+                    }`}
+                  >
+                    {photo ? (
+                      <img
+                        src={photo}
+                        alt={member.name}
+                        className="w-full h-full object-cover select-none"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <span className="font-display text-2xl sm:text-3xl select-none">
+                        {initials}
+                      </span>
+                    )}
+                  </div>
+                  <div className="p-3 flex flex-col flex-1 justify-between gap-1">
+                    <div>
+                      <p className="font-display text-xs sm:text-sm leading-tight text-foreground break-words">
+                        {member.name}
+                      </p>
+                      <p className="text-[9px] uppercase font-bold tracking-wider text-foreground/50 mt-1">
+                        {member.designation}
+                      </p>
+                    </div>
+                    <a
+                      href="mailto:gstech@iitdh.ac.in"
+                      className="text-[10px] sm:text-[11px] uppercase tracking-wide text-foreground/60 hover:text-primary font-bold flex items-center gap-1 mt-2 transition-colors"
+                    >
+                      ✉ Contact
+                    </a>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

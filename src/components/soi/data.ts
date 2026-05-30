@@ -259,26 +259,27 @@ export const events: SoiEvent[] = [
   },
 ];
 
-export type TeamGroup = { club: string; members: string[] };
+export type TeamGroup = { club: string; members: string[]; coordinatorCount?: number };
 
 export const team: TeamGroup[] = [
   {
     club: "Coding Club",
     members: [
-      "Nidhish Doshi",
       "Gourav Sherikar",
+      "Nidhish Doshi",
       "Aaditya Kumar",
       "Rushil Krishna Sai Narendula",
       "Kratgya Jain",
     ],
   },
-  { club: "AI Club", members: ["Nihar Sagar G", "Sreejita Chatterjee"] },
+  { club: "AI Club", members: ["Sreejita Chatterjee", "Nihar Sagar G"] },
   {
     club: "Space and Data Science Club",
+    coordinatorCount: 2,
     members: [
       "Balamurali V B",
-      "Kaustubh Mishra",
       "T Dhanunjaya Rao",
+      "Kaustubh Mishra",
       "Priyanshu Nimbalkar",
     ],
   },
@@ -287,11 +288,18 @@ export const team: TeamGroup[] = [
     members: ["Tushar Hegde", "Soumya Basuli", "Shrikant Sonawane"],
   },
   { club: "Motorsports Club", members: ["Nageswar Dusi", "Soumya Shaw"] },
-  { club: "Design Club", members: ["Aashish M", "Rajat Gupta"] },
+  { club: "Design Club", members: ["Rajat Gupta", "Aashish M"] },
   { club: "Finance Club", members: ["Samarth M"] },
   {
     club: "Electronics Club",
     members: ["Manas Khatokar N", "Haridarshan R", "Emil Ben", "Harsh"],
   },
-  { club: "Astronomy Club", members: ["Harsh Chauhan", "Rithika Athawade"] },
+  { club: "Astronomy Club", members: ["Rithika Athawade", "Harsh Chauhan"] },
+];
+
+export type TechTeamMember = { name: string; designation: string };
+
+export const techTeam: TechTeamMember[] = [
+  { name: "Vidit Parikh", designation: "Ex-GenSec" },
+  { name: "Anant Tripathi", designation: "GenSec" },
 ];
