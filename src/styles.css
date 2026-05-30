@@ -76,17 +76,17 @@
   --card-foreground: oklch(0.95 0.015 75);
   --popover: oklch(0.22 0.03 270);
   --popover-foreground: oklch(0.95 0.015 75);
-  --primary: oklch(0.62 0.23 265); /* Electric neon cobalt blue #3f5dff */
+  --primary: oklch(0.48 0.27 265); /* Cobalt blue #2747ff */
   --primary-foreground: oklch(0.95 0.015 75);
   --secondary: oklch(0.26 0.03 270);
   --secondary-foreground: oklch(0.95 0.015 75);
   --muted: oklch(0.25 0.02 270);
   --muted-foreground: oklch(0.65 0.015 270);
-  --accent: oklch(0.7 0.22 335); /* Shocking neon magenta/pink for a gorgeous cyber contrast #ff58b6 */
+  --accent: oklch(0.7 0.2 40); /* Orange #ff6a3d */
   --accent-foreground: oklch(0.12 0.02 270);
   --border: oklch(0.95 0.015 75); /* Turn borders to silver-white */
   --input: oklch(0.95 0.015 75);
-  --ring: oklch(0.62 0.23 265);
+  --ring: oklch(0.48 0.27 265);
 }
 
 @layer base {
