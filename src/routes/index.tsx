@@ -8,6 +8,8 @@ import { Team } from "@/components/soi/Team";
 import { Faq } from "@/components/soi/Faq";
 import { Footer } from "@/components/soi/Footer";
 import { Achievements } from "@/components/soi/Achievements";
+import { ParticleTrail } from "@/components/soi/ParticleTrail";
+import { SecretSynth } from "@/components/soi/SecretSynth";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -43,6 +45,8 @@ function Index() {
       </main>
       <Footer />
       <Achievements />
+      <ParticleTrail />
+      <SecretSynth />
     </div>
   );
 }

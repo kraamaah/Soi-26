@@ -1,7 +1,7 @@
 import { j as jsxRuntimeExports, r as reactExports } from "../_libs/react.mjs";
 import { c as clsx } from "../_libs/clsx.mjs";
 import { t as twMerge } from "../_libs/tailwind-merge.mjs";
-import { X, M as Menu, F as FileText, T as Trophy, S as Sparkles, R as RefreshCw, P as Play } from "../_libs/lucide-react.mjs";
+import { X, M as Menu, F as FileText, T as Trophy, S as Sparkles, a as Music, V as Volume2, R as RefreshCw, P as Play } from "../_libs/lucide-react.mjs";
 function Nav() {
   const [activeSection, setActiveSection] = reactExports.useState("home");
   const [isOpen, setIsOpen] = reactExports.useState(false);
@@ -2342,6 +2342,207 @@ function Achievements() {
     ] })
   ] });
 }
+function ParticleTrail() {
+  const canvasRef = reactExports.useRef(null);
+  const particlesRef = reactExports.useRef([]);
+  reactExports.useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    const handleResize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    const colors = ["var(--primary)", "var(--accent)", "#2747FF", "#FF6A3D", "#ff58b6", "#FFD700"];
+    const handleMouseMove = (e) => {
+      particlesRef.current.push({
+        x: e.clientX,
+        y: e.clientY,
+        size: 5 + Math.random() * 6,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        vx: (Math.random() - 0.5) * 2,
+        vy: (Math.random() - 0.5) * 2 - 0.5,
+        // slightly drifting upwards
+        alpha: 1,
+        decay: 0.025 + Math.random() * 0.02
+      });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    let animationFrameId;
+    const update = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const particles = particlesRef.current;
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.alpha -= p.decay;
+        if (p.alpha <= 0) {
+          particles.splice(i, 1);
+          continue;
+        }
+        ctx.save();
+        ctx.globalAlpha = p.alpha;
+        ctx.fillStyle = p.color;
+        ctx.strokeStyle = "#1b181e";
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.rect(p.x - p.size / 2, p.y - p.size / 2, p.size, p.size);
+        ctx.fill();
+        ctx.stroke();
+        ctx.restore();
+      }
+      animationFrameId = requestAnimationFrame(update);
+    };
+    update();
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("mousemove", handleMouseMove);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "canvas",
+    {
+      ref: canvasRef,
+      className: "fixed inset-0 pointer-events-none z-[9999]",
+      style: { display: "block" },
+      "aria-hidden": "true"
+    }
+  );
+}
+const notesList = [
+  { key: "a", char: "A", note: "C4", freq: 261.63, color: "bg-background text-foreground", activeColor: "bg-primary text-primary-foreground -translate-y-1 shadow-[4px_4px_0_0_var(--ink)]" },
+  { key: "s", char: "S", note: "D4", freq: 293.66, color: "bg-background text-foreground", activeColor: "bg-accent text-accent-foreground -translate-y-1 shadow-[4px_4px_0_0_var(--ink)]" },
+  { key: "d", char: "D", note: "E4", freq: 329.63, color: "bg-background text-foreground", activeColor: "bg-[#FFD700] text-ink -translate-y-1 shadow-[4px_4px_0_0_var(--ink)]" },
+  { key: "f", char: "F", note: "F4", freq: 349.23, color: "bg-background text-foreground", activeColor: "bg-[#25D366] text-white -translate-y-1 shadow-[4px_4px_0_0_var(--ink)]" },
+  { key: "g", char: "G", note: "G4", freq: 392, color: "bg-background text-foreground", activeColor: "bg-[#ff58b6] text-white -translate-y-1 shadow-[4px_4px_0_0_var(--ink)]" },
+  { key: "h", char: "H", note: "A4", freq: 440, color: "bg-background text-foreground", activeColor: "bg-primary text-primary-foreground -translate-y-1 shadow-[4px_4px_0_0_var(--ink)]" },
+  { key: "j", char: "J", note: "B4", freq: 493.88, color: "bg-background text-foreground", activeColor: "bg-accent text-accent-foreground -translate-y-1 shadow-[4px_4px_0_0_var(--ink)]" },
+  { key: "k", char: "K", note: "C5", freq: 523.25, color: "bg-background text-foreground", activeColor: "bg-[#FFD700] text-ink -translate-y-1 shadow-[4px_4px_0_0_var(--ink)]" }
+];
+function SecretSynth() {
+  const [showSynth, setShowSynth] = reactExports.useState(false);
+  const [oscType, setOscType] = reactExports.useState("square");
+  const [activeKey, setActiveKey] = reactExports.useState(null);
+  const playFreq = (freq, type = oscType) => {
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
+      const ctx = new AudioCtx();
+      const osc = ctx.createOscillator();
+      const gainNode = ctx.createGain();
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, ctx.currentTime);
+      gainNode.gain.setValueAtTime(0.08, ctx.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(1e-4, ctx.currentTime + 0.5);
+      osc.connect(gainNode);
+      gainNode.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.5);
+    } catch (err) {
+      console.warn("Synth failed to play note:", err);
+    }
+  };
+  reactExports.useEffect(() => {
+    let keyBuffer = "";
+    const handleGlobalKeys = (e) => {
+      const char = e.key.toLowerCase();
+      if (char.length === 1 && /[a-z]/i.test(char)) {
+        keyBuffer = (keyBuffer + char).slice(-3);
+        if (keyBuffer === "soi") {
+          setShowSynth(true);
+          playFreq(523.25, "sine");
+          setTimeout(() => playFreq(659.25, "sine"), 80);
+          setTimeout(() => playFreq(783.99, "sine"), 160);
+          setTimeout(() => playFreq(1046.5, "sine"), 240);
+        }
+      }
+    };
+    window.addEventListener("keydown", handleGlobalKeys);
+    return () => window.removeEventListener("keydown", handleGlobalKeys);
+  }, [oscType]);
+  reactExports.useEffect(() => {
+    if (!showSynth) return;
+    const handleSynthKeys = (e) => {
+      const char = e.key.toLowerCase();
+      const noteItem = notesList.find((n) => n.key === char);
+      if (noteItem) {
+        playFreq(noteItem.freq);
+        setActiveKey(noteItem.key);
+        setTimeout(() => setActiveKey(null), 150);
+      }
+    };
+    window.addEventListener("keydown", handleSynthKeys);
+    return () => window.removeEventListener("keydown", handleSynthKeys);
+  }, [showSynth, oscType]);
+  const handleKeyClick = (n) => {
+    playFreq(n.freq);
+    setActiveKey(n.key);
+    setTimeout(() => setActiveKey(null), 150);
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "div",
+    {
+      className: `fixed bottom-20 left-4 z-[45] w-[90%] max-w-md border-[3px] border-ink bg-card p-5 shadow-brutal transition-all duration-300 transform ${showSynth ? "translate-y-0 opacity-100 scale-100 pointer-events-auto" : "translate-y-4 opacity-0 scale-95 pointer-events-none"}`,
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-repeat bg-center opacity-[0.02] pointer-events-none dots-grid", "aria-hidden": true }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative flex items-center justify-between border-b-[2px] border-ink pb-3 mb-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-display text-xs uppercase tracking-wider text-primary flex items-center gap-1.5 animate-pulse", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Music, { className: "h-4 w-4 text-accent" }),
+            "SECRET CHIPTUNE SYNTH"
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "button",
+            {
+              onClick: () => setShowSynth(false),
+              className: "grid h-7 w-7 place-items-center border-[2px] border-ink bg-background text-ink shadow-brutal-sm hover:bg-peach/30 transition-colors",
+              children: /* @__PURE__ */ jsxRuntimeExports.jsx(X, { className: "h-4 w-4" })
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "relative font-body text-[11px] text-foreground/70 mb-4 leading-relaxed", children: [
+          "Unlock complete! You found the secret soundboard. Trigger notes by clicking or pressing keys ",
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-mono font-bold text-accent", children: "A, S, D, F, G, H, J, K" }),
+          " on your keyboard!"
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative border-[2px] border-ink bg-background p-2.5 mb-4 shadow-brutal-sm flex items-center justify-between gap-3", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-mono text-[10px] font-bold uppercase tracking-wider text-foreground/50 flex items-center gap-1", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Volume2, { className: "h-3.5 w-3.5" }),
+            "WAVEFORM TYPE:"
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex gap-1.5 overflow-x-auto scrollbar-none", children: ["square", "sine", "triangle", "sawtooth"].map((type) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "button",
+            {
+              onClick: () => setOscType(type),
+              className: `border-[1.5px] border-ink px-2 py-0.5 font-mono text-[9px] font-bold uppercase tracking-wider transition-all cursor-pointer ${oscType === type ? "bg-accent text-accent-foreground shadow-brutal-xs" : "bg-card hover:bg-peach/30"}`,
+              children: type
+            },
+            type
+          )) })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative grid grid-cols-8 gap-1.5 pt-2", children: notesList.map((n) => {
+          const isActive = activeKey === n.key;
+          return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "button",
+            {
+              onClick: () => handleKeyClick(n),
+              className: `border-[2px] border-ink py-4 font-display text-xs transition-all cursor-pointer flex flex-col items-center justify-between min-h-[90px] shadow-[2px_2px_0_0_var(--ink)] select-none ${isActive ? n.activeColor : n.color + " hover:bg-peach/30 active:translate-y-0 active:shadow-[1px_1px_0_0_var(--ink)]"}`,
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-mono text-[9px] font-bold opacity-45", children: n.note }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-display text-xs", children: n.char })
+              ]
+            },
+            n.key
+          );
+        }) })
+      ]
+    }
+  ) });
+}
 function Index() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-h-screen bg-background text-foreground conic-pattern", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(Nav, {}),
@@ -2354,7 +2555,9 @@ function Index() {
       /* @__PURE__ */ jsxRuntimeExports.jsx(Faq, {})
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(Footer, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Achievements, {})
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Achievements, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(ParticleTrail, {}),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(SecretSynth, {})
   ] });
 }
 export {
