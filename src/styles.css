@@ -146,4 +146,49 @@
   }
 }
 
+@keyframes cosmic-particle-radial {
+  0% {
+    transform: translate(-50%, -50%) translate(0, 0) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) translate(var(--tx), var(--ty)) scale(0) rotate(var(--rot));
+    opacity: 0;
+  }
+}
+
+.cosmic-particle {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--ink);
+  animation: cosmic-particle-radial 0.6s cubic-bezier(0.1, 0.8, 0.25, 1) forwards;
+}
+
+@keyframes grid-glitch-flash {
+  0% {
+    opacity: 0.15;
+    background-size: 16px 16px;
+  }
+  50% {
+    opacity: 0.45;
+    background-size: 8px 8px;
+  }
+  100% {
+    opacity: 0;
+    background-size: 16px 16px;
+  }
+}
+
+.cosmic-grid-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  background-image: radial-gradient(var(--ink) 2.5px, transparent 2.5px);
+  animation: grid-glitch-flash 0.45s steps(4) forwards;
+}
+
 

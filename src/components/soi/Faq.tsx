@@ -66,9 +66,17 @@ const faqData: FaqItem[] = [
 
 export function Faq() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openedFaqs, setOpenedFaqs] = useState<number[]>([]);
 
   const toggleFaq = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
+    if (openIndex !== index && !openedFaqs.includes(index)) {
+      const nextOpened = [...openedFaqs, index];
+      setOpenedFaqs(nextOpened);
+      if (nextOpened.length >= 3) {
+        window.dispatchEvent(new CustomEvent("soi-achievement", { detail: "curious-builder" }));
+      }
+    }
   };
 
   return (

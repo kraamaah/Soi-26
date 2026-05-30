@@ -47,6 +47,7 @@ export function Hero() {
       const next = prev + 1;
       if (next >= 5) {
         setShowGame(true);
+        window.dispatchEvent(new CustomEvent("soi-achievement", { detail: "arcade-master" }));
         return 0;
       }
       return next;

@@ -21,8 +21,51 @@ export function Nav() {
     localStorage.setItem("soi_theme", theme);
   }, [theme]);
 
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
+  const handleToggleTheme = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (typeof window !== "undefined") {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top + rect.height / 2;
+
+      // Spawn retro cosmic wave particles radiating from button center
+      const particleCount = 18;
+      const colors = ["var(--primary)", "var(--accent)", "#2747FF", "#FF6A3D", "#ff58b6"];
+      for (let i = 0; i < particleCount; i++) {
+        const el = document.createElement("div");
+        el.className = "cosmic-particle";
+
+        const angle = (i * 2 * Math.PI) / particleCount + (Math.random() - 0.5) * 0.35;
+        const distance = 90 + Math.random() * 110;
+        const tx = `${Math.cos(angle) * distance}px`;
+        const ty = `${Math.sin(angle) * distance}px`;
+        const rot = `${(Math.random() - 0.5) * 720}deg`;
+
+        el.style.setProperty("--tx", tx);
+        el.style.setProperty("--ty", ty);
+        el.style.setProperty("--rot", rot);
+
+        el.style.left = `${x}px`;
+        el.style.top = `${y}px`;
+        el.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        el.style.borderRadius = Math.random() > 0.5 ? "50%" : "0px";
+
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 600);
+      }
+
+      // Spawn retro pixel glitch boot screen overlay
+      const overlay = document.createElement("div");
+      overlay.className = "cosmic-grid-overlay";
+      document.body.appendChild(overlay);
+      setTimeout(() => overlay.remove(), 450);
+    }
+
+    const nextTheme = theme === "light" ? "dark" : "light";
+    setTheme(nextTheme);
+
+    if (nextTheme === "dark") {
+      window.dispatchEvent(new CustomEvent("soi-achievement", { detail: "night-owl" }));
+    }
   };
 
   const links = [
@@ -67,7 +110,7 @@ export function Nav() {
               CLICK HERE ➜
             </span>
             <button
-              onClick={toggleTheme}
+              onClick={handleToggleTheme}
               className="grid h-9 w-9 place-items-center border-[3px] border-ink bg-primary text-primary-foreground shadow-[2px_2px_0_0_var(--ink)] cursor-pointer select-none hover:scale-[1.05] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0_0_var(--ink)] transition-all shrink-0"
               title={`Switch to ${theme === "light" ? "Dark" : "Light"} Mode`}
             >

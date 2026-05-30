@@ -7,6 +7,7 @@ import { Timeline } from "@/components/soi/Timeline";
 import { Team } from "@/components/soi/Team";
 import { Faq } from "@/components/soi/Faq";
 import { Footer } from "@/components/soi/Footer";
+import { Achievements } from "@/components/soi/Achievements";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -41,6 +42,7 @@ function Index() {
         <Faq />
       </main>
       <Footer />
+      <Achievements />
     </div>
   );
 }
