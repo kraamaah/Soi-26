@@ -163,7 +163,7 @@ export function Team() {
                     {labelText}
                   </span>
                 </div>
-                <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+                <div className="grid grid-cols-2 gap-2.5 sm:gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
                   {group.members.map((member, memberIdx) => {
                     const initials = getInitialsFromName(member);
                     const isCoord = memberIdx < (group.coordinatorCount ?? 1);
@@ -190,25 +190,25 @@ export function Team() {
                               loading="lazy"
                             />
                           ) : (
-                            <span className="font-display text-2xl sm:text-3xl select-none">
+                            <span className="font-display text-xl sm:text-3xl select-none">
                               {initials}
                             </span>
                           )}
                         </div>
-                        <div className="p-3 flex flex-col flex-1 justify-between gap-1">
+                        <div className="p-2 sm:p-3 flex flex-col flex-1 justify-between gap-1">
                           <div>
-                            <p className="font-display text-xs sm:text-sm leading-tight text-foreground break-words">
+                            <p className="font-display text-[11px] sm:text-sm leading-tight text-foreground break-words font-medium">
                               {member}
                             </p>
-                            <p className="text-[9px] uppercase font-bold tracking-wider text-foreground/50 mt-1">
+                            <p className="text-[8px] sm:text-[9px] uppercase font-bold tracking-wider text-foreground/50 mt-1">
                               {isCoord ? "Coordinator" : "Core Member"}
                             </p>
                           </div>
                           <a
                             href={`mailto:${email}`}
-                            className="text-[10px] sm:text-[11px] uppercase tracking-wide text-foreground/60 hover:text-primary font-bold flex items-center gap-1 mt-2 transition-colors"
+                            className="text-[9px] sm:text-[11px] uppercase tracking-wide text-foreground/60 hover:text-primary font-bold flex items-center gap-1 mt-2 transition-colors"
                           >
-                            ✉ {isCoord ? "Email Coord" : "Contact"}
+                            ✉ {isCoord ? "Email" : "Contact"}
                           </a>
                         </div>
                       </div>
@@ -231,7 +231,7 @@ export function Team() {
               {techTeam.length} Members
             </span>
           </div>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+          <div className="grid grid-cols-2 gap-2.5 sm:gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
             {techTeam.map((member) => {
               const initials = member.name
                 .split(" ")
@@ -260,23 +260,23 @@ export function Team() {
                         loading="lazy"
                       />
                     ) : (
-                      <span className="font-display text-2xl sm:text-3xl select-none">
+                      <span className="font-display text-xl sm:text-3xl select-none">
                         {initials}
                       </span>
                     )}
                   </div>
-                  <div className="p-3 flex flex-col flex-1 justify-between gap-1">
+                  <div className="p-2 sm:p-3 flex flex-col flex-1 justify-between gap-1">
                     <div>
-                      <p className="font-display text-xs sm:text-sm leading-tight text-foreground break-words">
+                      <p className="font-display text-[11px] sm:text-sm leading-tight text-foreground break-words font-medium">
                         {member.name}
                       </p>
-                      <p className="text-[9px] uppercase font-bold tracking-wider text-foreground/50 mt-1">
+                      <p className="text-[8px] sm:text-[9px] uppercase font-bold tracking-wider text-foreground/50 mt-1">
                         {member.designation}
                       </p>
                     </div>
                     <a
                       href="mailto:gstech@iitdh.ac.in"
-                      className="text-[10px] sm:text-[11px] uppercase tracking-wide text-foreground/60 hover:text-primary font-bold flex items-center gap-1 mt-2 transition-colors"
+                      className="text-[9px] sm:text-[11px] uppercase tracking-wide text-foreground/60 hover:text-primary font-bold flex items-center gap-1 mt-2 transition-colors"
                     >
                       ✉ Contact
                     </a>
