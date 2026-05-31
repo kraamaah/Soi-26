@@ -56,7 +56,7 @@ export const events: SoiEvent[] = [
   {
     num: "02",
     title: "Beyond Bits",
-    desc: "Design a hardware-based compression system to optimize communication bandwidth. Can you successfully modulate, compress, transmit, and recover complex signals with zero data loss?",
+    desc: "Design a RTL-based compression system to optimize communication bandwidth. Can you successfully modulate, compress, transmit, and recover complex signals with zero data loss?",
     image: beyondBits,
     club: "Electronics Club",
     date: "2nd June 2026",
