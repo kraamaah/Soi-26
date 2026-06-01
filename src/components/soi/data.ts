@@ -285,6 +285,10 @@ export const team: TeamGroup[] = [
       "T Dhanunjaya Rao",
       "Kaustubh Mishra",
       "Priyanshu Nimbalkar",
+      "Dev",
+      "Jami Sai Harshit",
+      "Sameer Chakrawarti",
+      "Affan P",
     ],
   },
   {
