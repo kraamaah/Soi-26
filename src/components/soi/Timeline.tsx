@@ -25,6 +25,11 @@ export function Timeline() {
   const [selectedDate, setSelectedDate] = useState<string>("All");
   const [modalEvent, setModalEvent] = useState<SoiEvent | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [activeCount, setActiveCount] = useState(0);
+
+  useEffect(() => {
+    setActiveCount(events.filter((e) => isEventActive(e.date)).length);
+  }, []);
 
   const handleTimelineCardClick = (e: SoiEvent) => {
     const targetId = `ps-${e.num}`;
@@ -291,7 +296,7 @@ export function Timeline() {
           {/* Quick Stats Badges */}
           <div className="flex flex-wrap gap-3">
             <span className="border-[2px] border-ink bg-accent px-3 py-1 font-display text-xs uppercase shadow-brutal-sm">
-              Active Drops: {events.filter((e) => isEventActive(e.date)).length}
+              Active Drops: {activeCount}
             </span>
             <span className="border-[2px] border-ink bg-card px-3 py-1 font-display text-xs uppercase shadow-brutal-sm">
               Total PS: 18

@@ -9,6 +9,7 @@ export function Events() {
   >("All");
   const [clubFilter, setClubFilter] = useState<string>("All");
   const [viewedPdfs, setViewedPdfs] = useState<string[]>([]);
+  const [activeCount, setActiveCount] = useState(0);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -21,6 +22,7 @@ export function Events() {
         }
       }
     }
+    setActiveCount(events.filter((e) => isEventActive(e.date)).length);
   }, []);
 
   const handlePdfClick = (psNum: string) => {
@@ -72,7 +74,7 @@ export function Events() {
     return matchesStatus && matchesClub;
   });
 
-  const activeCount = events.filter((e) => isEventActive(e.date)).length;
+  // calculated in useEffect client-side to prevent hydration mismatch
 
   return (
     <section
