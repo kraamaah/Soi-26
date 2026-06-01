@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { events, isEventActive } from "./data";
 import { BrutalCard } from "./BrutalCard";
-import { FileText } from "lucide-react";
+import { FileText, ClipboardCheck } from "lucide-react";
 
 export function Events() {
   const [statusFilter, setStatusFilter] = useState<
@@ -189,6 +189,15 @@ export function Events() {
                     {e.desc}
                   </p>
 
+                  {/* Dynamic deadline notification */}
+                  {e.deadline && (
+                    <div className="mt-3.5 flex items-center gap-1.5 animate-pulse">
+                      <span className="inline-block border-[2px] border-ink bg-[#ff3366] text-white px-2 py-0.5 font-display text-[9px] font-bold uppercase shadow-brutal-xs">
+                        Deadline: {e.deadline}
+                      </span>
+                    </div>
+                  )}
+
                   {/* Dynamic Multi-disciplinary Domain Badges */}
                   <div className="mt-4 border-t border-dashed border-ink/20 pt-3 flex flex-wrap gap-1.5">
                     {e.domains.map((dom) => (
@@ -206,7 +215,7 @@ export function Events() {
                       {e.club}
                     </span>
 
-                    {/* WhatsApp and PDF Guidelines Buttons */}
+                    {/* WhatsApp, Registration and PDF Guidelines Buttons */}
                     <div className="flex gap-2.5">
                       {/* WhatsApp Logo Link */}
                       <a
@@ -223,6 +232,20 @@ export function Events() {
                           <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.005 5.277 5.282.003 11.758.003c3.132 0 6.077 1.218 8.291 3.432 2.215 2.214 3.431 5.159 3.43 8.292-.005 6.481-5.28 11.754-11.758 11.754-2.001-.002-3.968-.51-5.717-1.479L0 24zm6.59-4.846c1.6.95 3.498 1.45 5.433 1.451 5.56 0 10.083-4.52 10.087-10.081.002-2.693-1.04-5.226-2.932-7.118C17.275 1.514 14.748.473 12.056.473c-5.563 0-10.085 4.52-10.09 10.081-.002 1.896.486 3.748 1.417 5.378l-1.015 3.703 3.793-.995zm11.206-7.81c-.287-.144-1.7-.84-1.962-.935-.263-.096-.454-.144-.645.144-.19.288-.737.936-.904 1.127-.167.19-.335.216-.622.072-.287-.144-1.21-.447-2.308-1.427-.855-.762-1.433-1.705-1.6-1.993-.167-.288-.018-.444.125-.586.13-.128.287-.335.43-.502.144-.167.19-.287.287-.48.096-.19.048-.36-.024-.503-.072-.143-.645-1.548-.884-2.124-.233-.56-.47-.482-.645-.49-.167-.008-.358-.01-.55-.01s-.502.072-.765.36c-.263.288-1.005.983-1.005 2.399 0 1.416 1.03 2.784 1.173 2.976.143.19 2.026 3.1 4.908 4.34.686.295 1.22.47 1.637.602.689.218 1.316.187 1.811.114.553-.083 1.7-.696 1.94-1.368.24-.672.24-1.248.167-1.368-.072-.12-.263-.192-.55-.336z" />
                         </svg>
                       </a>
+
+                      {/* Challenge Registration Button */}
+                      {e.regLink && (
+                        <a
+                          href={e.regLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="grid h-9 w-9 place-items-center border-[2.5px] border-ink bg-[#FFD700] text-ink shadow-brutal-sm transition-transform hover:translate-x-[1.5px] hover:translate-y-[1.5px] hover:shadow-none active:translate-x-0 active:translate-y-0 cursor-pointer select-none"
+                          title="Register for Challenge"
+                        >
+                          <ClipboardCheck className="h-5 w-5" />
+                        </a>
+                      )}
+
                       {/* PDF Document Logo Link */}
                       <button
                         type="button"

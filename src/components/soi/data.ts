@@ -39,6 +39,8 @@ export type SoiEvent = {
   domains: string[];
   whatsapp?: string;
   pdf?: string;
+  deadline?: string;
+  regLink?: string;
 };
 
 export const isEventActive = (dateStr: string) => {
@@ -65,6 +67,9 @@ export const events: SoiEvent[] = [
     domains: ["Software Engineering", "Algorithms & Optimization"],
     whatsapp: "https://chat.whatsapp.com/DDTS4N4AjNWLh0WEQVZT98",
     pdf: "https://drive.google.com/file/d/1u8Smu3r4QA6jEcHf5ey_-Es-gTMuNVrI/view?usp=drive_link",
+    deadline: "17th July 2026",
+    regLink:
+      "https://docs.google.com/forms/d/e/1FAIpQLSdJZz6Kffp2YRWVxyYPI3APWCOPZxTImDMhe1AFjN4yW1NMIw/viewform",
   },
   {
     num: "02",
@@ -78,6 +83,9 @@ export const events: SoiEvent[] = [
     domains: ["VLSI", "Communication System"],
     whatsapp: "https://chat.whatsapp.com/Fa8iDnnLVZ4KlVdF1Wks7I",
     pdf: "https://drive.google.com/file/d/1r50Q60oS8WS4bwQ7CtpkOl3uTJzU4pdm/view?usp=sharing",
+    deadline: "12th July 2026",
+    regLink:
+      "https://docs.google.com/forms/d/e/1FAIpQLSegRfbErNfAkmX3x9z6NJo6GC0wsweLrJO7bqm2lG8FK3p1tw/viewform",
   },
   {
     num: "03",

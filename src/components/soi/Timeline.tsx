@@ -419,6 +419,14 @@ export function Timeline() {
                       <p className="mt-1 text-[10px] font-bold uppercase tracking-wide text-foreground/60">
                         {e.club}
                       </p>
+
+                      {e.deadline && (
+                        <div className="mt-2.5 flex items-center gap-1.5 animate-pulse">
+                          <span className="inline-block border-2 border-ink bg-[#ff3366] text-white px-2 py-0.5 font-display text-[8px] font-bold uppercase shadow-brutal-xs">
+                            Deadline: {e.deadline}
+                          </span>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </li>
@@ -473,6 +481,26 @@ export function Timeline() {
               </div>
 
               <div className="mt-6 flex flex-col gap-3 border-t-2 border-ink pt-5">
+                {modalEvent.deadline && (
+                  <div className="flex flex-wrap items-center gap-2.5 text-xs animate-pulse">
+                    <span className="font-display uppercase border-2 border-ink bg-[#ff3366] text-white px-2 py-0.5 font-bold shadow-brutal-sm">
+                      Deadline
+                    </span>
+                    <span className="font-mono text-[11px] font-bold text-[#ff3366]">
+                      {modalEvent.deadline}
+                    </span>
+                  </div>
+                )}
+                {modalEvent.regLink && (
+                  <a
+                    href={modalEvent.regLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full text-center py-2.5 bg-[#FFD700] text-ink border-[2.5px] border-ink font-display text-xs uppercase tracking-wider shadow-brutal-sm hover:translate-x-[1.5px] hover:translate-y-[1.5px] hover:shadow-none active:translate-x-0 active:translate-y-0 transition-all block cursor-pointer select-none mb-2 animate-bounce"
+                  >
+                    📝 Register for this Challenge
+                  </a>
+                )}
                 <div className="flex flex-wrap items-center gap-2.5 text-xs">
                   <span className="font-display uppercase border-2 border-ink bg-background px-2 py-0.5 font-bold shadow-brutal-sm">
                     Timeline

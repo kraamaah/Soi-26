@@ -68,25 +68,6 @@ const tilePalette = [
   "bg-peach-deep text-ink border-ink",
 ];
 
-const getClubEmail = (club: string) => {
-  if (club === "Coding Club") return "codingclub@iitdh.ac.in";
-  if (club === "AI Club") return "aiclub@iitdh.ac.in";
-  if (
-    club === "Space Data Science Club" ||
-    club === "Space and Data Science Club"
-  )
-    return "space.ds.club@iitdh.ac.in";
-  if (club === "Robotics Club") return "robotics@iitdh.ac.in";
-  if (club === "Motorsports Club" || club === "InGene Motorsport")
-    return "ingene@iitdh.ac.in";
-  if (club === "Design Club" || club === "Abhikalpa Design Club")
-    return "abhikalpa.dc@iitdh.ac.in";
-  if (club === "Finance Club") return "finance.club@iitdh.ac.in";
-  if (club === "Electronics Club") return "electronicsclub@iitdh.ac.in";
-  if (club === "Astronomy Club") return "astronomyclub@iitdh.ac.in";
-  return "gstech@iitdh.ac.in";
-};
-
 const getClubInitials = (club: string) => {
   if (club === "Coding Club") return "CC";
   if (club === "AI Club") return "AI";
@@ -168,7 +149,6 @@ export function Team() {
 
         <div className="space-y-14">
           {team.map((group, i) => {
-            const email = getClubEmail(group.club);
             const memberCount = group.members.length;
             const labelText =
               memberCount === 1 ? "1 Coordinator" : `${memberCount} Members`;
@@ -215,21 +195,13 @@ export function Team() {
                             </span>
                           )}
                         </div>
-                        <div className="p-2 sm:p-3 flex flex-col flex-1 justify-between gap-1">
-                          <div>
-                            <p className="font-display text-[11px] sm:text-sm leading-tight text-foreground break-words font-medium">
-                              {member}
-                            </p>
-                            <p className="text-[8px] sm:text-[9px] uppercase font-bold tracking-wider text-foreground/50 mt-1">
-                              {isCoord ? "Coordinator" : "Core Member"}
-                            </p>
-                          </div>
-                          <a
-                            href={`mailto:${email}`}
-                            className="text-[9px] sm:text-[11px] uppercase tracking-wide text-foreground/60 hover:text-primary font-bold flex items-center gap-1 mt-2 transition-colors"
-                          >
-                            ✉ {isCoord ? "Email" : "Contact"}
-                          </a>
+                        <div className="p-2 sm:p-3 flex flex-col gap-1 justify-center">
+                          <p className="font-display text-[11px] sm:text-sm leading-tight text-foreground break-words font-medium">
+                            {member}
+                          </p>
+                          <p className="text-[8px] sm:text-[9px] uppercase font-bold tracking-wider text-foreground/50">
+                            {isCoord ? "Coordinator" : "Core Member"}
+                          </p>
                         </div>
                       </div>
                     );
@@ -285,21 +257,13 @@ export function Team() {
                       </span>
                     )}
                   </div>
-                  <div className="p-2 sm:p-3 flex flex-col flex-1 justify-between gap-1">
-                    <div>
-                      <p className="font-display text-[11px] sm:text-sm leading-tight text-foreground break-words font-medium">
-                        {member.name}
-                      </p>
-                      <p className="text-[8px] sm:text-[9px] uppercase font-bold tracking-wider text-foreground/50 mt-1">
-                        {member.designation}
-                      </p>
-                    </div>
-                    <a
-                      href="mailto:gstech@iitdh.ac.in"
-                      className="text-[9px] sm:text-[11px] uppercase tracking-wide text-foreground/60 hover:text-primary font-bold flex items-center gap-1 mt-2 transition-colors"
-                    >
-                      ✉ Contact
-                    </a>
+                  <div className="p-2 sm:p-3 flex flex-col gap-1 justify-center">
+                    <p className="font-display text-[11px] sm:text-sm leading-tight text-foreground break-words font-medium">
+                      {member.name}
+                    </p>
+                    <p className="text-[8px] sm:text-[9px] uppercase font-bold tracking-wider text-foreground/50">
+                      {member.designation}
+                    </p>
                   </div>
                 </div>
               );
