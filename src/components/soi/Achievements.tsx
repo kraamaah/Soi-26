@@ -58,13 +58,13 @@ const achievementsList: Achievement[] = [
     title: "Pi Pioneer",
     desc: "Unlock the mathematical infinite.",
     icon: "🥧",
-    requirement:
-      "Correctly enter the value of Pi (π) up to 7 decimal places.",
+    requirement: "Correctly enter the value of Pi (π) up to 7 decimal places.",
   },
 ];
 
 const playRetroChime = () => {
   try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
     if (!AudioCtx) return;
     const ctx = new AudioCtx();
