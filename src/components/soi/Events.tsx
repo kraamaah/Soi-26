@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { events } from "./data";
+import { events, isEventActive } from "./data";
 import { BrutalCard } from "./BrutalCard";
 import { FileText } from "lucide-react";
 
@@ -58,20 +58,6 @@ export function Events() {
     if (club === "Astronomy Club") return "Astronomy";
     if (club === "Finance Club") return "Finance";
     return club;
-  };
-
-  // Determine if a release date is simulated as "Active" or "Upcoming"
-  // Compares system clock dynamically to the drop date to see if the PS PDF is uploaded.
-  const isEventActive = (dateStr: string) => {
-    try {
-      // Remove ordinal suffixes (st, nd, rd, th) to parse cleanly (e.g. "2nd June 2026" -> "2 June 2026")
-      const cleanDateStr = dateStr.replace(/(st|nd|rd|th)/g, "");
-      const eventTime = new Date(cleanDateStr).getTime();
-      const now = new Date().getTime();
-      return now >= eventTime;
-    } catch {
-      return false;
-    }
   };
 
   // Perform dynamic filtering based on selections
@@ -243,9 +229,13 @@ export function Events() {
                         onClick={() => {
                           handlePdfClick(e.num);
                           if (isEventActive(e.date)) {
-                            alert(
-                              `[PS_${e.num}.PDF] Initializing download for the complete Problem Statement & Guidelines PDF! 📄`,
-                            );
+                            if (e.pdf) {
+                              window.open(e.pdf, "_blank");
+                            } else {
+                              alert(
+                                `[PS_${e.num}.PDF] Initializing download for the complete Problem Statement & Guidelines PDF! 📄`,
+                              );
+                            }
                           } else {
                             alert(`Unavailable!! wait till ${e.date}`);
                           }

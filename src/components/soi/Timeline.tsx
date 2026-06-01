@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { events, SoiEvent } from "./data";
+import { events, SoiEvent, isEventActive } from "./data";
 
 const staticStars = [
   { size: 1.5, x: 25, y: 35 },
@@ -291,7 +291,7 @@ export function Timeline() {
           {/* Quick Stats Badges */}
           <div className="flex flex-wrap gap-3">
             <span className="border-[2px] border-ink bg-accent px-3 py-1 font-display text-xs uppercase shadow-brutal-sm">
-              Active Drops: 0
+              Active Drops: {events.filter((e) => isEventActive(e.date)).length}
             </span>
             <span className="border-[2px] border-ink bg-card px-3 py-1 font-display text-xs uppercase shadow-brutal-sm">
               Total PS: 18

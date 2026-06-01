@@ -8,7 +8,7 @@ export function Hero() {
   const [showGame, setShowGame] = useState(false);
   const clickTimeout = useRef<NodeJS.Timeout | null>(null);
 
-  const TARGET_DATE = new Date("2026-06-02T00:00:00").getTime();
+  const TARGET_DATE = new Date("2026-06-01T00:00:00").getTime();
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -93,7 +93,9 @@ export function Hero() {
             <div className="relative flex items-center justify-between border-b-[2px] border-ink pb-2 mb-3">
               <span className="font-mono text-xs font-bold text-accent uppercase tracking-wider animate-pulse flex items-center gap-1.5">
                 <span className="h-2.5 w-2.5 rounded-full bg-accent animate-ping inline-block" />
-                BUILD SEASON LAUNCHING IN
+                {timeLeft.isExpired
+                  ? "BUILD SEASON IS LIVE"
+                  : "BUILD SEASON LAUNCHING IN"}
               </span>
               <span className="font-mono text-[10px] font-bold text-foreground/50">
                 EDITION_07.SYS
@@ -101,9 +103,12 @@ export function Hero() {
             </div>
 
             {timeLeft.isExpired ? (
-              <div className="relative flex items-center justify-center py-2 bg-primary text-primary-foreground border-[2px] border-ink font-display text-sm uppercase tracking-wider shadow-brutal-sm">
-                🚀 SOI 2026 IS NOW LIVE!
-              </div>
+              <a
+                href="#events"
+                className="relative flex items-center justify-center py-2 bg-primary text-primary-foreground border-[2px] border-ink font-display text-sm uppercase tracking-wider shadow-brutal-sm hover:bg-primary/95 transition-all block text-center cursor-pointer select-none hover:translate-x-[1.5px] hover:translate-y-[1.5px] hover:shadow-none active:translate-x-0 active:translate-y-0"
+              >
+                SoI is LIVE, check out the Drops
+              </a>
             ) : (
               <div className="relative grid grid-cols-4 gap-2 text-center">
                 {/* Days */}

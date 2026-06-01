@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { events, SoiEvent } from "./data";
+import { events, SoiEvent, isEventActive } from "./data";
 import { BrutalCard } from "./BrutalCard";
 import { FileText } from "lucide-react";
 
@@ -183,13 +183,26 @@ export function Domains() {
                         </svg>
                       </a>
                       {/* PDF guidelines Button */}
-                      <a
-                        href="#"
-                        className="grid h-8 w-8 place-items-center border-[2px] border-ink bg-accent text-ink shadow-brutal-xs transition-transform hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none active:translate-x-0 active:translate-y-0"
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (isEventActive(e.date)) {
+                            if (e.pdf) {
+                              window.open(e.pdf, "_blank");
+                            } else {
+                              alert(
+                                `[PS_${e.num}.PDF] Initializing download for the complete Problem Statement & Guidelines PDF! 📄`,
+                              );
+                            }
+                          } else {
+                            alert(`Unavailable!! wait till ${e.date}`);
+                          }
+                        }}
+                        className="grid h-8 w-8 place-items-center border-[2px] border-ink bg-accent text-ink shadow-brutal-xs transition-transform hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none active:translate-x-0 active:translate-y-0 cursor-pointer select-none"
                         title="View Guidelines PDF"
                       >
                         <FileText className="h-4.5 w-4.5" />
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div>

@@ -38,6 +38,18 @@ export type SoiEvent = {
   prizes: string;
   domains: string[];
   whatsapp?: string;
+  pdf?: string;
+};
+
+export const isEventActive = (dateStr: string) => {
+  try {
+    const cleanDateStr = dateStr.replace(/(st|nd|rd|th)/g, "");
+    const eventTime = new Date(cleanDateStr).getTime();
+    const now = new Date().getTime();
+    return now >= eventTime;
+  } catch {
+    return false;
+  }
 };
 
 export const events: SoiEvent[] = [
@@ -47,11 +59,12 @@ export const events: SoiEvent[] = [
     desc: "Build an intelligent route optimization and dynamic ride-sharing engine. Can your algorithms balance distance, real-time requests, and user satisfaction with live visualization?",
     image: pathmatrix,
     club: "Coding Club",
-    date: "2nd June 2026",
+    date: "1st June 2026",
     timeline: "2nd June - 17th July 2026",
     prizes: "Merch + Prize Money (1800 + 1200 + 600)",
     domains: ["Software Engineering", "Algorithms & Optimization"],
     whatsapp: "https://chat.whatsapp.com/DDTS4N4AjNWLh0WEQVZT98",
+    pdf: "https://drive.google.com/file/d/1u8Smu3r4QA6jEcHf5ey_-Es-gTMuNVrI/view?usp=drive_link",
   },
   {
     num: "02",
@@ -59,11 +72,12 @@ export const events: SoiEvent[] = [
     desc: "Design a RTL-based compression system to optimize communication bandwidth. Can you successfully modulate, compress, transmit, and recover complex signals with zero data loss?",
     image: beyondBits,
     club: "Electronics Club",
-    date: "2nd June 2026",
+    date: "1st June 2026",
     timeline: "2nd June - 12th July 2026",
     prizes: "Merch + Prize Money (2500 + 1500 + 1000)",
     domains: ["VLSI", "Communication System"],
     whatsapp: "https://chat.whatsapp.com/Fa8iDnnLVZ4KlVdF1Wks7I",
+    pdf: "https://drive.google.com/file/d/1r50Q60oS8WS4bwQ7CtpkOl3uTJzU4pdm/view?usp=sharing",
   },
   {
     num: "03",
@@ -71,11 +85,12 @@ export const events: SoiEvent[] = [
     desc: "Develop a cooperative SLAM algorithm for dual-robot exploration in simulation. How efficiently can your robotic agents map and search an unknown 2D space?",
     image: cartographer,
     club: "Robotics Club",
-    date: "2nd June 2026",
+    date: "1st June 2026",
     timeline: "2nd June - 14th July 2026",
     prizes: "Merch + 3x Robu/Robocraze Gift Card (1000 INR)",
     domains: ["Robotics & Automation", "Software Engineering"],
     whatsapp: "https://chat.whatsapp.com/KlvDNJIMBht93eIixIgmZn",
+    pdf: "https://docs.google.com/document/d/10hs3gmmsqlMCe41vGo6jyu69GcYFGaoM/edit?usp=sharing&ouid=109853900077698808251&rtpof=true&sd=true",
   },
   {
     num: "04",
@@ -83,11 +98,12 @@ export const events: SoiEvent[] = [
     desc: "Design an adaptive prompt selector that dynamically optimizes queries under strict token budgets. Let's maximize LLM response quality while slashing latency!",
     image: promptSelection,
     club: "AI Club",
-    date: "2nd June 2026",
+    date: "1st June 2026",
     timeline: "2nd June - 31st July 2026",
     prizes: "Certificate + Faculty Guidance / Continued Work Opportunity",
     domains: ["Artificial Intelligence & ML", "Generative AI"],
     whatsapp: "https://chat.whatsapp.com/EvJOwKhBeiIAXoLEPK9gMI",
+    pdf: "https://drive.google.com/file/d/19lnyMq49yFnSUahw7_bn4tUrd6DDcR-T/view?usp=sharing",
   },
   {
     num: "05",
@@ -95,11 +111,12 @@ export const events: SoiEvent[] = [
     desc: "Build a two-tier RAG storage system with adaptive vector caching. Can you slash embedding storage and retrieval costs without compromising output performance?",
     image: vectorCaching,
     club: "AI Club",
-    date: "2nd June 2026",
+    date: "1st June 2026",
     timeline: "2nd June - 31st July 2026",
     prizes: "Certificate + Faculty Guidance / Continued Work Opportunity",
     domains: ["Artificial Intelligence & ML", "Data Engineering"],
     whatsapp: "https://chat.whatsapp.com/GC2B0ZsAkNILO8IwYgikKo",
+    pdf: "https://drive.google.com/file/d/1hOzFtEwXUG61vRe40e3NcyQJHfU99BkW/view?usp=sharing",
   },
   {
     num: "06",
@@ -107,11 +124,12 @@ export const events: SoiEvent[] = [
     desc: "Create a smart symptom-triage conversational agent. Classify patient symptoms and automatically schedule matching doctor slots to revolutionize access to care.",
     image: doctorTriage,
     club: "AI Club",
-    date: "2nd June 2026",
+    date: "1st June 2026",
     timeline: "2nd June - 31st July 2026",
     prizes: "Certificate + Faculty Guidance / Continued Work Opportunity",
     domains: ["Artificial Intelligence & ML", "Healthcare Tech"],
     whatsapp: "https://chat.whatsapp.com/JrbnscP1nRrIv85RI3ggRl",
+    pdf: "https://drive.google.com/file/d/1T18yTYYhrnY_uGRdBpEaVk9Afw2A_FyX/view?usp=sharing",
   },
   {
     num: "07",
@@ -119,11 +137,12 @@ export const events: SoiEvent[] = [
     desc: "Break down the mathematical barriers of geometric deep learning. Extend rigid structures to irregular and arbitrary shapes to power advanced graphics and robotics.",
     image: geometricLearning,
     club: "AI Club",
-    date: "2nd June 2026",
+    date: "1st June 2026",
     timeline: "2nd June - 31st July 2026",
     prizes: "Certificate + Faculty Guidance / Continued Work Opportunity",
     domains: ["Artificial Intelligence & ML", "Computer Vision"],
     whatsapp: "https://chat.whatsapp.com/JSe4AakDRwyA3x7i0lw5xp",
+    pdf: "https://drive.google.com/file/d/1s5XsoksMdg5WRGuWV3dvO7URCFNkTKG4/view?usp=sharing",
   },
   {
     num: "08",
