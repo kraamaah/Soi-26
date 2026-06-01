@@ -10,6 +10,7 @@ import { Footer } from "@/components/soi/Footer";
 import { Achievements } from "@/components/soi/Achievements";
 import { ParticleTrail } from "@/components/soi/ParticleTrail";
 import { SecretSynth } from "@/components/soi/SecretSynth";
+import { TerminalConsole } from "@/components/soi/TerminalConsole";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -47,6 +48,7 @@ function Index() {
       <Achievements />
       <ParticleTrail />
       <SecretSynth />
+      <TerminalConsole />
     </div>
   );
 }

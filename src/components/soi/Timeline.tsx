@@ -21,14 +21,53 @@ const getStarsForCard = (cardIndex: number) => {
   });
 };
 
+const getDeadlineStatus = (deadlineStr: string) => {
+  try {
+    const cleanStr = deadlineStr.replace(/(st|nd|rd|th)/g, "");
+    const deadlineTime = new Date(cleanStr).getTime();
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+    const diffTime = deadlineTime - today;
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    if (diffDays < 0) {
+      return { status: "closed", label: "Closed", critical: false };
+    } else if (diffDays === 0) {
+      return { status: "today", label: "DEADLINE TODAY!", critical: true };
+    } else if (diffDays === 1) {
+      return { status: "tomorrow", label: "1 Day Left!", critical: true };
+    } else if (diffDays <= 7) {
+      return { status: "approaching", label: `${diffDays} Days Left!`, critical: true };
+    } else {
+      return { status: "future", label: `${diffDays} Days Left`, critical: false };
+    }
+  } catch {
+    return { status: "unknown", label: "", critical: false };
+  }
+};
+
 export function Timeline() {
   const [selectedDate, setSelectedDate] = useState<string>("All");
   const [modalEvent, setModalEvent] = useState<SoiEvent | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeCount, setActiveCount] = useState(0);
+  const [progressPercent, setProgressPercent] = useState(0);
+  const [daysRemaining, setDaysRemaining] = useState(0);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setActiveCount(events.filter((e) => isEventActive(e.date)).length);
+    setMounted(true);
+
+    const START_DATE = new Date("2026-06-02T00:00:00").getTime();
+    const END_DATE = new Date("2026-07-31T23:59:59").getTime();
+    const now = new Date().getTime();
+    const elapsed = now - START_DATE;
+    const total = END_DATE - START_DATE;
+    const percent = Math.min(100, Math.max(0, (elapsed / total) * 100));
+    const days = Math.max(0, Math.ceil((END_DATE - now) / (1000 * 60 * 60 * 24)));
+    setProgressPercent(percent);
+    setDaysRemaining(days);
   }, []);
 
   const handleTimelineCardClick = (e: SoiEvent) => {
@@ -278,6 +317,15 @@ export function Timeline() {
           transform: translate(-50%, -50%);
           opacity: 0.22;
         }
+
+        @keyframes shake-warning {
+          0%, 100% { transform: rotate(0deg); }
+          25% { transform: rotate(-1.5deg) scale(1.02); }
+          75% { transform: rotate(1.5deg) scale(1.02); }
+        }
+        .animate-shake-warning {
+          animation: shake-warning 0.25s infinite ease-in-out;
+        }
       `}</style>
       <div
         ref={containerRef}
@@ -304,12 +352,67 @@ export function Timeline() {
           </div>
         </div>
 
+        {/* Summer Progress Tracker */}
+        <div className="mb-10 border-[3px] border-ink bg-card p-4 sm:p-5 shadow-brutal relative overflow-hidden conic-pattern">
+          {/* Retro scanline grid overlay */}
+          <div
+            className="absolute inset-0 bg-repeat bg-center opacity-[0.03] pointer-events-none dots-grid"
+            aria-hidden
+          />
+          <div className="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b-2 border-ink pb-3 mb-4">
+            <div className="flex items-center gap-2">
+              <div className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-75" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#25D366]" />
+              </div>
+              <span className="font-mono text-xs font-bold text-foreground uppercase tracking-wider ml-1.5">
+                SOI_CHRONO.SYS // ACTIVE_SOLVING_PHASE
+              </span>
+            </div>
+            <span className="font-mono text-[10px] font-bold text-foreground/50">
+              BUILD_SEASON_TIMELINE
+            </span>
+          </div>
+
+          <div className="relative space-y-3.5">
+            {/* The Outer Brutalist Track */}
+            <div className="h-7 w-full border-[2.5px] border-ink bg-background relative overflow-hidden shadow-brutal-xs flex items-center">
+              {/* Inner progress bar */}
+              <div
+                className="h-full bg-accent border-r-[2.5px] border-ink transition-all duration-1000 ease-out"
+                style={{ width: `${progressPercent}%` }}
+              />
+              {/* Text indicator centered or inside the progress track */}
+              <span className="absolute inset-0 flex items-center justify-center font-display text-[10px] sm:text-xs uppercase font-bold text-ink mix-blend-difference">
+                {progressPercent.toFixed(1)}% Elapsed
+              </span>
+            </div>
+
+            {/* Labels and values display */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 font-mono text-xs font-bold uppercase pt-1">
+              <a
+                href="https://youtube.com/shorts/0nsZDdlXm64?si=7Z6XvPFCM7dDBm95"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-2 border-ink bg-background hover:bg-[#FFD700] hover:text-ink px-3 py-1 shadow-brutal-xs hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all active:translate-x-0 active:translate-y-0 text-center cursor-pointer decoration-none"
+              >
+                The Clock is ticking...
+              </a>
+              <div className="flex items-center gap-2 sm:self-end">
+                <span className="border-2 border-ink bg-accent text-accent-foreground px-2 py-1 shadow-brutal-xs animate-pulse">
+                  {daysRemaining} Days Remaining
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Date Filter Tabs */}
         <div className="mb-12 border-[3px] border-ink bg-card p-4 shadow-brutal flex flex-col gap-2 md:flex-row md:items-center md:justify-start">
           <span className="font-display text-xs uppercase tracking-wider text-foreground/70 font-bold shrink-0">
             Drop Dates:
           </span>
-          <div className="flex overflow-x-auto pb-1.5 scrollbar-none snap-x gap-2.5 md:flex-wrap md:pb-0">
+          <div className="flex overflow-x-auto px-1.5 pb-2.5 pr-4 scrollbar-none snap-x gap-2.5 md:flex-wrap md:px-0 md:pb-0 md:pr-0 md:overflow-visible">
             {filterDates.map((date) => {
               const isActive = selectedDate === date;
               return (
@@ -318,10 +421,10 @@ export function Timeline() {
                   onClick={() => {
                     setSelectedDate(date);
                   }}
-                  className={`border-[2px] border-ink px-4 py-2 font-display text-[11px] md:text-xs uppercase tracking-wide transition-all shadow-brutal-sm cursor-pointer snap-start min-h-[40px] flex items-center justify-center shrink-0 ${
+                  className={`border-[2px] border-ink px-4 py-2 font-display text-[11px] md:text-xs uppercase tracking-wide transition-all cursor-pointer snap-start min-h-[40px] flex items-center justify-center shrink-0 ${
                     isActive
                       ? "bg-primary text-primary-foreground -translate-x-[1px] -translate-y-[1px] shadow-brutal"
-                      : "bg-background hover:bg-peach hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-brutal active:translate-x-0 active:translate-y-0"
+                      : "bg-background hover:bg-peach hover:-translate-x-[2px] hover:-translate-y-[2px] shadow-brutal-sm hover:shadow-brutal active:translate-x-0 active:translate-y-0"
                   }`}
                 >
                   {date}
@@ -425,13 +528,43 @@ export function Timeline() {
                         {e.club}
                       </p>
 
-                      {e.deadline && (
-                        <div className="mt-2.5 flex items-center gap-1.5 animate-pulse">
-                          <span className="inline-block border-2 border-ink bg-[#ff3366] text-white px-2 py-0.5 font-display text-[8px] font-bold uppercase shadow-brutal-xs">
-                            Deadline: {e.deadline}
-                          </span>
-                        </div>
-                      )}
+                      {e.deadline && (() => {
+                        if (!mounted) {
+                          return (
+                            <div className="mt-2.5 flex items-center gap-1.5 animate-pulse">
+                              <span className="inline-block border-2 border-ink bg-[#ff3366] text-white px-2 py-0.5 font-display text-[8px] font-bold uppercase shadow-brutal-xs">
+                                Deadline: {e.deadline}
+                              </span>
+                            </div>
+                          );
+                        }
+                        const dl = getDeadlineStatus(e.deadline);
+                        if (dl.critical) {
+                          return (
+                            <div className="mt-2.5 flex items-center gap-1.5 animate-shake-warning">
+                              <span className="inline-block border-2 border-ink bg-[#ff3366] text-white px-2 py-0.5 font-display text-[8px] font-bold uppercase shadow-brutal-xs shadow-[0_0_8px_rgba(255,51,102,0.6)]">
+                                ⚠️ URGENT DEADLINE: {e.deadline} ({dl.label})
+                              </span>
+                            </div>
+                          );
+                        } else if (dl.status === "closed") {
+                          return (
+                            <div className="mt-2.5 flex items-center gap-1.5 opacity-60">
+                              <span className="inline-block border-2 border-ink bg-muted text-muted-foreground px-2 py-0.5 font-display text-[8px] font-bold uppercase shadow-brutal-xs">
+                                🔒 Closed: {e.deadline}
+                              </span>
+                            </div>
+                          );
+                        } else {
+                          return (
+                            <div className="mt-2.5 flex items-center gap-1.5 animate-pulse">
+                              <span className="inline-block border-2 border-ink bg-[#ff3366] text-white px-2 py-0.5 font-display text-[8px] font-bold uppercase shadow-brutal-xs">
+                                Deadline: {e.deadline} ({dl.label})
+                              </span>
+                            </div>
+                          );
+                        }
+                      })()}
                     </div>
                   </div>
                 </li>
@@ -486,16 +619,55 @@ export function Timeline() {
               </div>
 
               <div className="mt-6 flex flex-col gap-3 border-t-2 border-ink pt-5">
-                {modalEvent.deadline && (
-                  <div className="flex flex-wrap items-center gap-2.5 text-xs animate-pulse">
-                    <span className="font-display uppercase border-2 border-ink bg-[#ff3366] text-white px-2 py-0.5 font-bold shadow-brutal-sm">
-                      Deadline
-                    </span>
-                    <span className="font-mono text-[11px] font-bold text-[#ff3366]">
-                      {modalEvent.deadline}
-                    </span>
-                  </div>
-                )}
+                {modalEvent.deadline && (() => {
+                  if (!mounted) {
+                    return (
+                      <div className="flex flex-wrap items-center gap-2.5 text-xs animate-pulse">
+                        <span className="font-display uppercase border-2 border-ink bg-[#ff3366] text-white px-2 py-0.5 font-bold shadow-brutal-sm">
+                          Deadline
+                        </span>
+                        <span className="font-mono text-[11px] font-bold text-[#ff3366]">
+                          {modalEvent.deadline}
+                        </span>
+                      </div>
+                    );
+                  }
+                  const dl = getDeadlineStatus(modalEvent.deadline);
+                  if (dl.critical) {
+                    return (
+                      <div className="flex flex-wrap items-center gap-2.5 text-xs animate-shake-warning">
+                        <span className="font-display uppercase border-2 border-ink bg-[#ff3366] text-white px-2 py-0.5 font-bold shadow-brutal-sm shadow-[0_0_8px_rgba(255,51,102,0.5)]">
+                          ⚠️ URGENT DEADLINE
+                        </span>
+                        <span className="font-mono text-[11px] font-bold text-[#ff3366] animate-pulse">
+                          {modalEvent.deadline} ({dl.label})
+                        </span>
+                      </div>
+                    );
+                  } else if (dl.status === "closed") {
+                    return (
+                      <div className="flex flex-wrap items-center gap-2.5 text-xs opacity-60">
+                        <span className="font-display uppercase border-2 border-ink bg-muted text-muted-foreground px-2 py-0.5 font-bold shadow-brutal-sm">
+                          🔒 Closed
+                        </span>
+                        <span className="font-mono text-[11px] font-bold text-muted-foreground">
+                          {modalEvent.deadline}
+                        </span>
+                      </div>
+                    );
+                  } else {
+                    return (
+                      <div className="flex flex-wrap items-center gap-2.5 text-xs animate-pulse">
+                        <span className="font-display uppercase border-2 border-ink bg-[#ff3366] text-white px-2 py-0.5 font-bold shadow-brutal-sm">
+                          Deadline
+                        </span>
+                        <span className="font-mono text-[11px] font-bold text-[#ff3366]">
+                          {modalEvent.deadline} ({dl.label})
+                        </span>
+                      </div>
+                    );
+                  }
+                })()}
                 {modalEvent.regLink && (
                   <a
                     href={modalEvent.regLink}

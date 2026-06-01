@@ -42,6 +42,17 @@ export function Hero() {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    const handleOpenArcade = () => {
+      setShowGame(true);
+      window.dispatchEvent(
+        new CustomEvent("soi-achievement", { detail: "arcade-master" }),
+      );
+    };
+    window.addEventListener("soi-open-arcade", handleOpenArcade);
+    return () => window.removeEventListener("soi-open-arcade", handleOpenArcade);
+  }, []);
+
   const handleLogoClick = () => {
     if (clickTimeout.current) clearTimeout(clickTimeout.current);
 
