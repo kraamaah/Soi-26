@@ -59,7 +59,7 @@ const achievementsList: Achievement[] = [
     desc: "Unlock the mathematical infinite.",
     icon: "🥧",
     requirement:
-      "Correctly enter the value of Pi (π) up to 7 decimal places (3.1415926).",
+      "Correctly enter the value of Pi (π) up to 7 decimal places.",
   },
 ];
 
