@@ -264,10 +264,10 @@ export function Domains() {
               <div className="mt-6 flex flex-col gap-3 border-t-2 border-ink pt-5">
                 {modalEvent.deadline && (
                   <div className="flex flex-wrap items-center gap-2.5 text-xs animate-pulse">
-                    <span className="font-display uppercase border-2 border-ink bg-[#ff3366] text-white px-2 py-0.5 font-bold shadow-brutal-sm">
+                    <span className="font-display uppercase border-2 border-ink bg-[#ff0000] text-white px-2 py-0.5 font-bold shadow-brutal-sm">
                       Deadline
                     </span>
-                    <span className="font-mono text-[11px] font-bold text-[#ff3366]">
+                    <span className="font-mono text-[11px] font-bold text-[#ff0000]">
                       {modalEvent.deadline}
                     </span>
                   </div>

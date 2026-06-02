@@ -532,7 +532,7 @@ export function Timeline() {
                         if (!mounted) {
                           return (
                             <div className="mt-2.5 flex items-center gap-1.5 animate-pulse">
-                              <span className="inline-block border-2 border-ink bg-[#ff3366] text-white px-2 py-0.5 font-display text-[8px] font-bold uppercase shadow-brutal-xs">
+                              <span className="inline-block border-2 border-ink bg-[#ff0000] text-white px-2 py-0.5 font-display text-[8px] font-bold uppercase shadow-brutal-xs">
                                 Deadline: {e.deadline}
                               </span>
                             </div>
@@ -542,7 +542,7 @@ export function Timeline() {
                         if (dl.critical) {
                           return (
                             <div className="mt-2.5 flex items-center gap-1.5 animate-shake-warning">
-                              <span className="inline-block border-2 border-ink bg-[#ff3366] text-white px-2 py-0.5 font-display text-[8px] font-bold uppercase shadow-brutal-xs shadow-[0_0_8px_rgba(255,51,102,0.6)]">
+                              <span className="inline-block border-2 border-ink bg-[#ff0000] text-white px-2 py-0.5 font-display text-[8px] font-bold uppercase shadow-brutal-xs shadow-[0_0_8px_rgba(255,0,0,0.6)]">
                                 ⚠️ URGENT DEADLINE: {e.deadline} ({dl.label})
                               </span>
                             </div>
@@ -558,7 +558,7 @@ export function Timeline() {
                         } else {
                           return (
                             <div className="mt-2.5 flex items-center gap-1.5 animate-pulse">
-                              <span className="inline-block border-2 border-ink bg-[#ff3366] text-white px-2 py-0.5 font-display text-[8px] font-bold uppercase shadow-brutal-xs">
+                              <span className="inline-block border-2 border-ink bg-[#ff0000] text-white px-2 py-0.5 font-display text-[8px] font-bold uppercase shadow-brutal-xs">
                                 Deadline: {e.deadline} ({dl.label})
                               </span>
                             </div>
@@ -623,10 +623,10 @@ export function Timeline() {
                   if (!mounted) {
                     return (
                       <div className="flex flex-wrap items-center gap-2.5 text-xs animate-pulse">
-                        <span className="font-display uppercase border-2 border-ink bg-[#ff3366] text-white px-2 py-0.5 font-bold shadow-brutal-sm">
+                        <span className="font-display uppercase border-2 border-ink bg-[#ff0000] text-white px-2 py-0.5 font-bold shadow-brutal-sm">
                           Deadline
                         </span>
-                        <span className="font-mono text-[11px] font-bold text-[#ff3366]">
+                        <span className="font-mono text-[11px] font-bold text-[#ff0000]">
                           {modalEvent.deadline}
                         </span>
                       </div>
@@ -636,10 +636,10 @@ export function Timeline() {
                   if (dl.critical) {
                     return (
                       <div className="flex flex-wrap items-center gap-2.5 text-xs animate-shake-warning">
-                        <span className="font-display uppercase border-2 border-ink bg-[#ff3366] text-white px-2 py-0.5 font-bold shadow-brutal-sm shadow-[0_0_8px_rgba(255,51,102,0.5)]">
+                        <span className="font-display uppercase border-2 border-ink bg-[#ff0000] text-white px-2 py-0.5 font-bold shadow-brutal-sm shadow-[0_0_8px_rgba(255,0,0,0.5)]">
                           ⚠️ URGENT DEADLINE
                         </span>
-                        <span className="font-mono text-[11px] font-bold text-[#ff3366] animate-pulse">
+                        <span className="font-mono text-[11px] font-bold text-[#ff0000] animate-pulse">
                           {modalEvent.deadline} ({dl.label})
                         </span>
                       </div>
@@ -658,10 +658,10 @@ export function Timeline() {
                   } else {
                     return (
                       <div className="flex flex-wrap items-center gap-2.5 text-xs animate-pulse">
-                        <span className="font-display uppercase border-2 border-ink bg-[#ff3366] text-white px-2 py-0.5 font-bold shadow-brutal-sm">
+                        <span className="font-display uppercase border-2 border-ink bg-[#ff0000] text-white px-2 py-0.5 font-bold shadow-brutal-sm">
                           Deadline
                         </span>
-                        <span className="font-mono text-[11px] font-bold text-[#ff3366]">
+                        <span className="font-mono text-[11px] font-bold text-[#ff0000]">
                           {modalEvent.deadline} ({dl.label})
                         </span>
                       </div>

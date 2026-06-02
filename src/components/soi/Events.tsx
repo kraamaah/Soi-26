@@ -194,7 +194,7 @@ export function Events() {
                   {/* Dynamic deadline notification */}
                   {e.deadline && (
                     <div className="mt-3.5 flex items-center gap-1.5 animate-pulse">
-                      <span className="inline-block border-[2px] border-ink bg-[#ff3366] text-white px-2 py-0.5 font-display text-[9px] font-bold uppercase shadow-brutal-xs">
+                      <span className="inline-block border-[2px] border-ink bg-[#ff0000] text-white px-2 py-0.5 font-display text-[9px] font-bold uppercase shadow-brutal-xs">
                         Deadline: {e.deadline}
                       </span>
                     </div>
