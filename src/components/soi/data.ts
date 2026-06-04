@@ -338,7 +338,7 @@ export const team: TeamGroup[] = [
   },
   { club: "Motorsports Club", members: ["Nageswar Dusi", "Soumya Shaw"] },
   { club: "Design Club", members: ["Rajat Gupta", "Aashish M"] },
-  { club: "Finance Club", members: ["Samarth M"] },
+  { club: "Finance Club", members: ["Samarth M", "Yash Dube", "Prajwal B"] },
   {
     club: "Electronics Club",
     members: ["Manas Khatokar N", "Haridarshan R", "Emil Ben", "Harsh"],

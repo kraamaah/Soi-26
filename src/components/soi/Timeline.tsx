@@ -54,6 +54,13 @@ export function Timeline() {
   const [progressPercent, setProgressPercent] = useState(0);
   const [daysRemaining, setDaysRemaining] = useState(0);
   const [mounted, setMounted] = useState(false);
+  const [nextDrop, setNextDrop] = useState<{ time: number; displayDate: string } | null>(null);
+  const [countdownTime, setCountdownTime] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
 
   useEffect(() => {
     setActiveCount(events.filter((e) => isEventActive(e.date)).length);
@@ -68,6 +75,74 @@ export function Timeline() {
     const days = Math.max(0, Math.ceil((END_DATE - now) / (1000 * 60 * 60 * 24)));
     setProgressPercent(percent);
     setDaysRemaining(days);
+
+    const getNextDrop = () => {
+      const dropDates = [
+        "2026-06-02T00:00:00",
+        "2026-06-09T00:00:00",
+        "2026-06-16T00:00:00",
+        "2026-06-23T00:00:00",
+        "2026-06-30T00:00:00",
+        "2026-07-07T00:00:00",
+      ];
+      const currentTime = new Date().getTime();
+      
+      // Find the first date in the future
+      for (const d of dropDates) {
+        const time = new Date(d).getTime();
+        if (time > currentTime) {
+          const displayDate = new Date(d).toLocaleDateString("en-US", {
+            day: "numeric",
+            month: "short",
+          });
+          return { time, displayDate };
+        }
+      }
+      return null;
+    };
+
+    const next = getNextDrop();
+    setNextDrop(next);
+
+    if (!next) return;
+
+    const calculateCountdown = (targetTime: number) => {
+      const currentTime = new Date().getTime();
+      const difference = targetTime - currentTime;
+
+      if (difference <= 0) {
+        return null;
+      }
+
+      const d = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const h = Math.floor(
+        (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((difference % (1000 * 60)) / 1000);
+
+      return { days: d, hours: h, minutes: m, seconds: s };
+    };
+
+    const initialTime = calculateCountdown(next.time);
+    if (initialTime) {
+      setCountdownTime(initialTime);
+    }
+
+    const interval = setInterval(() => {
+      const timeRemaining = calculateCountdown(next.time);
+      if (!timeRemaining) {
+        const updatedNext = getNextDrop();
+        setNextDrop(updatedNext);
+        if (!updatedNext) {
+          clearInterval(interval);
+        }
+        return;
+      }
+      setCountdownTime(timeRemaining);
+    }, 1000);
+
+    return () => clearInterval(interval);
   }, []);
 
   const handleTimelineCardClick = (e: SoiEvent) => {
@@ -352,57 +427,142 @@ export function Timeline() {
           </div>
         </div>
 
-        {/* Summer Progress Tracker */}
-        <div className="mb-10 border-[3px] border-ink bg-card p-4 sm:p-5 shadow-brutal relative overflow-hidden conic-pattern">
-          {/* Retro scanline grid overlay */}
-          <div
-            className="absolute inset-0 bg-repeat bg-center opacity-[0.03] pointer-events-none dots-grid"
-            aria-hidden
-          />
-          <div className="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b-2 border-ink pb-3 mb-4">
-            <div className="flex items-center gap-2">
-              <div className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#25D366]" />
-              </div>
-              <span className="font-mono text-xs font-bold text-foreground uppercase tracking-wider ml-1.5">
-                SOI_CHRONO.SYS // ACTIVE_SOLVING_PHASE
-              </span>
-            </div>
-            <span className="font-mono text-[10px] font-bold text-foreground/50">
-              BUILD_SEASON_TIMELINE
-            </span>
-          </div>
-
-          <div className="relative space-y-3.5">
-            {/* The Outer Brutalist Track */}
-            <div className="h-7 w-full border-[2.5px] border-ink bg-background relative overflow-hidden shadow-brutal-xs flex items-center">
-              {/* Inner progress bar */}
-              <div
-                className="h-full bg-accent border-r-[2.5px] border-ink transition-all duration-1000 ease-out"
-                style={{ width: `${progressPercent}%` }}
-              />
-              {/* Text indicator centered or inside the progress track */}
-              <span className="absolute inset-0 flex items-center justify-center font-display text-[10px] sm:text-xs uppercase font-bold text-ink mix-blend-difference">
-                {progressPercent.toFixed(1)}% Elapsed
-              </span>
-            </div>
-
-            {/* Labels and values display */}
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 font-mono text-xs font-bold uppercase pt-1">
-              <a
-                href="https://youtube.com/shorts/0nsZDdlXm64?si=7Z6XvPFCM7dDBm95"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="border-2 border-ink bg-background hover:bg-[#FFD700] hover:text-ink px-3 py-1 shadow-brutal-xs hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all active:translate-x-0 active:translate-y-0 text-center cursor-pointer decoration-none"
-              >
-                The Clock is ticking...
-              </a>
-              <div className="flex items-center gap-2 sm:self-end">
-                <span className="border-2 border-ink bg-accent text-accent-foreground px-2 py-1 shadow-brutal-xs animate-pulse">
-                  {daysRemaining} Days Remaining
+        {/* Progress & Next Drop Countdown Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
+          {/* Summer Progress Tracker */}
+          <div className="lg:col-span-2 border-[3px] border-ink bg-card p-4 sm:p-5 shadow-brutal relative overflow-hidden conic-pattern">
+            {/* Retro scanline grid overlay */}
+            <div
+              className="absolute inset-0 bg-repeat bg-center opacity-[0.03] pointer-events-none dots-grid"
+              aria-hidden
+            />
+            <div className="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b-2 border-ink pb-3 mb-4">
+              <div className="flex items-center gap-2">
+                <div className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#25D366]" />
+                </div>
+                <span className="font-mono text-xs font-bold text-foreground uppercase tracking-wider ml-1.5">
+                  SOI_CHRONO.SYS // ACTIVE_SOLVING_PHASE
                 </span>
               </div>
+              <span className="font-mono text-[10px] font-bold text-foreground/50">
+                BUILD_SEASON_TIMELINE
+              </span>
+            </div>
+
+            <div className="relative space-y-3.5">
+              {/* The Outer Brutalist Track */}
+              <div className="h-7 w-full border-[2.5px] border-ink bg-background relative overflow-hidden shadow-brutal-xs flex items-center">
+                {/* Inner progress bar */}
+                <div
+                  className="h-full bg-accent border-r-[2.5px] border-ink transition-all duration-1000 ease-out"
+                  style={{ width: `${progressPercent}%` }}
+                />
+                {/* Text indicator centered or inside the progress track */}
+                <span className="absolute inset-0 flex items-center justify-center font-display text-[10px] sm:text-xs uppercase font-bold text-ink mix-blend-difference">
+                  {progressPercent.toFixed(1)}% Elapsed
+                </span>
+              </div>
+
+              {/* Labels and values display */}
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 font-mono text-xs font-bold uppercase pt-1">
+                <a
+                  href="https://youtube.com/shorts/0nsZDdlXm64?si=7Z6XvPFCM7dDBm95"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="border-2 border-ink bg-background hover:bg-[#FFD700] hover:text-ink px-3 py-1 shadow-brutal-xs hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-none transition-all active:translate-x-0 active:translate-y-0 text-center cursor-pointer decoration-none"
+                >
+                  The Clock is ticking...
+                </a>
+                <div className="flex items-center gap-2 sm:self-end">
+                  <span className="border-2 border-ink bg-accent text-accent-foreground px-2 py-1 shadow-brutal-xs animate-pulse">
+                    {daysRemaining} Days Remaining
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Next Drop Countdown Card */}
+          <div className="border-[3px] border-ink bg-card p-4 sm:p-5 shadow-brutal relative overflow-hidden conic-pattern flex flex-col justify-between">
+            {/* Retro scanline grid overlay */}
+            <div
+              className="absolute inset-0 bg-repeat bg-center opacity-[0.03] pointer-events-none dots-grid"
+              aria-hidden
+            />
+            <div className="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b-2 border-ink pb-3 mb-4">
+              <div className="flex items-center gap-2">
+                <div className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-accent" />
+                </div>
+                <span className="font-mono text-xs font-bold text-foreground uppercase tracking-wider ml-1.5">
+                  NEXT_DROP_COUNTDOWN.SYS
+                </span>
+              </div>
+              <span className="font-mono text-[10px] font-bold text-foreground/50">
+                RELEASE_SCHEDULE
+              </span>
+            </div>
+
+            <div className="relative flex-1 flex flex-col justify-center py-2">
+              {nextDrop ? (
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-xs font-bold uppercase text-foreground/60">
+                      Next Drop:
+                    </span>
+                    <span className="border-2 border-ink bg-accent text-accent-foreground px-2 py-0.5 font-display text-[10px] uppercase shadow-brutal-xs">
+                      {nextDrop.displayDate}
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-4 gap-2 text-center">
+                    <div className="border-2 border-ink bg-background p-2 shadow-brutal-xs flex flex-col items-center">
+                      <span className="font-display text-xl sm:text-2xl text-primary leading-none">
+                        {String(countdownTime.days).padStart(2, "0")}
+                      </span>
+                      <span className="font-mono text-[8px] font-bold text-foreground/60 uppercase mt-1">
+                        Days
+                      </span>
+                    </div>
+                    <div className="border-2 border-ink bg-background p-2 shadow-brutal-xs flex flex-col items-center">
+                      <span className="font-display text-xl sm:text-2xl text-accent leading-none">
+                        {String(countdownTime.hours).padStart(2, "0")}
+                      </span>
+                      <span className="font-mono text-[8px] font-bold text-foreground/60 uppercase mt-1">
+                        Hours
+                      </span>
+                    </div>
+                    <div className="border-2 border-ink bg-background p-2 shadow-brutal-xs flex flex-col items-center">
+                      <span className="font-display text-xl sm:text-2xl text-primary leading-none">
+                        {String(countdownTime.minutes).padStart(2, "0")}
+                      </span>
+                      <span className="font-mono text-[8px] font-bold text-foreground/60 uppercase mt-1">
+                        Mins
+                      </span>
+                    </div>
+                    <div className="border-2 border-ink bg-accent/5 p-2 shadow-brutal-xs flex flex-col items-center border-dashed border-accent">
+                      <span className="font-display text-xl sm:text-2xl text-accent leading-none animate-pulse">
+                        {String(countdownTime.seconds).padStart(2, "0")}
+                      </span>
+                      <span className="font-mono text-[8px] font-bold text-accent uppercase mt-1">
+                        Secs
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="text-center py-4">
+                  <p className="font-display text-sm uppercase text-[#25D366]">
+                    🚀 All drops are active!
+                  </p>
+                  <p className="font-mono text-[10px] text-foreground/60 uppercase mt-1">
+                    Check out all the problem statements.
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>
