@@ -203,6 +203,7 @@ export const events: SoiEvent[] = [
     prizes: "Merch + Prize Money (2500 + 1500 + 1000)",
     domains: ["Mechanical Engineering", "Product Design & CAD"],
     whatsapp: "https://chat.whatsapp.com/Ej7FvmSVH3P1eKKhK9Cy5I",
+    pdf: "https://drive.google.com/file/d/1hCTOGAE1hDk4YhLraNX2iXFipOf_YlSA/view?usp=sharing",
   },
   {
     num: "11",
