@@ -253,7 +253,7 @@ export function Events() {
                         type="button"
                         onClick={() => {
                           handlePdfClick(e.num);
-                          if (isEventActive(e.date)) {
+                          if (isEventActive(e.date) || e.pdf) {
                             if (e.pdf) {
                               window.open(e.pdf, "_blank");
                             } else {

@@ -177,6 +177,7 @@ export const events: SoiEvent[] = [
     prizes: "Merch + Prize Money (2500 + 1500 + 1000)",
     domains: ["Artificial Intelligence & ML", "Aerospace & Space Tech"],
     whatsapp: "https://chat.whatsapp.com/DGWijtO3F6kC7PBNKye5EP",
+    pdf: "https://drive.google.com/file/d/13RIpdieFrNYg-RVJ-M2Su-NcjvqJrKy3/view?usp=sharing",
   },
   {
     num: "09",
@@ -189,6 +190,7 @@ export const events: SoiEvent[] = [
     prizes: "Merch + Prize Money (2500 + 1500 + 1000)",
     domains: ["UI/UX & Brand Design"],
     whatsapp: "https://chat.whatsapp.com/LYK6m8jTvPh9MjDeQ2pfLP",
+    pdf: "https://drive.google.com/file/d/1WlxsbkkhgyGWLQUi4iknge9NPrBX6DS7/view?usp=sharing",
   },
   {
     num: "10",
@@ -213,6 +215,7 @@ export const events: SoiEvent[] = [
     prizes: "Merch + 3x Robu/Robocraze Gift Card (1000 INR)",
     domains: ["Robotics & Automation", "Product Design & CAD"],
     whatsapp: "https://chat.whatsapp.com/KdL3HuORynJBUAUuXbg8sj",
+    pdf: "https://drive.google.com/file/d/1Q25nCBVeAkdEWcDgsxXNiRTNU7OvriCo/view?usp=sharing",
   },
   {
     num: "12",
