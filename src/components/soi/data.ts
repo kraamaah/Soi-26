@@ -178,6 +178,8 @@ export const events: SoiEvent[] = [
     domains: ["Artificial Intelligence & ML", "Aerospace & Space Tech"],
     whatsapp: "https://chat.whatsapp.com/DGWijtO3F6kC7PBNKye5EP",
     pdf: "https://drive.google.com/file/d/13RIpdieFrNYg-RVJ-M2Su-NcjvqJrKy3/view?usp=sharing",
+    regLink:
+      "https://docs.google.com/forms/d/e/1FAIpQLSf2qiJsbQNnMgvLIr8GPla4z8vs6X0srCJauyDNegnU9Dedfg/viewform",
   },
   {
     num: "09",
