@@ -193,6 +193,7 @@ export const events: SoiEvent[] = [
     domains: ["UI/UX & Brand Design"],
     whatsapp: "https://chat.whatsapp.com/LYK6m8jTvPh9MjDeQ2pfLP",
     pdf: "https://drive.google.com/file/d/1WlxsbkkhgyGWLQUi4iknge9NPrBX6DS7/view?usp=sharing",
+    deadline: "28th July 2026",
   },
   {
     num: "10",
@@ -206,6 +207,7 @@ export const events: SoiEvent[] = [
     domains: ["Mechanical Engineering", "Product Design & CAD"],
     whatsapp: "https://chat.whatsapp.com/Ej7FvmSVH3P1eKKhK9Cy5I",
     pdf: "https://drive.google.com/file/d/1hCTOGAE1hDk4YhLraNX2iXFipOf_YlSA/view?usp=sharing",
+    deadline: "28th July 2026",
   },
   {
     num: "11",
