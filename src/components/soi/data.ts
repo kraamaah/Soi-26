@@ -178,6 +178,7 @@ export const events: SoiEvent[] = [
     domains: ["Artificial Intelligence & ML", "Aerospace & Space Tech"],
     whatsapp: "https://chat.whatsapp.com/DGWijtO3F6kC7PBNKye5EP",
     pdf: "https://drive.google.com/file/d/13RIpdieFrNYg-RVJ-M2Su-NcjvqJrKy3/view?usp=sharing",
+    deadline: "23rd June 2026",
     regLink:
       "https://docs.google.com/forms/d/e/1FAIpQLSf2qiJsbQNnMgvLIr8GPla4z8vs6X0srCJauyDNegnU9Dedfg/viewform",
   },
@@ -194,6 +195,8 @@ export const events: SoiEvent[] = [
     whatsapp: "https://chat.whatsapp.com/LYK6m8jTvPh9MjDeQ2pfLP",
     pdf: "https://drive.google.com/file/d/1WlxsbkkhgyGWLQUi4iknge9NPrBX6DS7/view?usp=sharing",
     deadline: "28th July 2026",
+    regLink:
+      "https://docs.google.com/forms/d/e/1FAIpQLSeF3dYDJ-NMHyh2WJ3zCinei9RhbC2jsUC0lJRRbXt0oD-9GQ/viewform",
   },
   {
     num: "10",
@@ -208,6 +211,8 @@ export const events: SoiEvent[] = [
     whatsapp: "https://chat.whatsapp.com/Ej7FvmSVH3P1eKKhK9Cy5I",
     pdf: "https://drive.google.com/file/d/1hCTOGAE1hDk4YhLraNX2iXFipOf_YlSA/view?usp=sharing",
     deadline: "28th July 2026",
+    regLink:
+      "https://docs.google.com/forms/d/e/1FAIpQLSeWKhIXL-Jt1O8ifpd_WidJV40L9sjy1VN05b_F93FIFpxMXQ/viewform",
   },
   {
     num: "11",
@@ -221,6 +226,9 @@ export const events: SoiEvent[] = [
     domains: ["Robotics & Automation", "Product Design & CAD"],
     whatsapp: "https://chat.whatsapp.com/KdL3HuORynJBUAUuXbg8sj",
     pdf: "https://drive.google.com/file/d/1Q25nCBVeAkdEWcDgsxXNiRTNU7OvriCo/view?usp=sharing",
+    deadline: "8th July 2026",
+    regLink:
+      "https://docs.google.com/forms/d/e/1FAIpQLSeCqUXG9eD5upmlzRjjGn_tQVh3CElJrSmqkfPkXcjQpPwv9A/viewform",
   },
   {
     num: "12",
