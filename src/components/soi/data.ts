@@ -237,10 +237,12 @@ export const events: SoiEvent[] = [
     image: materialSnap,
     club: "Ingene (Motorsports) Club",
     date: "16th June 2026",
-    timeline: "16th June - 7th July 2026",
+    timeline: "16th June - 18th July 2026",
     prizes: "Merch + Goodies for Top 3 (Juniors & Seniors)",
     domains: ["Mechanical Engineering", "Materials Science"],
     whatsapp: "https://chat.whatsapp.com/FuhhCXVVCdVDJbP2rHTAMm",
+    pdf: "https://drive.google.com/file/d/1LrAa6MpBrnZuKvHbYbOiSqbCjrIWQZbd/view?usp=sharing",
+    deadline: "18th July 2026",
   },
   {
     num: "13",
@@ -265,6 +267,8 @@ export const events: SoiEvent[] = [
     prizes: "Merch + 3x Robu/Robocraze Gift Card (1000 INR)",
     domains: ["Robotics & Automation", "Control Systems"],
     whatsapp: "https://chat.whatsapp.com/LU2uvZb2B3nArc45qtiT6J",
+    pdf: "https://docs.google.com/document/d/1la5oqpFnlODygiIwiu2qpUAGMeMgSSRs/edit?usp=sharing&ouid=109853900077698808251&rtpof=true&sd=true",
+    deadline: "21st July 2026",
   },
   {
     num: "15",
