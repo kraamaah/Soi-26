@@ -243,6 +243,8 @@ export const events: SoiEvent[] = [
     whatsapp: "https://chat.whatsapp.com/FuhhCXVVCdVDJbP2rHTAMm",
     pdf: "https://drive.google.com/file/d/1LrAa6MpBrnZuKvHbYbOiSqbCjrIWQZbd/view?usp=sharing",
     deadline: "18th July 2026",
+    regLink:
+      "https://docs.google.com/forms/d/e/1FAIpQLScrgU4xCJpuJmRYmskIt8kki6jKvWrQN-Y65-CPFLSsaffEpg/viewform",
   },
   {
     num: "13",
@@ -255,6 +257,10 @@ export const events: SoiEvent[] = [
     prizes: "Merch + Prize Money (2500 + 1500 + 1000)",
     domains: ["Aerospace & Space Tech", "Astrophysics & Simulation"],
     whatsapp: "https://chat.whatsapp.com/HVPEqAOPWLe7C7BYgjR5Cn",
+    pdf: "https://drive.google.com/file/d/16biXUMSJel7QQD3nWpBdULkV-jSS-uht/view?usp=drive_link",
+    deadline: "16th July 2026",
+    regLink:
+      "https://docs.google.com/forms/d/e/1FAIpQLSfT7cYsXd2-exkVv4DNJq6Lrn01_OoTBRQVZKK0vCPcYPFkyA/viewform?pli=1",
   },
   {
     num: "14",
