@@ -50,7 +50,8 @@ export function Hero() {
       );
     };
     window.addEventListener("soi-open-arcade", handleOpenArcade);
-    return () => window.removeEventListener("soi-open-arcade", handleOpenArcade);
+    return () =>
+      window.removeEventListener("soi-open-arcade", handleOpenArcade);
   }, []);
 
   const handleLogoClick = () => {

@@ -287,6 +287,10 @@ export const events: SoiEvent[] = [
     prizes: "Merch + Prize Money (1800 + 1200)",
     domains: ["Software Engineering", "Cybersecurity"],
     whatsapp: "https://chat.whatsapp.com/FpMV8lXKL7K9QnJy10CWZw",
+    pdf: "https://docs.google.com/presentation/d/1As60G0Qcps06tDrb1v8gG66jathPlNjbflDtmLHG-Kc/edit?slide=id.p#slide=id.p",
+    regLink:
+      "https://docs.google.com/forms/d/e/1FAIpQLSdmH9yiKvxSBj5tZtqAEOikA1cxQG6nFWh19gJ8cCbUuQciCw/viewform",
+    deadline: "17th July 2026",
   },
   {
     num: "16",

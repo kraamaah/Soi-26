@@ -12,7 +12,10 @@ export function TerminalConsole() {
   const [inputVal, setInputVal] = useState("");
   const [history, setHistory] = useState<HistoryLine[]>([
     { text: "SOI_CHRONO.SYS [Version 7.0.2026]", type: "system" },
-    { text: "(c) 2026 Technical Council. All rights reserved.", type: "system" },
+    {
+      text: "(c) 2026 Technical Council. All rights reserved.",
+      type: "system",
+    },
     { text: "", type: "system" },
     { text: "Welcome to Summer of Innovation 2026 Console.", type: "system" },
     { text: "Type 'help' for available command vectors.", type: "system" },
@@ -23,9 +26,14 @@ export function TerminalConsole() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Play chiptune synthesizer tone
-  const playBeep = (freq: number, duration = 0.08, type: OscillatorType = "sine") => {
+  const playBeep = (
+    freq: number,
+    duration = 0.08,
+    type: OscillatorType = "sine",
+  ) => {
     try {
-      const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
+      const AudioCtx =
+        window.AudioContext || (window as any).webkitAudioContext;
       if (!AudioCtx) return;
       const ctx = new AudioCtx();
       const osc = ctx.createOscillator();
@@ -34,7 +42,10 @@ export function TerminalConsole() {
       osc.type = type;
       osc.frequency.setValueAtTime(freq, ctx.currentTime);
       gain.gain.setValueAtTime(0.02, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+      gain.gain.exponentialRampToValueAtTime(
+        0.0001,
+        ctx.currentTime + duration,
+      );
 
       osc.connect(gain);
       gain.connect(ctx.destination);
@@ -84,13 +95,24 @@ export function TerminalConsole() {
     switch (command) {
       case "help":
         addLine("AVAILABLE SYSTEM VECTORS:", "system");
-        addLine("  status      - Display real-time season progress & active drops count");
-        addLine("  challenges  - List all 18 Summer of Innovation problem statements");
-        addLine("  contact     - View SOI community Whatsapp & Social channels");
-        addLine("  credits     - Show Technical Council clubs & builders credits");
+        addLine(
+          "  status      - Display real-time season progress & active drops count",
+        );
+        addLine(
+          "  challenges  - List all 18 Summer of Innovation problem statements",
+        );
+        addLine(
+          "  contact     - View SOI community Whatsapp & Social channels",
+        );
+        addLine(
+          "  credits     - Show Technical Council clubs & builders credits",
+        );
         addLine("  cls / clear - Flush terminal buffer history");
         addLine("  exit        - Terminate terminal session drawer");
-        addLine("  [PS Name]   - Type any challenge name (e.g., 'pathmatrix') to open its PDF document", "system");
+        addLine(
+          "  [PS Name]   - Type any challenge name (e.g., 'pathmatrix') to open its PDF document",
+          "system",
+        );
         break;
 
       case "cls":
@@ -119,9 +141,14 @@ export function TerminalConsole() {
 
       case "contact":
         addLine("SOI COMMUNITY CHANNELS:", "system");
-        addLine("  - Whatsapp Link  : https://chat.whatsapp.com/DDTS4N4AjNWLh0WEQVZT98");
+        addLine(
+          "  - Whatsapp Link  : https://chat.whatsapp.com/DDTS4N4AjNWLh0WEQVZT98",
+        );
         addLine("  - Instagram Link : https://instagram.com/tech_iitg");
-        addLine("Type these links into your browser or click them directly on the footer!", "system");
+        addLine(
+          "Type these links into your browser or click them directly on the footer!",
+          "system",
+        );
         break;
 
       case "status": {
@@ -131,13 +158,17 @@ export function TerminalConsole() {
         const elapsed = now - START_DATE;
         const total = END_DATE - START_DATE;
         const percent = Math.min(100, Math.max(0, (elapsed / total) * 100));
-        const days = Math.max(0, Math.ceil((END_DATE - now) / (1000 * 60 * 60 * 24)));
+        const days = Math.max(
+          0,
+          Math.ceil((END_DATE - now) / (1000 * 60 * 60 * 24)),
+        );
         const activeCount = events.filter((e) => isEventActive(e.date)).length;
 
         // Create elegant ASCII bar
         const totalBars = 20;
         const activeBars = Math.round((percent / 100) * totalBars);
-        const barStr = "█".repeat(activeBars) + "░".repeat(totalBars - activeBars);
+        const barStr =
+          "█".repeat(activeBars) + "░".repeat(totalBars - activeBars);
 
         addLine("SOI_CHRONO_STATUS.DAT:", "system");
         addLine(`  [${barStr}] ${percent.toFixed(1)}% ELAPSED`, "success");
@@ -151,27 +182,39 @@ export function TerminalConsole() {
       case "ps":
         addLine("18 CHALLENGES CURRENTLY ON TRACK:", "system");
         events.forEach((ev) => {
-          addLine(`  [${ev.num}] ${ev.title.padEnd(20)} | ${ev.club}`, "output");
+          addLine(
+            `  [${ev.num}] ${ev.title.padEnd(20)} | ${ev.club}`,
+            "output",
+          );
         });
         break;
 
       default: {
         const matchingEvent = events.find(
-          (ev) => ev.title.toLowerCase() === trimmed.toLowerCase()
+          (ev) => ev.title.toLowerCase() === trimmed.toLowerCase(),
         );
         if (matchingEvent) {
           if (matchingEvent.pdf) {
-            addLine(`OPENING ${matchingEvent.title.toUpperCase()} PROBLEM STATEMENT DOCUMENT...`, "success");
+            addLine(
+              `OPENING ${matchingEvent.title.toUpperCase()} PROBLEM STATEMENT DOCUMENT...`,
+              "success",
+            );
             try {
               window.open(matchingEvent.pdf, "_blank");
             } catch {
               addLine("ERROR: Browser blocked popup window.", "error");
             }
           } else {
-            addLine(`ERROR: PDF document for '${matchingEvent.title}' is not released yet.`, "error");
+            addLine(
+              `ERROR: PDF document for '${matchingEvent.title}' is not released yet.`,
+              "error",
+            );
           }
         } else {
-          addLine(`COMMAND VECTOR NOT FOUND: '${command}'. Type 'help' for instructions.`, "error");
+          addLine(
+            `COMMAND VECTOR NOT FOUND: '${command}'. Type 'help' for instructions.`,
+            "error",
+          );
           playBeep(220, 0.15, "sawtooth"); // error tone
         }
         break;
@@ -243,7 +286,10 @@ export function TerminalConsole() {
         {/* History buffer view */}
         <div className="relative h-[250px] overflow-y-auto font-mono text-[11px] leading-relaxed border-b border-ink/20 pb-2 mb-3 scrollbar-none space-y-1">
           {history.map((h, i) => (
-            <div key={i} className={`term-history-line-${h.type} whitespace-pre-wrap`}>
+            <div
+              key={i}
+              className={`term-history-line-${h.type} whitespace-pre-wrap`}
+            >
               {h.text}
             </div>
           ))}
