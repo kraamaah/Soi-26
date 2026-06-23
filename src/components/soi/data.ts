@@ -275,6 +275,8 @@ export const events: SoiEvent[] = [
     whatsapp: "https://chat.whatsapp.com/LU2uvZb2B3nArc45qtiT6J",
     pdf: "https://docs.google.com/document/d/1la5oqpFnlODygiIwiu2qpUAGMeMgSSRs/edit?usp=sharing&ouid=109853900077698808251&rtpof=true&sd=true",
     deadline: "21st July 2026",
+    regLink:
+      "https://docs.google.com/forms/d/e/1FAIpQLSc8dJ4RusmezUQ17Bu0EjIu7GCdgO_mQD4mSTyVIcduw03htw/viewform",
   },
   {
     num: "15",
