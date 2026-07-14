@@ -5,7 +5,7 @@ import { FileText, ClipboardCheck } from "lucide-react";
 
 export function Events() {
   const [statusFilter, setStatusFilter] = useState<
-    "All" | "Active" | "Upcoming"
+    "All" | "Active" | "Inactive"
   >("All");
   const [clubFilter, setClubFilter] = useState<string>("All");
   const [viewedPdfs, setViewedPdfs] = useState<string[]>([]);
@@ -69,8 +69,8 @@ export function Events() {
   const filteredEvents = events.filter((e) => {
     const matchesStatus =
       statusFilter === "All" ||
-      (statusFilter === "Active" && isEventActive(e.date)) ||
-      (statusFilter === "Upcoming" && !isEventActive(e.date));
+      (statusFilter === "Active" && isEventActive(e.date) && !isDeadlinePassed(e.deadline)) ||
+      (statusFilter === "Inactive" && isDeadlinePassed(e.deadline));
 
     const matchesClub = clubFilter === "All" || e.club === clubFilter;
 
@@ -113,7 +113,7 @@ export function Events() {
               Status:
             </span>
             <div className="flex overflow-x-auto pb-1.5 scrollbar-none snap-x gap-2.5 md:flex-wrap md:pb-0">
-              {(["All", "Active", "Upcoming"] as const).map((status) => {
+              {(["All", "Active", "Inactive"] as const).map((status) => {
                 const isActive = statusFilter === status;
                 return (
                   <button
@@ -129,7 +129,7 @@ export function Events() {
                       ? "All Drops"
                       : status === "Active"
                         ? "Active Drops"
-                        : "Upcoming Drops"}
+                        : "Inactive Drops"}
                   </button>
                 );
               })}
