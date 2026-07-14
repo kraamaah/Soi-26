@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { events, SoiEvent, isEventActive } from "./data";
+import { events, SoiEvent, isEventActive, isDeadlinePassed } from "./data";
 
 const staticStars = [
   { size: 1.5, x: 25, y: 35 },
@@ -78,7 +78,10 @@ export function Timeline() {
   });
 
   useEffect(() => {
-    setActiveCount(events.filter((e) => isEventActive(e.date)).length);
+    setActiveCount(
+      events.filter((e) => isEventActive(e.date) && !isDeadlinePassed(e.deadline))
+        .length,
+    );
     setMounted(true);
 
     const START_DATE = new Date("2026-06-02T00:00:00").getTime();

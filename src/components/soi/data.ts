@@ -54,6 +54,25 @@ export const isEventActive = (dateStr: string) => {
   }
 };
 
+export const isDeadlinePassed = (deadlineStr?: string) => {
+  if (!deadlineStr) return false;
+  try {
+    const cleanStr = deadlineStr.replace(/(st|nd|rd|th)/g, "");
+    const deadlineTime = new Date(cleanStr).getTime();
+    const now = new Date();
+    const today = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate(),
+    ).getTime();
+    const diffTime = deadlineTime - today;
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays < 0;
+  } catch {
+    return false;
+  }
+};
+
 export const events: SoiEvent[] = [
   {
     num: "01",

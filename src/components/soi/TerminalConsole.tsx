@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { X, ChevronRight } from "lucide-react";
-import { events, isEventActive } from "./data";
+import { events, isEventActive, isDeadlinePassed } from "./data";
 
 interface HistoryLine {
   text: string;
@@ -162,7 +162,9 @@ export function TerminalConsole() {
           0,
           Math.ceil((END_DATE - now) / (1000 * 60 * 60 * 24)),
         );
-        const activeCount = events.filter((e) => isEventActive(e.date)).length;
+        const activeCount = events.filter(
+          (e) => isEventActive(e.date) && !isDeadlinePassed(e.deadline),
+        ).length;
 
         // Create elegant ASCII bar
         const totalBars = 20;
