@@ -69,20 +69,13 @@ export function Events() {
   const filteredEvents = events.filter((e) => {
     const matchesStatus =
       statusFilter === "All" ||
-      (statusFilter === "Active" && isEventActive(e.date) && !isDeadlinePassed(e.deadline)) ||
+      (statusFilter === "Active" && isEventActive(e.date)) ||
       (statusFilter === "Inactive" && isDeadlinePassed(e.deadline));
 
     const matchesClub = clubFilter === "All" || e.club === clubFilter;
 
     return matchesStatus && matchesClub;
   });
-
-  const activeFilteredEvents = filteredEvents.filter(
-    (e) => !isDeadlinePassed(e.deadline),
-  );
-  const inactiveFilteredEvents = filteredEvents.filter(
-    (e) => isDeadlinePassed(e.deadline),
-  );
 
   // calculated in useEffect client-side to prevent hydration mismatch
 
@@ -126,10 +119,10 @@ export function Events() {
                     }`}
                   >
                     {status === "All"
-                      ? "All Drops"
+                      ? "All PS"
                       : status === "Active"
-                        ? "Active Drops"
-                        : "Inactive Drops"}
+                        ? "Active PS"
+                        : "Inactive PS"}
                   </button>
                 );
               })}
