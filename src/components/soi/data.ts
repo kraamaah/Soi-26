@@ -301,10 +301,14 @@ export const events: SoiEvent[] = [
     image: compounding,
     club: "Finance Club",
     date: "30th June 2026",
-    timeline: "30th June - 10th July 2026",
+    timeline: "30th June - 12th July 2026",
     prizes: "Merch + Prize Money (2000 + 1000 + 500)",
     domains: ["Quantitative Finance"],
     whatsapp: "https://chat.whatsapp.com/CT5ozR4rSRA2EaVqXODpV7",
+    pdf: "https://drive.google.com/file/d/1ml7NU6Dj6y0Rpzds089Ohk8j4CGZhtFz/view?usp=sharing",
+    regLink:
+      "https://docs.google.com/forms/d/e/1FAIpQLSfBu5xlHEacexvX_yImpGkMr5dnk9SlbsgRlSTP1vF9ul7J3g/viewform?usp=send_form",
+    deadline: "12th July 2026",
   },
   {
     num: "17",
@@ -317,6 +321,10 @@ export const events: SoiEvent[] = [
     prizes: "Merch + Prize Money (1800 + 1200)",
     domains: ["Software Engineering", "Game Development"],
     whatsapp: "https://chat.whatsapp.com/E2KFXYMTDDlDi5onvyawmi",
+    pdf: "https://drive.google.com/file/d/12vL9h5mGhq4f3bqELM6boguo0UCXCkgL/view?usp=sharing",
+    regLink:
+      "https://docs.google.com/forms/d/e/1FAIpQLSeTwZccuznmaUkGWRaXFnj34e5RMaQFq5HI1le8QZ6F2hwRvw/viewform",
+    deadline: "17th July 2026",
   },
   {
     num: "18",
@@ -329,6 +337,10 @@ export const events: SoiEvent[] = [
     prizes: "Merch + Prize Money (2500 + 1500 + 1000)",
     domains: ["Aerospace & Space Tech", "Embedded Systems"],
     whatsapp: "https://chat.whatsapp.com/LaY2b7B3hlh4tiAMY3j8uk",
+    pdf: "https://drive.google.com/file/d/1j9eQn03e91UtFknu4XR7dcYDtJlE75b7/view?usp=sharing",
+    regLink:
+      "https://docs.google.com/forms/d/e/1FAIpQLSc32LNz7tmTWcMXxZXufuBGK_FrqM3eqMlKjTCVTRr1d5f8jw/closedform",
+    deadline: "21st July 2026",
   },
 ];
 
